@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="hippaCompliant">
+        <item name="yes">Yes</item>
+        <item name="no">No</item>
+    </string-array>
+</resources>
