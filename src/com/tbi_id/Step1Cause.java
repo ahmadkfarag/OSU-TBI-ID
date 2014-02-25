@@ -53,6 +53,7 @@ public class Step1Cause extends Activity {
 				Bundle b = new Bundle();
 				b.putSerializable("patientData", data);
 				b.putSerializable("questionNum", questionNum);
+				//add bundle to intent then start activity
 				i.putExtras(b);
 				startActivity(i);
 				
