@@ -37,6 +37,16 @@ public class Step1Activity extends Activity {
 	
 		});
 		
+		//About Button
+		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
+		aboutButton.setOnClickListener(new View.OnClickListener() {
+			//open up the start interview activity if clicked
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
+				startActivity(i);
+			}
+		});			
+		
 		//get passed data from bundle which has patient info and questionNum in it and set them to variables for use
 		Intent intent = getIntent();
 		Bundle b = intent.getExtras();

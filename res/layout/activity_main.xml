@@ -10,7 +10,7 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="#971425"
-        android:weightSum="3" >
+        android:weightSum="2" >
 
         <ImageButton
             android:id="@+id/home_button_main_screen"
@@ -19,14 +19,6 @@
             android:layout_weight="1"
             android:background="#971425"
             android:src="@drawable/home_button_75" />
-
-        <ImageButton
-            android:id="@+id/patient_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#971425"
-            android:src="@drawable/patient_button_75" />
         
         <ImageButton
             android:id="@+id/about_button"

@@ -13,7 +13,7 @@
     <string name="no">No</string>
     <string name="step_1_help">Ask questions 1 through 5. Record the cause of each reported injury and any details provided spontaneously. You do not need to ask further about loss of consciousness or other injury details during this step.</string>
     <string name="step_2_help">Interviewer instruction: If the answer is "yes" to any of the questions in Step 1 ask additional questions about each reported injury.</string>
-    <string name="step_3_help">Interviewer instruction: Ask the additional questions  to help identify a history that may include multiple mild TBIs.</string>
+    <string name="step_3_help">Interviewer instruction: Ask the additional questions  to help identify a history that may include multiple mild TBIs.\n</string>
     <string name="step_1_question1">1. In your lifetime, have you ever been hospitalized or treated in an emergency room following an injury to your head or neck? Think about any childhood injuries you remember or were told about.</string>
     <string name="step_1_question2">2. In your lifetime, have you ever injured your head or neck in a car accident or from crashing some other moving vehicle like a bicycle, motorcycle, or ATV?</string>
     <string name="step_1_question3">3. In your lifetime, have you ever injured your head or neck in a fall or from being hit by something (for example, falling from a bike or horse, rollerblading, falling on ice, being hit by a rock)? Have you ever injured your head or neck playing sports or on the playground?</string>
@@ -27,7 +27,10 @@
     <string name="enterEmailHipaa">Please Enter Your Email Below:</string>
     <string name="emailHint">Email</string>
     <string name="title_activity_about">AboutActivity</string>
-    <string name="training">Free online training on administration of the OSU TBI-ID is available at:</string>
     <string name="title_activity_help">HelpActivity</string>
-
+    <string name="osutbi_dev_excerpt">The OSU TBI-ID was developed by John D. Corrigan, PhD, and Jennifer A. Bogner, PhD, from the Department of Physical Medicine &amp; Rehabilitation at The Ohio State University Wexner Medical Center.</string>
+    <string name="osutbi_property_disclaim">The OSU TBI-ID and related materials are the property of the Ohio Valley Center for Brain Injury Prevention and Rehabilitation in the Department of Physical Medicine and Rehabilitation at The Ohio State University Wexner Medical Center and are copyright protected (© 2007 Ohio Valley Center for Brain Injury Prevention and Rehabilitation).</string>
+    <string name="osutbi_permissions">The OSU TBI-ID may be used free of charge. No changes may be made to the OSU TBI-ID without the written permissions of the authors, Drs. Corrigan and Bogner.</string>
+	<string name="osutbi_grant_funding">Development of the OSU TBI-ID was made possible by grant funding from the US Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), and the US Department of Education, Office of Special Education and Rehabilitative Services, National Institute on Disability and Rehabilitation Research.\n</string>
+    
 </resources>
