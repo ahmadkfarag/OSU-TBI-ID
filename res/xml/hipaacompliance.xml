@@ -2,6 +2,6 @@
 <CheckBoxPreference xmlns:android="http://schemas.android.com/apk/res/android"
     android:defaultValue="false"
     android:key="checkboxHipaa"
-    android:summary="Is user HIPAA Compliant"
+    android:summary="Is User Under HIPAA Compliant"
     android:title="Is HIPAA Compliant">
 </CheckBoxPreference>
