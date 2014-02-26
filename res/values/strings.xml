@@ -7,8 +7,13 @@
     <string name="title_activity_step1">Step1Activity</string>
     <string name="hello_world">Hello world!</string>
     <string name="step_1">Step 1</string>
+    <string name="step_2">Step 2</string>
+    <string name="step_3">Step 3</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="step_1_help">Ask questions 1 through 5. Record the cause of each reported injury and any details provided spontaneously. You do not need to ask further about loss of consciousness or other injury details during this step.</string>
+    <string name="step_2_help">Interviewer instruction: If the answer is "yes" to any of the questions in Step 1 ask additional questions about each reported injury.</string>
+    <string name="step_3_help">Interviewer instruction: Ask the additional questions  to help identify a history that may include multiple mild TBIs.</string>
     <string name="step_1_question1">1. In your lifetime, have you ever been hospitalized or treated in an emergency room following an injury to your head or neck? Think about any childhood injuries you remember or were told about.</string>
     <string name="step_1_question2">2. In your lifetime, have you ever injured your head or neck in a car accident or from crashing some other moving vehicle like a bicycle, motorcycle, or ATV?</string>
     <string name="step_1_question3">3. In your lifetime, have you ever injured your head or neck in a fall or from being hit by something (for example, falling from a bike or horse, rollerblading, falling on ice, being hit by a rock)? Have you ever injured your head or neck playing sports or on the playground?</string>
@@ -23,4 +28,6 @@
     <string name="emailHint">Email</string>
     <string name="title_activity_about">AboutActivity</string>
     <string name="training">Free online training on administration of the OSU TBI-ID is available at:</string>
+    <string name="title_activity_help">HelpActivity</string>
+
 </resources>
