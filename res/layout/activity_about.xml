@@ -66,15 +66,61 @@
             android:src="@drawable/about_button_75" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/header"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:gravity="center"
-        android:text="@string/training" />
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/footer"
+        android:layout_below="@+id/header" >
+        
+        <LinearLayout
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >        
+	            
+		    <TextView
+		        android:id="@+id/osutbi_dev_excerpt"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginTop="25dp"
+		        android:gravity="center"
+		        android:text="@string/osutbi_dev_excerpt" />
+	    
+			<TextView
+		    	android:id="@+id/osutbi_property_disclaim"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginTop="25dp"
+		        android:gravity="center"
+		        android:text="@string/osutbi_property_disclaim" />    
+	        
+			<TextView
+		    	android:id="@+id/osutbi_permissions"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginTop="25dp"
+		        android:gravity="center"
+		        android:text="@string/osutbi_permissions" /> 
+	        
+			<TextView
+		    	android:id="@+id/osutbi_grant_funding"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginTop="25dp"
+		        android:gravity="center"
+		        android:text="@string/osutbi_grant_funding" /> 
+		        
+			</LinearLayout>
+	        
+		</ScrollView>
 
 </RelativeLayout>

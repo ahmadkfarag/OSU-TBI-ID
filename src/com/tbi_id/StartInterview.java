@@ -44,6 +44,16 @@ public class StartInterview extends Activity {
 			}
 		});
 		
+		//About Button
+		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
+		aboutButton.setOnClickListener(new View.OnClickListener() {
+			//open up the start interview activity if clicked
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
+				startActivity(i);
+			}
+		});			
+		
 		//Start Interview Button
 		ImageButton startInterviewButton = (ImageButton) findViewById(R.id.start_interview_button);
 		//when the button is pressed, save all inputed data into variables and place them into hashmap for later retrieval

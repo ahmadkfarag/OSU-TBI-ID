@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
 		//set layout from xml
 		setContentView(R.layout.activity_main);
 		
-		//get the homebutton and make it unpressable
+		//get the home button and make it not pressable
 		ImageButton homeButton = (ImageButton) findViewById(R.id.home_button_main_screen);
 		homeButton.setEnabled(false);
 		
@@ -48,15 +48,25 @@ public class MainActivity extends Activity {
 			}
 		});
 		
-		//Patient Button
-		ImageButton patientButton = (ImageButton) findViewById(R.id.patient_button);
-		patientButton.setOnClickListener(new View.OnClickListener() {
+		//Help Button
+		ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
+		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.StartInterview.class);
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
 				startActivity(i);
 			}
 		});
+		
+		//About Button
+		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
+		aboutButton.setOnClickListener(new View.OnClickListener() {
+			//open up the start interview activity if clicked
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
+				startActivity(i);
+			}
+		});		
 
 	}
 

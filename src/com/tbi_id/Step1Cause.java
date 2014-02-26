@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 public class Step1Cause extends Activity {
 	protected static int questionNum;
@@ -28,6 +29,16 @@ public class Step1Cause extends Activity {
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		//set view from xml
 		setContentView(R.layout.activity_step1_cause);
+		
+		//About Button
+		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
+		aboutButton.setOnClickListener(new View.OnClickListener() {
+			//open up the start interview activity if clicked
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
+				startActivity(i);
+			}
+		});			
 		
 		//get passed data to save the cause with the appopriate question for later use
 		Intent intent = getIntent();

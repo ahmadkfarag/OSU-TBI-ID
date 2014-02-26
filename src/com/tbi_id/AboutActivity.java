@@ -2,9 +2,12 @@ package com.tbi_id;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 
 public class AboutActivity extends Activity {
 
@@ -15,6 +18,43 @@ public class AboutActivity extends Activity {
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_about);
+		
+		//get the about button and make it not pressable
+		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
+		aboutButton.setEnabled(false);		
+		
+		//Settings button
+		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
+		//open up settings activity if the settings button is clicked
+		settingsButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
+				startActivity(i);				
+			}
+		});
+		
+		//Help Button
+		ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
+		helpButton.setOnClickListener(new View.OnClickListener() {
+			//open up the start interview activity if clicked
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
+				startActivity(i);
+			}
+		});
+		
+		//Home Button
+		ImageButton homeButton = (ImageButton) findViewById(R.id.home_button_main_screen);
+		homeButton.setOnClickListener(new View.OnClickListener() {
+			//open up the start interview activity if clicked
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
+				startActivity(i);
+			}
+		});
+		
+		
 	}
 
 	@Override
