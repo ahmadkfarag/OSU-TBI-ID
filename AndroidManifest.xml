@@ -46,6 +46,10 @@
             android:name="com.tbi_id.HelpActivity"
             android:label="@string/title_activity_help" >
         </activity>
+        <activity
+            android:name="com.tbi_id.Step2Activity"
+            android:label="@string/title_activity_step2" >
+        </activity>
     </application>
 
 </manifest>

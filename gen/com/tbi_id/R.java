@@ -25,34 +25,6 @@ public final class R {
     }
     public static final class drawable {
         public static final int about_button_75=0x7f020000;
-<<<<<<< HEAD
-        public static final int help_75_active=0x7f020001;
-        public static final int help_button_50=0x7f020002;
-        public static final int home_button_75=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int logo=0x7f020005;
-        public static final int next_button_75=0x7f020006;
-        public static final int no_50=0x7f020007;
-        public static final int osumc_logo=0x7f020008;
-        public static final int patient_button_75=0x7f020009;
-        public static final int patient_button_active75=0x7f02000a;
-        public static final int patient_button_active_50=0x7f02000b;
-        public static final int save_button_50=0x7f02000c;
-        public static final int settings_button_50=0x7f02000d;
-        public static final int start_interview_button=0x7f02000e;
-        public static final int yes_50=0x7f02000f;
-    }
-    public static final class id {
-        public static final int about_button=0x7f0a0005;
-        public static final int action_settings=0x7f0a0024;
-        public static final int addEntry=0x7f0a0017;
-        public static final int date=0x7f0a0022;
-        public static final int done=0x7f0a0018;
-        public static final int emailEnterHipaa=0x7f0a001b;
-        public static final int enterCause=0x7f0a0015;
-        public static final int enterEmailNotif=0x7f0a001c;
-        public static final int enterInfo=0x7f0a0023;
-=======
         public static final int help_50_active=0x7f020001;
         public static final int help_75_active=0x7f020002;
         public static final int help_75active=0x7f020003;
@@ -67,59 +39,43 @@ public final class R {
         public static final int patient_button_75=0x7f02000c;
         public static final int patient_button_active75=0x7f02000d;
         public static final int patient_button_active_50=0x7f02000e;
-        public static final int settings_button_50=0x7f02000f;
-        public static final int start_interview_button=0x7f020010;
-        public static final int yes_50=0x7f020011;
+        public static final int save_button_50=0x7f02000f;
+        public static final int settings_button_50=0x7f020010;
+        public static final int start_interview_button=0x7f020011;
+        public static final int yes_50=0x7f020012;
     }
     public static final class id {
         public static final int about_button=0x7f0a0005;
-        public static final int action_settings=0x7f0a0025;
+        public static final int action_settings=0x7f0a0027;
         public static final int addEntry=0x7f0a001a;
-        public static final int date=0x7f0a0023;
+        public static final int date=0x7f0a0025;
         public static final int done=0x7f0a001b;
         public static final int emailEnterHipaa=0x7f0a001e;
         public static final int enterCause=0x7f0a0018;
         public static final int enterEmailNotif=0x7f0a001f;
-        public static final int enterInfo=0x7f0a0024;
->>>>>>> 6bcc59bc2b74a1b6a5ffe2ad1b98c8bedf51516f
+        public static final int enterInfo=0x7f0a0026;
         public static final int footer=0x7f0a0003;
         public static final int giveCause=0x7f0a0017;
         public static final int header=0x7f0a0000;
         public static final int help_button=0x7f0a0001;
-<<<<<<< HEAD
-        public static final int help_step_1=0x7f0a000a;
-        public static final int help_step_2=0x7f0a000c;
-        public static final int help_step_3=0x7f0a000e;
-        public static final int hippaCompliance=0x7f0a001a;
-        public static final int home_button=0x7f0a001d;
-        public static final int home_button_main_screen=0x7f0a0004;
-        public static final int interviewAge=0x7f0a001f;
-        public static final int interviewId=0x7f0a0021;
-        public static final int interviewName=0x7f0a0020;
-        public static final int osu_logo=0x7f0a0010;
-        public static final int patient_button=0x7f0a0006;
-        public static final int save_settings=0x7f0a001e;
-        public static final int scrollView1=0x7f0a0007;
-        public static final int scroll_view=0x7f0a0008;
-        public static final int settingsTitle=0x7f0a0019;
-=======
         public static final int help_step_1=0x7f0a000d;
         public static final int help_step_2=0x7f0a000f;
         public static final int help_step_3=0x7f0a0011;
         public static final int hippaCompliance=0x7f0a001d;
+        public static final int home_button=0x7f0a0020;
         public static final int home_button_main_screen=0x7f0a0004;
-        public static final int interviewAge=0x7f0a0020;
-        public static final int interviewId=0x7f0a0022;
-        public static final int interviewName=0x7f0a0021;
+        public static final int interviewAge=0x7f0a0022;
+        public static final int interviewId=0x7f0a0024;
+        public static final int interviewName=0x7f0a0023;
         public static final int osu_logo=0x7f0a0013;
         public static final int osutbi_dev_excerpt=0x7f0a0008;
         public static final int osutbi_grant_funding=0x7f0a000b;
         public static final int osutbi_permissions=0x7f0a000a;
         public static final int osutbi_property_disclaim=0x7f0a0009;
+        public static final int save_settings=0x7f0a0021;
         public static final int scrollView1=0x7f0a0006;
         public static final int scroll_view=0x7f0a0007;
         public static final int settingsTitle=0x7f0a001c;
->>>>>>> 6bcc59bc2b74a1b6a5ffe2ad1b98c8bedf51516f
         public static final int settings_button=0x7f0a0002;
         public static final int start_interview_button=0x7f0a0012;
         public static final int step_1_question=0x7f0a0015;
@@ -136,8 +92,9 @@ public final class R {
         public static final int activity_main=0x7f030002;
         public static final int activity_step1=0x7f030003;
         public static final int activity_step1_cause=0x7f030004;
-        public static final int settings=0x7f030005;
-        public static final int start_interview=0x7f030006;
+        public static final int activity_step2=0x7f030005;
+        public static final int settings=0x7f030006;
+        public static final int start_interview=0x7f030007;
     }
     public static final class menu {
         public static final int about=0x7f090000;
@@ -146,6 +103,7 @@ public final class R {
         public static final int preferences=0x7f090003;
         public static final int step1=0x7f090004;
         public static final int step1_cause=0x7f090005;
+        public static final int step2=0x7f090006;
     }
     public static final class string {
         public static final int action_settings=0x7f070001;
@@ -178,6 +136,7 @@ public final class R {
         public static final int title_activity_help=0x7f07001a;
         public static final int title_activity_step1=0x7f070003;
         public static final int title_activity_step1_cause=0x7f070012;
+        public static final int title_activity_step2=0x7f07001f;
         public static final int yes=0x7f070008;
     }
     public static final class style {

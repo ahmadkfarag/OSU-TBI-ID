@@ -31,6 +31,7 @@
     <string name="osutbi_dev_excerpt">The OSU TBI-ID was developed by John D. Corrigan, PhD, and Jennifer A. Bogner, PhD, from the Department of Physical Medicine &amp; Rehabilitation at The Ohio State University Wexner Medical Center.</string>
     <string name="osutbi_property_disclaim">The OSU TBI-ID and related materials are the property of the Ohio Valley Center for Brain Injury Prevention and Rehabilitation in the Department of Physical Medicine and Rehabilitation at The Ohio State University Wexner Medical Center and are copyright protected (© 2007 Ohio Valley Center for Brain Injury Prevention and Rehabilitation).</string>
     <string name="osutbi_permissions">The OSU TBI-ID may be used free of charge. No changes may be made to the OSU TBI-ID without the written permissions of the authors, Drs. Corrigan and Bogner.</string>
-	<string name="osutbi_grant_funding">Development of the OSU TBI-ID was made possible by grant funding from the US Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), and the US Department of Education, Office of Special Education and Rehabilitative Services, National Institute on Disability and Rehabilitation Research.\n</string>
-    
+    <string name="osutbi_grant_funding">Development of the OSU TBI-ID was made possible by grant funding from the US Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), and the US Department of Education, Office of Special Education and Rehabilitative Services, National Institute on Disability and Rehabilitation Research.\n</string>
+    <string name="title_activity_step2">Step2Activity</string>
+
 </resources>

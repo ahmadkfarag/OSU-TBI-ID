@@ -53,6 +53,22 @@ public class Step1Activity extends Activity {
 		questionNum = b.getInt("questionNum");
 		//get text box that will have the question text in it
 		TextView question = (TextView) findViewById(R.id.step_1_question);
+		
+		//if questionNum > 5 go to step 2
+		
+		if (questionNum > 5)
+		{
+			
+			Intent i = new Intent(getApplicationContext(),com.tbi_id.Step2Activity.class);
+			i.putExtra("step1Bundle", b);
+			startActivity(i);
+		}
+		
+		
+		
+		
+		
+		
 		//using the questionNum select the correct question to ask
 		getQuestion(context, question, questionNum);
 		@SuppressWarnings("unchecked")
@@ -160,6 +176,7 @@ public class Step1Activity extends Activity {
 			question.setText(context.getString(R.string.step_1_question5));
 
 		}
+		
 		
 
 	}
