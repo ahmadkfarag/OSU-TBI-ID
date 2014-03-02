@@ -38,19 +38,51 @@ public class Step1Cause extends Activity {
 				Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
 				startActivity(i);
 			}
-		});			
+		});
+		
+		//Help Button
+		ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
+		helpButton.setOnClickListener(new View.OnClickListener() {
+			//open up the start interview activity if clicked
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
+				startActivity(i);
+			}
+		});
+		
+		//Settings button
+		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
+		//open up settings activity if the settings button is clicked
+		settingsButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
+				startActivity(i);				
+			}
+		});
+		
+		//Home Button
+		ImageButton homeButton = (ImageButton) findViewById(R.id.home_button_main_screen);
+		//if the home button is clicked, send the user back to the home screen
+		homeButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
+				startActivity(i);
+			}
+		});		
 		
 		//get passed data to save the cause with the appopriate question for later use
 		Intent intent = getIntent();
 		Bundle bundle = intent.getExtras();
 		questionNum = (Integer) bundle.get("questionNum");
+		@SuppressWarnings("unchecked")
 		final HashMap<String, String> data = (HashMap<String, String>) bundle.getSerializable("patientData");
 		//get the input field where the patient will enter the case
 		final EditText enterCause = (EditText) findViewById(R.id.enterCause);
 		//button for adding an additional entry
-		Button addEntry = (Button) findViewById(R.id.addEntry);
+		ImageButton addEntry = (ImageButton) findViewById(R.id.addEntry);
 		//button for finishing adding causes
-		Button done = (Button) findViewById(R.id.done);
+		ImageButton done = (ImageButton) findViewById(R.id.done);
 		
 		// if done is clicked, save the causes from the input field with the appropriate title for later use to a bundle then return to the step one question activity
 		done.setOnClickListener(new View.OnClickListener() {

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -117,6 +116,7 @@ public class SettingsActivity extends Activity {
 				}
 		});
 		
+		//Home Button
 		ImageButton homeButton = (ImageButton) findViewById(R.id.home_button);
 		homeButton.setOnClickListener(new OnClickListener() {
 			
@@ -128,9 +128,29 @@ public class SettingsActivity extends Activity {
 			}
 		});
 		
+		//Help Button
+		ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
+		helpButton.setOnClickListener(new View.OnClickListener() {
+			//open up the start interview activity if clicked
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
+				startActivity(i);
+			}
+		});		
 		
+		//About Button
+		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
+		aboutButton.setOnClickListener(new View.OnClickListener() {
+			//open up the start interview activity if clicked
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
+				startActivity(i);
+			}
+		});	
 		
-	
+		//get the settings button and make it not pressable
+		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
+		settingsButton.setEnabled(false);		
 		
 		
 	}

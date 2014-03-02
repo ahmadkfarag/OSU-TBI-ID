@@ -44,23 +44,25 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <Button
+    <ImageButton
         android:id="@+id/done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Next Question" />
+        android:background="#ffffff"
+        android:src="@drawable/nextquestion" />
 
-    <Button
+    <ImageButton
         android:id="@+id/addEntry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/enterCause"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="Add Another Injury" />
+        android:background="#ffffff"
+        android:src="@drawable/addanotherentry" />
 
     <LinearLayout
         android:id="@+id/footer"
@@ -76,7 +78,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#971425"
-            android:src="@drawable/home_button_75" />
+            android:src="@drawable/home" />
 
         <ImageButton
             android:id="@+id/about_button"
@@ -84,7 +86,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#971425"
-            android:src="@drawable/about_button_75" />
+            android:src="@drawable/about" />
     </LinearLayout>
 
     <LinearLayout
@@ -103,7 +105,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#971425"
-            android:src="@drawable/help_button_50" />
+            android:src="@drawable/help" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -121,7 +123,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#971425"
-            android:src="@drawable/settings_button_50" />
+            android:src="@drawable/settings" />
     </LinearLayout>
 
 </RelativeLayout>

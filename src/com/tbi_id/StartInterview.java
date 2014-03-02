@@ -52,7 +52,28 @@ public class StartInterview extends Activity {
 				Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
 				startActivity(i);
 			}
-		});			
+		});
+		
+		//Help Button
+		ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
+		helpButton.setOnClickListener(new View.OnClickListener() {
+			//open up the start interview activity if clicked
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
+				startActivity(i);
+			}
+		});
+		
+		//Settings button
+		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
+		//open up settings activity if the settings button is clicked
+		settingsButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
+				startActivity(i);				
+			}
+		});		
 		
 		//Start Interview Button
 		ImageButton startInterviewButton = (ImageButton) findViewById(R.id.start_interview_button);

@@ -24,25 +24,24 @@ public final class R {
         public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int about_button_75=0x7f020000;
-        public static final int help_50_active=0x7f020001;
-        public static final int help_75_active=0x7f020002;
-        public static final int help_75active=0x7f020003;
-        public static final int help_active_75=0x7f020004;
-        public static final int help_button_50=0x7f020005;
-        public static final int home_button_75=0x7f020006;
+        public static final int about=0x7f020000;
+        public static final int aboutactive=0x7f020001;
+        public static final int addanotherentry=0x7f020002;
+        public static final int help=0x7f020003;
+        public static final int helpactive=0x7f020004;
+        public static final int home=0x7f020005;
+        public static final int homeactive=0x7f020006;
         public static final int ic_launcher=0x7f020007;
         public static final int logo=0x7f020008;
         public static final int next_button_75=0x7f020009;
-        public static final int no_50=0x7f02000a;
-        public static final int osumc_logo=0x7f02000b;
-        public static final int patient_button_75=0x7f02000c;
-        public static final int patient_button_active75=0x7f02000d;
-        public static final int patient_button_active_50=0x7f02000e;
-        public static final int save_button_50=0x7f02000f;
-        public static final int settings_button_50=0x7f020010;
-        public static final int start_interview_button=0x7f020011;
-        public static final int yes_50=0x7f020012;
+        public static final int nextquestion=0x7f02000a;
+        public static final int no_50=0x7f02000b;
+        public static final int osumc_logo=0x7f02000c;
+        public static final int save_button_50=0x7f02000d;
+        public static final int settings=0x7f02000e;
+        public static final int settingsactive=0x7f02000f;
+        public static final int start_interview_button=0x7f020010;
+        public static final int yes_50=0x7f020011;
     }
     public static final class id {
         public static final int about_button=0x7f0a0005;
@@ -68,10 +67,10 @@ public final class R {
         public static final int interviewId=0x7f0a0024;
         public static final int interviewName=0x7f0a0023;
         public static final int osu_logo=0x7f0a0013;
-        public static final int osutbi_dev_excerpt=0x7f0a0008;
-        public static final int osutbi_grant_funding=0x7f0a000b;
-        public static final int osutbi_permissions=0x7f0a000a;
-        public static final int osutbi_property_disclaim=0x7f0a0009;
+        public static final int osutbi_dev_excerpt=0x7f0a0009;
+        public static final int osutbi_grant_funding=0x7f0a000c;
+        public static final int osutbi_permissions=0x7f0a000b;
+        public static final int osutbi_property_disclaim=0x7f0a000a;
         public static final int save_settings=0x7f0a0021;
         public static final int scrollView1=0x7f0a0006;
         public static final int scroll_view=0x7f0a0007;
@@ -81,7 +80,7 @@ public final class R {
         public static final int step_1_question=0x7f0a0015;
         public static final int step_1_question_no=0x7f0a0016;
         public static final int step_1_question_yes=0x7f0a0014;
-        public static final int step_1_title=0x7f0a000c;
+        public static final int step_1_title=0x7f0a0008;
         public static final int step_2_title=0x7f0a000e;
         public static final int step_3_title=0x7f0a0010;
         public static final int textView1=0x7f0a0019;
@@ -106,6 +105,7 @@ public final class R {
         public static final int step2=0x7f090006;
     }
     public static final class string {
+        public static final int about_title=0x7f070020;
         public static final int action_settings=0x7f070001;
         public static final int app_name=0x7f070000;
         public static final int emailHint=0x7f070018;

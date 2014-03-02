@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#971425"
-            android:src="@drawable/help_button_50" />
+            android:src="@drawable/help" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#971425"
-            android:src="@drawable/settings_button_50" />
+            android:src="@drawable/settings" />
     </LinearLayout>
     
     <LinearLayout
@@ -55,15 +55,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#971425"
-            android:src="@drawable/home_button_75" />
+            android:src="@drawable/home" />
         
         <ImageButton
             android:id="@+id/about_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#971425"
-            android:src="@drawable/about_button_75" />
+            android:background="#ef3d34"
+            android:src="@drawable/aboutactive" />
     </LinearLayout>
 
     <ScrollView
@@ -78,7 +78,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >        
-	            
+
+		<TextView
+                android:id="@+id/step_1_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="@string/about_title"
+                android:textSize="32sp" />            
+            	            
 		    <TextView
 		        android:id="@+id/osutbi_dev_excerpt"
 		        android:layout_width="wrap_content"

@@ -45,7 +45,27 @@ public class Step1Activity extends Activity {
 				Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
 				startActivity(i);
 			}
-		});			
+		});
+		
+		//Home Button
+		ImageButton homeButton = (ImageButton) findViewById(R.id.home_button_main_screen);
+		//if the home button is clicked, send the user back to the home screen
+		homeButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
+				startActivity(i);
+			}
+		});
+		
+		//Help Button
+		ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
+		helpButton.setOnClickListener(new View.OnClickListener() {
+			//open up the start interview activity if clicked
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
+				startActivity(i);
+			}
+		});		
 		
 		//get passed data from bundle which has patient info and questionNum in it and set them to variables for use
 		Intent intent = getIntent();
