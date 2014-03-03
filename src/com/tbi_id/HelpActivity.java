@@ -1,65 +1,77 @@
 package com.tbi_id;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageButton;
+
+import com.viewpagerindicator.PageIndicator;
+import com.viewpagerindicator.TitlePageIndicator;
+import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
 
 public class HelpActivity extends FragmentActivity {
 
-	final Context context = this;
-	
-	ViewPager mViewPager;
-	
+	TabsPagerAdapter mAdapter;
+    ViewPager mPager;
+    PageIndicator mIndicator;
     
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_help);
+        
+        mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		
-		setContentView(R.layout.activity_help);
-		
-		//disable Help Button
-		ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
-		helpButton.setEnabled(false);
-		
-		//Home Button
-		ImageButton homeButton = (ImageButton) findViewById(R.id.home_button_main_screen);
-		homeButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
-				startActivity(i);
-			}
-		});
-		
-		//About Button
-		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
-		aboutButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
-				startActivity(i);
-			}
-		});	
-		
-		//Settings Button
-		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
-		settingsButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
-				startActivity(i);
-			}
-		});
-		
-	}
-	
+        mPager = (ViewPager)findViewById(R.id.pager);
+        mPager.setAdapter(mAdapter);
 
+        TitlePageIndicator indicator = (TitlePageIndicator)findViewById(R.id.indicator);
+        mIndicator = indicator;
+        indicator.setViewPager(mPager);
+
+        final float density = getResources().getDisplayMetrics().density;
+        indicator.setBackgroundColor(0xff971425); 
+        //indicator.setFooterColor(0xeeef3d34);
+        indicator.setFooterColor(0xffffffff);
+        indicator.setFooterLineHeight(1 * density); //1dp
+        indicator.setFooterIndicatorHeight(3 * density); //3dp
+        indicator.setFooterIndicatorStyle(IndicatorStyle.Underline);
+        indicator.setTextColor(0xffffffff);
+        indicator.setSelectedColor(0xffffffff);
+        indicator.setSelectedBold(true);
+
+        //Settings button
+        ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
+        //open up settings activity if the settings button is clicked
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+        	@Override
+        	public void onClick(View v) {
+        		Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
+        		startActivity(i);				
+        	}
+        });
+      		
+        //About Button
+        ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
+        aboutButton.setOnClickListener(new View.OnClickListener() {
+        	//open up the start interview activity if clicked
+        	public void onClick(View v) {
+        		Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
+        		startActivity(i);
+        	}
+        });
+
+        //Home Button
+        ImageButton homeButton = (ImageButton) findViewById(R.id.home_button_main_screen);
+        //if the home button is clicked, send the user back to the home screen
+        homeButton.setOnClickListener(new View.OnClickListener() {
+        	public void onClick(View v) {
+        		Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
+        		startActivity(i);
+        	}
+        });
+        
+    }
 }
