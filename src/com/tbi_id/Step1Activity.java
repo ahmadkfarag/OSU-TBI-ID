@@ -79,8 +79,8 @@ public class Step1Activity extends Activity {
 		if (questionNum > 5)
 		{
 			
-			Intent i = new Intent(getApplicationContext(),com.tbi_id.Step2Activity.class);
-			i.putExtra("step1Bundle", b);
+			Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Review.class);
+			i.putExtras(b);
 			startActivity(i);
 		}
 		

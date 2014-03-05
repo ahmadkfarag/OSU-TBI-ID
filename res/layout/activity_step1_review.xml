@@ -1,0 +1,154 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Step1Review" >
+    
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#971425"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+
+        <ImageButton
+            android:id="@+id/help_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/help" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="@string/osu_tbi_id"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/settings_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/settings" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#971425"
+        android:weightSum="2" >
+
+        <ImageButton
+            android:id="@+id/home_button_main_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/home" />
+        
+        <ImageButton
+            android:id="@+id/about_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/about" />
+    </LinearLayout>  
+    
+    <TextView
+        android:id="@+id/Step1Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:gravity="center"
+        android:text="Step 1 Review"
+        android:textSize="32sp" />    
+
+    <TableLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Step1Header"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        
+        <TableRow
+            android:id="@+id/InterviewTableHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4" >
+
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"   
+                android:textStyle="bold"        
+                android:text="ID"/>  
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"                        
+                android:text="Name"/>                 
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"    
+                android:textStyle="bold"                                    
+                android:text="Date"/>  
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"  
+                android:textStyle="bold"                                      
+                android:text="Age"/>                                       
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/InterviewTableValues"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:weightSum="4">
+            
+		    <TextView
+		        android:id="@+id/interview_id_val"
+		        android:layout_weight="1"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content" />
+		
+		    <TextView
+		        android:id="@+id/interview_name_val"
+		        android:layout_weight="1"		        
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content" />
+		    
+		    <TextView
+		        android:id="@+id/interview_date_val"
+		        android:layout_weight="1"		        
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content" />
+		    
+		    <TextView
+		        android:id="@+id/interview_age_val"
+		        android:layout_weight="1"		        
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content" />            
+            
+        </TableRow>        
+        
+    </TableLayout>
+    
+</RelativeLayout>

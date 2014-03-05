@@ -34,5 +34,7 @@
     <string name="osutbi_grant_funding">Development of the OSU TBI-ID was made possible by grant funding from the US Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), and the US Department of Education, Office of Special Education and Rehabilitative Services, National Institute on Disability and Rehabilitation Research.\n</string>
     <string name="title_activity_step2">Step2Activity</string>
     <string name="about_title">About</string>
+    <string name="title_activity_step1_review">Step1Review</string>
+    <string name="interviewName">Interviewer Name</string>
 
 </resources>
