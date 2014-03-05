@@ -16,6 +16,7 @@ public class Step1Activity extends Activity {
 
 	final Context context = this;
 	protected static int questionNum;
+	protected static int count;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +70,9 @@ public class Step1Activity extends Activity {
 		
 		//get passed data from bundle which has patient info and questionNum in it and set them to variables for use
 		Intent intent = getIntent();
-		Bundle b = intent.getExtras();
+		final Bundle b = intent.getExtras();
 		questionNum = b.getInt("questionNum");
+		count = b.getInt("causeCount");
 		//get text box that will have the question text in it
 		TextView question = (TextView) findViewById(R.id.step_1_question);
 		
@@ -107,9 +109,10 @@ public class Step1Activity extends Activity {
 					data.put("question" + questionNum, "yes");
 					questionNum++;
 					Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Cause.class);
-					Bundle b = new Bundle();
+					//Bundle b = new Bundle();
 					b.putSerializable("patientData", data);
 					b.putSerializable("questionNum", questionNum);
+					b.putSerializable("causeCount", count);
 					i.putExtras(b);
 					startActivity(i);
 				}
@@ -119,9 +122,10 @@ public class Step1Activity extends Activity {
 					data.put("question" + questionNum, "yes");
 					questionNum++;
 					Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Cause.class);
-					Bundle b = new Bundle();
+					//Bundle b = new Bundle();
 					b.putSerializable("patientData", data);
 					b.putSerializable("questionNum", questionNum);
+					b.putSerializable("causeCount", count);
 					i.putExtras(b);
 					startActivity(i);
 				}
@@ -146,6 +150,7 @@ public class Step1Activity extends Activity {
 					Bundle b = new Bundle();
 					b.putSerializable("patientData", data);
 					b.putSerializable("questionNum", questionNum);
+					b.putSerializable("causeCount", count);
 					i.putExtras(b);
 					startActivity(i);
 				}
@@ -158,6 +163,7 @@ public class Step1Activity extends Activity {
 					Bundle b = new Bundle();
 					b.putSerializable("patientData", data);
 					b.putSerializable("questionNum", questionNum);
+					b.putSerializable("causeCount", count);
 					i.putExtras(b);
 					startActivity(i);
 				}

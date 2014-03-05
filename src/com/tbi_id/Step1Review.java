@@ -33,6 +33,9 @@ public class Step1Review extends Activity {
 		String interview_id = data.get("Interview Id");
 		String interview_date = data.get("Interview Date");
 		String interview_age = data.get("Interview Age");
+		//String cause = data.get("cause2");
+		//Integer count = (Integer) b.get("causeCount");
+		//String temp = count.toString();
 		
 		//get interviewName and set it to output
 		TextView interviewName = (TextView) findViewById(R.id.interview_name_val);

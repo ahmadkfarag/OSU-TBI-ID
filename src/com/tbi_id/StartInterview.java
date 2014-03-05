@@ -100,6 +100,7 @@ public class StartInterview extends Activity {
 				Bundle b = new Bundle();
 				b.putSerializable("patientData",data);
 				b.putSerializable("questionNum", 1);
+				b.putSerializable("causeCount", 0);
 				i.putExtras(b);
 				startActivity(i);
 

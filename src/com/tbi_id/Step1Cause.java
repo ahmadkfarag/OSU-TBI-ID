@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 
 public class Step1Cause extends Activity {
 	protected static int questionNum;
+	protected static int count;
 	final Context context = this;
 	String cause;
 
@@ -73,10 +74,11 @@ public class Step1Cause extends Activity {
 		
 		//get passed data to save the cause with the appopriate question for later use
 		Intent intent = getIntent();
-		Bundle bundle = intent.getExtras();
-		questionNum = (Integer) bundle.get("questionNum");
+		final Bundle b = intent.getExtras();
+		questionNum = (Integer) b.get("questionNum");
+		count = (Integer) b.get("causeCount");
 		@SuppressWarnings("unchecked")
-		final HashMap<String, String> data = (HashMap<String, String>) bundle.getSerializable("patientData");
+		final HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
 		//get the input field where the patient will enter the case
 		final EditText enterCause = (EditText) findViewById(R.id.enterCause);
 		//button for adding an additional entry
@@ -90,16 +92,35 @@ public class Step1Cause extends Activity {
 			@Override
 			public void onClick(View v) {
 				cause = enterCause.getText().toString();
+				count++;
 				// the key for the data will be "cause" along side what question it is
-				data.put("cause" + questionNum, cause);
+				data.put("cause"+count, cause);
 				Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Activity.class);
-				Bundle b = new Bundle();
+				//Bundle b = new Bundle();
 				b.putSerializable("patientData", data);
 				b.putSerializable("questionNum", questionNum);
+				b.putSerializable("causeCount", count);
 				//add bundle to intent then start activity
 				i.putExtras(b);
 				startActivity(i);
 				
+				
+			}
+			
+		});
+		addEntry.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				cause = enterCause.getText().toString();
+				count++;
+				// the key for the data will be "cause" along side what question it is
+				data.put("cause"+count, cause);
+				//Bundle b = new Bundle();
+				b.putSerializable("patientData", data);
+				b.putSerializable("questionNum", questionNum);
+				b.putSerializable("causeCount", count);
+				enterCause.setText("");
 				
 			}
 		});
