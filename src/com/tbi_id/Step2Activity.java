@@ -19,7 +19,7 @@ public class Step2Activity extends Activity {
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		//set view from xml
-		setContentView(R.layout.activity_step1);
+		setContentView(R.layout.activity_step2);
 		
 		//About Button
 		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);

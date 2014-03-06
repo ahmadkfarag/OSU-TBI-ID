@@ -3,7 +3,9 @@ package com.tbi_id;
 import java.util.HashMap;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -32,8 +34,27 @@ public class Step1Activity extends Activity {
 		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
 		settingsButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
-				startActivity(i);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
 			} 
 	
 		});
@@ -43,8 +64,27 @@ public class Step1Activity extends Activity {
 		aboutButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
-				startActivity(i);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
 			}
 		});
 		
@@ -53,8 +93,27 @@ public class Step1Activity extends Activity {
 		//if the home button is clicked, send the user back to the home screen
 		homeButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
-				startActivity(i);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
 			}
 		});
 		
@@ -63,8 +122,27 @@ public class Step1Activity extends Activity {
 		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
-				startActivity(i);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
 			}
 		});		
 		
@@ -74,7 +152,7 @@ public class Step1Activity extends Activity {
 		questionNum = b.getInt("questionNum");
 		count = b.getInt("causeCount");
 		//get text box that will have the question text in it
-		TextView question = (TextView) findViewById(R.id.step_1_question);
+		final TextView question = (TextView) findViewById(R.id.step_1_question);
 		
 		//if questionNum > 5 go to step 2
 		
@@ -92,7 +170,7 @@ public class Step1Activity extends Activity {
 		
 		
 		//using the questionNum select the correct question to ask
-		getQuestion(context, question, questionNum);
+		getQuestion(context, question, questionNum, b);
 		@SuppressWarnings("unchecked")
 		//get patient data from bundle
 		final HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
@@ -146,26 +224,28 @@ public class Step1Activity extends Activity {
 				if (alreadyAnswered == false) {
 					data.put("question" + questionNum, "no");
 					questionNum++;
-					Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Activity.class);
-					Bundle b = new Bundle();
+					//Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Activity.class);
+					//Bundle b = new Bundle();
 					b.putSerializable("patientData", data);
 					b.putSerializable("questionNum", questionNum);
 					b.putSerializable("causeCount", count);
-					i.putExtras(b);
-					startActivity(i);
+					//i.putExtras(b);
+					//startActivity(i);
+					getQuestion(context, question, questionNum, b);
 				}
 				//if this question has been answered before, remove the previous answer and replace it when the new one, then increment questionNum and add answer to hashmap for later use and start activity to get the next question
 				else {
 					data.remove("question" + questionNum);
 					data.put("question" + questionNum, "no");
 					questionNum++;
-					Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Activity.class);
-					Bundle b = new Bundle();
+					//Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Activity.class);
+					//Bundle b = new Bundle();
 					b.putSerializable("patientData", data);
 					b.putSerializable("questionNum", questionNum);
 					b.putSerializable("causeCount", count);
-					i.putExtras(b);
-					startActivity(i);
+					//i.putExtras(b);
+					//startActivity(i);
+					getQuestion(context, question, questionNum, b);
 				}
 
 			}
@@ -174,7 +254,7 @@ public class Step1Activity extends Activity {
 	}
 
 	// set question text based on what questionNum is equal to
-	private void getQuestion(Context context, TextView question, int questionNum) {
+	private void getQuestion(Context context, TextView question, int questionNum, Bundle b) {
 
 		
 		if( questionNum == 1)
@@ -201,6 +281,12 @@ public class Step1Activity extends Activity {
 		{
 			question.setText(context.getString(R.string.step_1_question5));
 
+		}
+		else if( questionNum > 5)
+		{
+			Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Review.class);
+			i.putExtras(b);
+			startActivity(i);
 		}
 		
 		

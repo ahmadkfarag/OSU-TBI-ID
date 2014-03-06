@@ -20,7 +20,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="138dp"
-        android:text="Please give a short cause of the injury" />
+        android:text="Please give a short cause(s) of the injury" />
 
     <EditText
         android:id="@+id/enterCause"
@@ -52,7 +52,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:background="#ffffff"
-        android:src="@drawable/nextquestion" />
+        android:src="@drawable/done50" />
 
     <ImageButton
         android:id="@+id/addEntry"

@@ -4,8 +4,12 @@ import java.util.HashMap;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -18,9 +22,29 @@ public class Step1Cause extends Activity {
 	protected static int questionNum;
 	protected static int count;
 	final Context context = this;
+	private EditText enterCause;
 	String cause;
 
+	
 
+	private TextWatcher mTextWatcher = new TextWatcher() {
+	    @Override
+	    public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+	    }
+
+	    @Override
+	    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+	    }
+
+	    @Override
+	    public void afterTextChanged(Editable editable) {
+	        // check Fields For Empty Values
+	        checkFieldsForEmptyValues();
+	    }
+
+	};
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,8 +60,27 @@ public class Step1Cause extends Activity {
 		aboutButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
-				startActivity(i);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
 			}
 		});
 		
@@ -46,8 +89,27 @@ public class Step1Cause extends Activity {
 		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
-				startActivity(i);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
 			}
 		});
 		
@@ -57,8 +119,27 @@ public class Step1Cause extends Activity {
 		settingsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
-				startActivity(i);				
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();			
 			}
 		});
 		
@@ -67,8 +148,27 @@ public class Step1Cause extends Activity {
 		//if the home button is clicked, send the user back to the home screen
 		homeButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
-				startActivity(i);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
 			}
 		});		
 		
@@ -80,7 +180,9 @@ public class Step1Cause extends Activity {
 		@SuppressWarnings("unchecked")
 		final HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
 		//get the input field where the patient will enter the case
-		final EditText enterCause = (EditText) findViewById(R.id.enterCause);
+		enterCause = (EditText) findViewById(R.id.enterCause);
+		enterCause.addTextChangedListener(mTextWatcher);
+		checkFieldsForEmptyValues();
 		//button for adding an additional entry
 		ImageButton addEntry = (ImageButton) findViewById(R.id.addEntry);
 		//button for finishing adding causes
@@ -91,10 +193,10 @@ public class Step1Cause extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				cause = enterCause.getText().toString();
-				count++;
+				//cause = enterCause.getText().toString();
+				//count++;
 				// the key for the data will be "cause" along side what question it is
-				data.put("cause"+count, cause);
+				//data.put("cause"+count, cause);
 				Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Activity.class);
 				//Bundle b = new Bundle();
 				b.putSerializable("patientData", data);
@@ -125,10 +227,23 @@ public class Step1Cause extends Activity {
 			}
 		});
 		
-		
-		
-		
-		
+	}
+	
+	
+
+	void checkFieldsForEmptyValues(){
+	    ImageButton addButton = (ImageButton) findViewById(R.id.addEntry);
+
+	    String cause = enterCause.getText().toString();
+
+	    if(cause.length()>0){
+	        addButton.setEnabled(true);
+	        addButton.setImageResource(R.drawable.add50);
+
+	    } else {
+	        addButton.setEnabled(false);
+	        addButton.setImageResource(R.drawable.add50inactive);
+	    }
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

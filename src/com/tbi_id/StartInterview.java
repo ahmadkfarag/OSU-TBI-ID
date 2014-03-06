@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -39,8 +41,29 @@ public class StartInterview extends Activity {
 		//if the home button is clicked, send the user back to the home screen
 		homeButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
-				startActivity(i);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
+				
+
 			}
 		});
 		
@@ -49,8 +72,29 @@ public class StartInterview extends Activity {
 		aboutButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
-				startActivity(i);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
+				
+
 			}
 		});
 		
@@ -59,8 +103,27 @@ public class StartInterview extends Activity {
 		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
-				startActivity(i);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
 			}
 		});
 		
@@ -70,8 +133,28 @@ public class StartInterview extends Activity {
 		settingsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
-				startActivity(i);				
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
+				
 			}
 		});		
 		
@@ -80,14 +163,82 @@ public class StartInterview extends Activity {
 		//when the button is pressed, save all inputed data into variables and place them into hashmap for later retrieval
 		startInterviewButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				EditText interviewNameInput = (EditText) findViewById(R.id.interviewName);
+				
+				
+				final EditText interviewNameInput = (EditText) findViewById(R.id.interviewName);
 				interviewName = interviewNameInput.getText().toString();
-				EditText interviewIdInput = (EditText) findViewById(R.id.interviewId);
+				final EditText interviewIdInput = (EditText) findViewById(R.id.interviewId);
 				interviewId = interviewIdInput.getText().toString();
-				EditText interviewAgeInput = (EditText) findViewById(R.id.interviewAge);
+				final EditText interviewAgeInput = (EditText) findViewById(R.id.interviewAge);
 				interviewAge = interviewAgeInput.getText().toString();
-				EditText interviewDateInput = (EditText) findViewById(R.id.date);
+				final EditText interviewDateInput = (EditText) findViewById(R.id.date);
 				interviewDate = interviewDateInput.getText().toString();
+				if(interviewName.length()==0)
+				{
+					AlertDialog.Builder builder = new AlertDialog.Builder(context);
+					builder.setTitle("Error");
+					builder.setMessage("Please enter Interviewee Name");
+					builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+							interviewNameInput.requestFocus();
+						}
+					});
+					AlertDialog alert = builder.create();
+					alert.show();
+				}
+				else if(interviewId.length()==0)
+				{
+					AlertDialog.Builder builder = new AlertDialog.Builder(context);
+					builder.setTitle("Error");
+					builder.setMessage("Please enter Interviewer ID");
+					builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+							interviewIdInput.requestFocus();
+						}
+					});
+					AlertDialog alert = builder.create();
+					alert.show();
+				}
+				else if(interviewAge.length()==0)
+				{
+					AlertDialog.Builder builder = new AlertDialog.Builder(context);
+					builder.setTitle("Error");
+					builder.setMessage("Please enter Interviewee Age");
+					builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+							interviewAgeInput.requestFocus();
+						}
+					});
+					AlertDialog alert = builder.create();
+					alert.show();
+				}
+				else if(interviewDate.length()==0)
+				{
+					AlertDialog.Builder builder = new AlertDialog.Builder(context);
+					builder.setTitle("Error");
+					builder.setMessage("Please enter Interview Date");
+					builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+							interviewDateInput.requestFocus();
+						}
+					});
+					AlertDialog alert = builder.create();
+					alert.show();
+				}
+				else{
+				
 				data.put("Interview Name", interviewName);
 				data.put("Interview Id", interviewId);
 				data.put("Interview Date", interviewDate);
@@ -103,7 +254,7 @@ public class StartInterview extends Activity {
 				b.putSerializable("causeCount", 0);
 				i.putExtras(b);
 				startActivity(i);
-
+				}
 			}
 
 		});
