@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/giveCause"
-        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@+id/giveCause"
         android:layout_marginTop="35dp"
         android:ems="10"
         android:inputType="text" >
@@ -99,8 +99,9 @@
         android:id="@+id/addEntry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/enterCause"
-        android:layout_below="@+id/enterCause"
+        android:layout_toRightOf="@+id/enterCause"
+        android:layout_marginLeft="2dp"
+        android:layout_alignBottom="@+id/enterCause"
         android:layout_marginTop="49dp"
         android:background="#ffffff"
         android:src="@drawable/add50inactive" />
@@ -109,8 +110,9 @@
         android:id="@+id/done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/addEntry"
-        android:layout_alignRight="@+id/enterCause"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/enterCause"
+        android:layout_marginTop="20dp"
         android:background="#ffffff"
         android:src="@drawable/done50" />
 

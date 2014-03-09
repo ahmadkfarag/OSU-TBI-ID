@@ -34,8 +34,8 @@ public class Step1Review extends Activity {
 		
 		//if count == 0, go to step 3
 		if (count == 0) {
-			//Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3Activity.class);
-			//startActivity(i);
+			Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3Activity.class);
+			startActivity(i);
 		}
 		
 		//set view from xml		
@@ -184,7 +184,7 @@ public class Step1Review extends Activity {
 		causeValue.setText(causeappender);			
 		
 		//Next Question Button
-		Button nextButton = (Button) findViewById(R.id.step2);
+		ImageButton nextButton = (ImageButton) findViewById(R.id.step2);
 		nextButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				b.putSerializable("locCount", loc);

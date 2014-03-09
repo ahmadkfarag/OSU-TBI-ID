@@ -115,6 +115,7 @@
         android:id="@+id/locCount_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"        
         android:layout_alignBottom="@+id/review2"
         android:layout_alignLeft="@+id/tbiCount_text"
         android:text="TextView" />
@@ -123,6 +124,7 @@
         android:id="@+id/badCount_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"        
         android:layout_alignBaseline="@+id/review3"
         android:layout_alignBottom="@+id/review3"
         android:layout_alignLeft="@+id/locCount_text"
@@ -132,6 +134,7 @@
         android:id="@+id/worst_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"        
         android:layout_alignBottom="@+id/review4"
         android:layout_alignLeft="@+id/badCount_text"
         android:text="TextView" />
@@ -140,6 +143,7 @@
         android:id="@+id/first_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"        
         android:layout_alignBaseline="@+id/review5"
         android:layout_alignBottom="@+id/review5"
         android:layout_alignLeft="@+id/worst_text"
@@ -149,6 +153,7 @@
         android:id="@+id/worst_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"        
         android:layout_alignBaseline="@+id/review6"
         android:layout_alignBottom="@+id/review6"
         android:layout_alignLeft="@+id/first_age"
@@ -158,6 +163,7 @@
         android:id="@+id/recent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"        
         android:layout_alignBaseline="@+id/review7"
         android:layout_alignBottom="@+id/review7"
         android:layout_alignLeft="@+id/worst_age"
@@ -176,6 +182,7 @@
         android:id="@+id/review1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/step_2_review_header"
         android:layout_marginTop="20dp"
@@ -191,20 +198,22 @@
         android:text="Step 2 Review"
         android:textSize="32sp" />
 
-    <Button
+    <ImageButton
         android:id="@+id/step3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/review7"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:layout_marginTop="14dp"
-        android:text="Next" />
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:src="@drawable/next_50" />
 
     <TextView
         android:id="@+id/tbiCount_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
         android:layout_above="@+id/review2"
         android:layout_toRightOf="@+id/step_2_review_header"
         android:text="TextView" />

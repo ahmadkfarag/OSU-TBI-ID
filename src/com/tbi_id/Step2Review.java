@@ -304,7 +304,7 @@ public class Step2Review extends Activity {
 				
 		
 		//Next Question Button
-		Button nextButton = (Button) findViewById(R.id.step3);
+		ImageButton nextButton = (ImageButton) findViewById(R.id.step3);
 		nextButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3Activity.class);
