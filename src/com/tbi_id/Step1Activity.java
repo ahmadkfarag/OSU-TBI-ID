@@ -285,6 +285,7 @@ public class Step1Activity extends Activity {
 		else if( questionNum > 5)
 		{
 			Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Review.class);
+			//Intent i = new Intent(getApplicationContext(),com.tbi_id.Step2Activity.class);
 			i.putExtras(b);
 			startActivity(i);
 		}

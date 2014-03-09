@@ -124,11 +124,11 @@
 
     <ImageButton
         android:id="@+id/start_interview_button"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/date"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
-        android:src="@drawable/next_button_75" />
+        android:layout_marginTop="18dp"
+        android:src="@drawable/next_50" />
 
 </RelativeLayout>

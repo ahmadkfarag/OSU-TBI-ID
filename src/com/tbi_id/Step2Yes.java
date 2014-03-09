@@ -12,13 +12,17 @@ import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
-public class Step1Review extends Activity {
+public class Step2Yes extends Activity {
+
 	final Context context = this;
-	protected static int loc=0;
+	protected static int questionNum;
+	protected static int causeCount;
+	protected static int step2Count;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,21 +30,9 @@ public class Step1Review extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		//set view from xml
+		setContentView(R.layout.activity_step2_yes);
 		
-		//get passed data from bundle which has patient info, questionNum, and cause in it and set them to variables for use
-		Intent intent = getIntent();
-		final Bundle b = intent.getExtras();	
-		final Integer count = (Integer) b.get("causeCount");	
-		
-		//if count == 0, go to step 3
-		if (count == 0) {
-			//Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3Activity.class);
-			//startActivity(i);
-		}
-		
-		//set view from xml		
-		setContentView(R.layout.activity_step1_review);
-				
 		//Settings Button
 		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
 		settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -156,66 +148,85 @@ public class Step1Review extends Activity {
 				alert.show();
 			}
 		});		
-
-		HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
-		
-		//get values in data hashmap
-		String interview_name = data.get("Interview Name");
-		String interview_id = data.get("Interview Id");
-		String interview_date = data.get("Interview Date");
-		String interview_age = data.get("Interview Age");
+		TextView causeView = (TextView) findViewById(R.id.step_2_cause);
+		final RadioButton button1 = (RadioButton) findViewById(R.id.to24);
+		final RadioButton button2 = (RadioButton) findViewById(R.id.more24);
+		final RadioButton button3 = (RadioButton) findViewById(R.id.less30);
+		Intent intent = getIntent();
+		final Bundle b = intent.getExtras();
+		final HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
+		step2Count = (Integer) b.get("step2Count");
 		String causeN = "";
-		StringBuilder causeappender = new StringBuilder();
-		
-		TextView causeValue = (TextView) findViewById(R.id.cause_value_text);
-		
-		//check to make sure causes exist. If none, causeCount = 0
-		if (count > 0) {
-			//for cause 1 to causeCount, append "cause" to "i"
-			for (int i=1; i<=count; i++) {
-				//data.get each causeN			
-				causeN = data.get("cause" + i);	
-				
-				causeappender.append(causeN + "\n");
-			}			
-		}
-		
-		
-		causeValue.setText(causeappender);			
-		
-		//Next Question Button
-		Button nextButton = (Button) findViewById(R.id.step2);
-		nextButton.setOnClickListener(new View.OnClickListener() {
+		getCause(context, causeView, step2Count, b);
+		ImageButton doneButton = (ImageButton) findViewById(R.id.done);
+		//if done button is pushed
+		doneButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				b.putSerializable("locCount", loc);
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.Step2Activity.class);
-				i.putExtras(b);
-				startActivity(i);
+				Intent i = new Intent(getApplicationContext(),com.tbi_id.Step2Activity.class);
+				//Check to see  which radio button is pushed
+				if(button1.isChecked())
+				{
+					//30 minutes to 24 hours
+					data.put("cause"+step2Count+"Length", "30-24");
+					step2Count++;
+					b.putSerializable("patientData", data);
+					b.putSerializable("step2Count", step2Count);
+					i.putExtras(b);
+					startActivity(i);
+				}
+				else if(button2.isChecked())
+				{
+					//More than 24 hours
+					data.put("cause"+step2Count+"Length", ">24");
+					step2Count++;
+					b.putSerializable("patientData", data);
+					b.putSerializable("step2Count", step2Count);
+					i.putExtras(b);
+					startActivity(i);
+				}
+				else if(button3.isChecked())
+				{
+					//Less than 30 minutes
+					data.put("cause"+step2Count+"Length", "<30");
+					step2Count++;
+					b.putSerializable("patientData", data);
+					b.putSerializable("step2Count", step2Count);
+					i.putExtras(b);
+					startActivity(i);
+				}
+				else
+				{
+					//At least one button is pushed
+					AlertDialog.Builder builder = new AlertDialog.Builder(context);
+					builder.setTitle("Error");
+					builder.setMessage("Please choose a time span");
+					builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+						}
+					});
+					AlertDialog alert = builder.create();
+					alert.show();
+				}
 			}
-		});		
-		
-		//get interviewName and set it to output
-		TextView interviewName = (TextView) findViewById(R.id.interview_name_val);
-		interviewName.setText(interview_name);
-		
-		//get interviewId and set it to output
-		TextView interviewId = (TextView) findViewById(R.id.interview_id_val);
-		interviewId.setText(interview_id);
-		
-		//get interviewDate and set it to output
-		TextView interviewDate = (TextView) findViewById(R.id.interview_date_val);
-		interviewDate.setText(interview_date);
-		
-		//get interviewAge and set it to output
-		TextView interviewAge = (TextView) findViewById(R.id.interview_age_val);
-		interviewAge.setText(interview_age);
+
+		});
 		
 	}
+//sets the header of the page to the cause that is being questioned
+private void getCause(Context context, TextView cause, int count, Bundle b) {
+	HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
+	String causeN = data.get("cause" + count);
+	cause.setText(causeN);
+}
 
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.step1_review, menu);
+		getMenuInflater().inflate(R.menu.step2, menu);
 		return true;
 	}
 

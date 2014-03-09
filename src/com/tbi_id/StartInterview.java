@@ -1,6 +1,7 @@
 package com.tbi_id;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import android.app.Activity;
@@ -15,6 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class StartInterview extends Activity {
 
@@ -160,6 +162,16 @@ public class StartInterview extends Activity {
 		
 		//Start Interview Button
 		ImageButton startInterviewButton = (ImageButton) findViewById(R.id.start_interview_button);
+		//Set date to current date
+		Calendar rightNow = Calendar.getInstance();
+		TextView date = (TextView) findViewById(R.id.date);
+		int month = rightNow.get(Calendar.MONTH);
+		//Months are indexed from 0-11
+		month++;
+		int day = rightNow.get(Calendar.DAY_OF_MONTH);
+		int year = rightNow.get(Calendar.YEAR);
+		String today = String.valueOf(month)+"-"+String.valueOf(day)+"-"+String.valueOf(year);
+		date.setText(today);
 		//when the button is pressed, save all inputed data into variables and place them into hashmap for later retrieval
 		startInterviewButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -252,6 +264,7 @@ public class StartInterview extends Activity {
 				b.putSerializable("patientData",data);
 				b.putSerializable("questionNum", 1);
 				b.putSerializable("causeCount", 0);
+				b.putSerializable("step2Count", 1);
 				i.putExtras(b);
 				startActivity(i);
 				}

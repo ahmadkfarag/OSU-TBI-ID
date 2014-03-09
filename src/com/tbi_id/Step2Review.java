@@ -16,9 +16,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class Step1Review extends Activity {
+public class Step2Review extends Activity {
 	final Context context = this;
-	protected static int loc=0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,7 +29,7 @@ public class Step1Review extends Activity {
 		//get passed data from bundle which has patient info, questionNum, and cause in it and set them to variables for use
 		Intent intent = getIntent();
 		final Bundle b = intent.getExtras();	
-		final Integer count = (Integer) b.get("causeCount");	
+		final Integer count = (Integer) b.get("causeCount");
 		
 		//if count == 0, go to step 3
 		if (count == 0) {
@@ -39,7 +38,7 @@ public class Step1Review extends Activity {
 		}
 		
 		//set view from xml		
-		setContentView(R.layout.activity_step1_review);
+		setContentView(R.layout.activity_step2_review);
 				
 		//Settings Button
 		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
@@ -165,57 +164,161 @@ public class Step1Review extends Activity {
 		String interview_date = data.get("Interview Date");
 		String interview_age = data.get("Interview Age");
 		String causeN = "";
-		StringBuilder causeappender = new StringBuilder();
 		
-		TextView causeValue = (TextView) findViewById(R.id.cause_value_text);
+		//set values for variables used in determining data
+		int youngest = 1000;
+		String youngestCause = "";
+		int recent = 0;
+		String recentCause = "";
+		int loc = 0;
+		int tbi = 0;
+		int modOrSev=0;
+		boolean mild = false, moderate=false, severe=false;
+		String worstTBI = "";
+		String worstTBIage = "";
+
+		//Get TextViews for the Review Page
+		TextView causeValue = (TextView) findViewById(R.id.tbiCount_text);
+		TextView tbiCount = (TextView) findViewById(R.id.tbiCount_text);
+		TextView locValue = (TextView) findViewById(R.id.locCount_text);
+		TextView first = (TextView) findViewById(R.id.first_age);
+		TextView recentValue = (TextView) findViewById(R.id.recent);
+		TextView badTBI = (TextView) findViewById(R.id.badCount_text);
+		TextView worst = (TextView) findViewById(R.id.worst_text);
+		TextView worstAge = (TextView) findViewById(R.id.worst_age);
 		
 		//check to make sure causes exist. If none, causeCount = 0
-		if (count > 0) {
+		if (count > 0) {		
 			//for cause 1 to causeCount, append "cause" to "i"
-			for (int i=1; i<=count; i++) {
-				//data.get each causeN			
-				causeN = data.get("cause" + i);	
+			for (int i=1; i<=count; i++) {						
+				String temp = data.get("cause"+i+"Age");	
+				//Get Youngest Injury
+				int test = Integer.parseInt(temp);
+				if(test < youngest)
+				{
+					youngest = test;
+					youngestCause = data.get("cause"+i);
+				}
+				//Get Oldest Injury
+				if(test > recent)
+				{
+					recent = test;
+					recentCause = data.get("cause" + i);
+				}
 				
-				causeappender.append(causeN + "\n");
-			}			
+			
+				//If you said No in Step2Activity
+				if(data.containsKey("cause"+i+"Dazed"))
+				{
+					String temp2 = data.get("cause"+i+"Dazed");
+					//If they were dazed or have gap in memory
+					if(temp2.equals("Yes"))
+					{
+						mild = true;
+						//Was dazed/had a gap in memory
+						tbi++;
+						//if a moderate or severe TBI has not been set yet
+						if(!moderate || !severe)
+						{
+							worstTBI=data.get("cause"+i);
+							worstTBIage=data.get("cause"+i+"Age");
+						}
+					}
+					else
+					{
+						//Had no gap in memory/dazed (not a TBI)
+					}
+				}
+				//If you said Yes in Step2Activity
+				else if (data.containsKey("cause"+i+"Length"))
+				{
+					//Injury is a TBI and LOC counter increased
+					tbi++;
+					loc++;
+					String temp2 = data.get("cause"+i+"Length");
+					
+					//Lost consciousness for less than 30 minutes
+					if(temp2.equals("<30"))
+					{
+						mild = true;
+						//if a moderate or severe TBI has not been set yet
+						if(!moderate || !severe)
+						{
+							worstTBI=data.get("cause"+i);
+							worstTBIage=data.get("cause"+i+"Age");
+						}
+					}
+					
+					//Lost consciousness between 30 minutes and 24 hours
+					else if(temp2.equals("30-24"))
+					{
+						moderate = true;
+						//If a severe TBI has not been set yet
+						if(!severe)
+						{
+							worstTBI=data.get("cause"+i);
+							worstTBIage=data.get("cause"+i+"Age");
+						}
+						modOrSev++;
+					}
+					
+					//Lost consciousness for longer than 24 hours
+					else
+					{
+						severe = true;
+						worstTBI=data.get("cause"+i);
+						worstTBIage=data.get("cause"+i+"Age");
+						modOrSev++;
+					}
+				}
+			}
+			//Set the count of TBI's
+			String holder = String.valueOf(tbi);
+			tbiCount.setText(holder);
+			//Set the count of LOC's
+			holder = String.valueOf(loc);
+			locValue.setText(holder);
+			//Set the age of the youngest
+			holder = String.valueOf(youngest);
+			first.setText(holder);
+			//Calculate difference between most recent and current age
+			int currentAge = Integer.parseInt(interview_age);
+			int difference = currentAge - recent;
+			holder = String.valueOf(difference)+" years";
+			recentValue.setText(holder);
+			//Set the Count of Mod/Severe TBI
+			holder = String.valueOf(modOrSev);
+			badTBI.setText(holder);
+			//Set the Worst TBI
+			if(mild || moderate || severe)
+			{
+				worst.setText(worstTBI);
+			}
+			else
+			{
+				worst.setText("None");
+			}
+			//Set the Worst TBI Age
+			worstAge.setText(worstTBIage);
 		}
-		
-		
-		causeValue.setText(causeappender);			
+				
 		
 		//Next Question Button
-		Button nextButton = (Button) findViewById(R.id.step2);
+		Button nextButton = (Button) findViewById(R.id.step3);
 		nextButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				b.putSerializable("locCount", loc);
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.Step2Activity.class);
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3Activity.class);
 				i.putExtras(b);
 				startActivity(i);
 			}
-		});		
-		
-		//get interviewName and set it to output
-		TextView interviewName = (TextView) findViewById(R.id.interview_name_val);
-		interviewName.setText(interview_name);
-		
-		//get interviewId and set it to output
-		TextView interviewId = (TextView) findViewById(R.id.interview_id_val);
-		interviewId.setText(interview_id);
-		
-		//get interviewDate and set it to output
-		TextView interviewDate = (TextView) findViewById(R.id.interview_date_val);
-		interviewDate.setText(interview_date);
-		
-		//get interviewAge and set it to output
-		TextView interviewAge = (TextView) findViewById(R.id.interview_age_val);
-		interviewAge.setText(interview_age);
+		});	
 		
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.step1_review, menu);
+		getMenuInflater().inflate(R.menu.step2_review, menu);
 		return true;
 	}
 
