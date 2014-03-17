@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Step2Activity" >
+    tools:context=".Step2No" >
     
     <LinearLayout
         android:id="@+id/footer"
@@ -70,7 +70,6 @@
         android:id="@+id/step_2_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="98dp"
@@ -83,61 +82,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"        
+        android:layout_marginRight="10dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/step_2_title"
         android:ems="10"
-        android:text="test" />
+        android:text="" />
 
     <TextView
-        android:id="@+id/howOld"
+        android:id="@+id/dazed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"        
-        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/step_2_cause"
-        android:layout_marginTop="20dp"
-        android:text="@string/howOld" />
-
-    <EditText
-        android:id="@+id/causeAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"        
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/howOld"
-        android:ems="10"
-        android:hint="Age:"
-        android:inputType="number" >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/locCheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"        
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/causeAge"
-        android:layout_marginTop="24dp"
-        android:text="@string/LOC" />
+        android:layout_marginTop="30dp"
+        android:text="@string/dazed" />
 
     <ImageButton
-        android:id="@+id/step_2_question_yes"
+        android:id="@+id/step_2_2_yes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/locCheck"
-        android:layout_marginTop="28dp"
+        android:layout_below="@+id/dazed"
+        android:layout_marginTop="35dp"
         android:layout_toLeftOf="@+id/step_2_title"
         android:background="#ffffff"
         android:src="@drawable/yes_50" />
 
     <ImageButton
-        android:id="@+id/step_2_question_no"
+        android:id="@+id/step_2_2_no"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/step_2_question_yes"
+        android:layout_alignTop="@+id/step_2_2_yes"
         android:layout_toRightOf="@+id/step_2_title"
         android:background="#ffffff"
         android:src="@drawable/no_50" />

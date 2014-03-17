@@ -15,44 +15,86 @@
         android:theme="@style/AppBaseTheme" >
         <activity
             android:name="com.tbi_id.MainActivity"
-            android:label="@string/app_name" >
-            <intent-filter> 
-            	<action android:name="android.intent.action.MAIN" />
-            	<category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>            
+            android:label="@string/app_name" 
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.tbi_id.StartInterview"
-            android:label="@string/new_interview" >
+            android:label="@string/new_interview" 
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.tbi_id.Step1Activity"
-            android:label="@string/title_activity_step1" >
+            android:label="@string/title_activity_step1" 
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.tbi_id.Step1Cause"
-            android:label="@string/title_activity_step1_cause" >
+            android:label="@string/title_activity_step1_cause" 
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.tbi_id.SettingsActivity"
-            android:label="@string/settingsTitle" >
+            android:label="@string/settingsTitle" 
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.tbi_id.AboutActivity"
-            android:label="@string/title_activity_about" >
+            android:label="@string/title_activity_about" 
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.tbi_id.Step2Activity"
-            android:label="@string/title_activity_step2" >
+            android:label="@string/title_activity_step2" 
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.tbi_id.HelpActivity"
             android:label="@string/title_activity_help"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.tbi_id.Step1Review"
-            android:label="@string/title_activity_step1_review" >
+            android:label="@string/title_activity_step1_review" 
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.tbi_id.Step2Yes"
+            android:label="@string/title_activity_step2_yes" 
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.tbi_id.Step2No"
+            android:label="@string/title_activity_step2_no" 
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.tbi_id.Step2Review"
+            android:label="@string/title_activity_step2_review" 
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.tbi_id.Step3Activity"
+            android:label="@string/title_activity_step3" 
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" 
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -14,7 +17,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class Step1Review extends Activity {
-	
+	final Context context = this;
+	protected static int loc=0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,24 +29,43 @@ public class Step1Review extends Activity {
 		
 		//get passed data from bundle which has patient info, questionNum, and cause in it and set them to variables for use
 		Intent intent = getIntent();
-		Bundle b = intent.getExtras();	
+		final Bundle b = intent.getExtras();	
 		final Integer count = (Integer) b.get("causeCount");	
 		
 		//if count == 0, go to step 3
 		if (count == 0) {
-			//Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3Activity.class);
-			//startActivity(i);
+			Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3Activity.class);
+			startActivity(i);
 		}
 		
 		//set view from xml		
 		setContentView(R.layout.activity_step1_review);
-		
+				
 		//Settings Button
 		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
 		settingsButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
-				startActivity(i);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
 			} 
 	
 		});
@@ -52,8 +75,27 @@ public class Step1Review extends Activity {
 		aboutButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
-				startActivity(i);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
 			}
 		});
 		
@@ -62,8 +104,27 @@ public class Step1Review extends Activity {
 		//if the home button is clicked, send the user back to the home screen
 		homeButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
-				startActivity(i);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
 			}
 		});
 		
@@ -72,13 +133,29 @@ public class Step1Review extends Activity {
 		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
-				startActivity(i);
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
 			}
-		});	
-		
-		
-
+		});		
 
 		HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
 		
@@ -107,10 +184,12 @@ public class Step1Review extends Activity {
 		causeValue.setText(causeappender);			
 		
 		//Next Question Button
-		Button nextButton = (Button) findViewById(R.id.next_question);
+		ImageButton nextButton = (ImageButton) findViewById(R.id.step2);
 		nextButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
+				b.putSerializable("locCount", loc);
 				Intent i = new Intent(getApplicationContext(), com.tbi_id.Step2Activity.class);
+				i.putExtras(b);
 				startActivity(i);
 			}
 		});		

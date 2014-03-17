@@ -27,42 +27,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/giveCause"
-        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@+id/giveCause"
         android:layout_marginTop="35dp"
         android:ems="10"
-        android:inputType="textMultiLine" >
+        android:inputType="text" >
     </EditText>
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/addEntry"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:text="@string/or"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <ImageButton
-        android:id="@+id/done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:background="#ffffff"
-        android:src="@drawable/done50" />
-
-    <ImageButton
-        android:id="@+id/addEntry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/enterCause"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:background="#ffffff"
-        android:src="@drawable/addanotherentry" />
 
     <LinearLayout
         android:id="@+id/footer"
@@ -125,5 +94,26 @@
             android:background="#971425"
             android:src="@drawable/settings" />
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/addEntry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/enterCause"
+        android:layout_marginLeft="2dp"
+        android:layout_alignBottom="@+id/enterCause"
+        android:layout_marginTop="49dp"
+        android:background="#ffffff"
+        android:src="@drawable/add50inactive" />
+
+    <ImageButton
+        android:id="@+id/done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/enterCause"
+        android:layout_marginTop="20dp"
+        android:background="#ffffff"
+        android:src="@drawable/done50" />
 
 </RelativeLayout>

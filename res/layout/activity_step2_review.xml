@@ -1,0 +1,221 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Step2Review" >
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#971425"
+        android:weightSum="2" >
+
+        <ImageButton
+            android:id="@+id/home_button_main_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/home" />
+
+        <ImageButton
+            android:id="@+id/about_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/about" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#971425"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+
+        <ImageButton
+            android:id="@+id/help_button"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/help" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="@string/osu_tbi_id"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/settings_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/settings" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/review3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/review2"
+        android:layout_below="@+id/review2"
+        android:layout_marginTop="16dp"
+        android:text="Count of moderate/severe TBI's" />
+
+    <TextView
+        android:id="@+id/review2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/review1"
+        android:layout_below="@+id/review1"
+        android:layout_marginTop="19dp"
+        android:text="Count of TBI's w/ LOC" />
+
+    <TextView
+        android:id="@+id/review4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/review3"
+        android:layout_below="@+id/review3"
+        android:layout_marginTop="16dp"
+        android:text="Worst TBI" />
+
+    <TextView
+        android:id="@+id/review5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/review4"
+        android:layout_below="@+id/review4"
+        android:layout_marginTop="16dp"
+        android:text="Age at first TBI" />
+
+    <TextView
+        android:id="@+id/review7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/review6"
+        android:layout_below="@+id/review6"
+        android:layout_marginTop="16dp"
+        android:text="Time since most recent" />
+
+    <TextView
+        android:id="@+id/locCount_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"        
+        android:layout_alignBottom="@+id/review2"
+        android:layout_alignLeft="@+id/tbiCount_text"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/badCount_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"        
+        android:layout_alignBaseline="@+id/review3"
+        android:layout_alignBottom="@+id/review3"
+        android:layout_alignLeft="@+id/locCount_text"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/worst_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"        
+        android:layout_alignBottom="@+id/review4"
+        android:layout_alignLeft="@+id/badCount_text"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/first_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"        
+        android:layout_alignBaseline="@+id/review5"
+        android:layout_alignBottom="@+id/review5"
+        android:layout_alignLeft="@+id/worst_text"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/worst_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"        
+        android:layout_alignBaseline="@+id/review6"
+        android:layout_alignBottom="@+id/review6"
+        android:layout_alignLeft="@+id/first_age"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/recent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"        
+        android:layout_alignBaseline="@+id/review7"
+        android:layout_alignBottom="@+id/review7"
+        android:layout_alignLeft="@+id/worst_age"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/review6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/review5"
+        android:layout_below="@+id/review5"
+        android:layout_marginTop="16dp"
+        android:text="Age at worst TBI" />
+
+    <TextView
+        android:id="@+id/review1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/step_2_review_header"
+        android:layout_marginTop="20dp"
+        android:text="Count of TBI&apos;s" />
+
+    <TextView
+        android:id="@+id/step_2_review_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="Step 2 Review"
+        android:textSize="32sp" />
+
+    <ImageButton
+        android:id="@+id/step3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/review7"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:src="@drawable/next_50" />
+
+    <TextView
+        android:id="@+id/tbiCount_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_above="@+id/review2"
+        android:layout_toRightOf="@+id/step_2_review_header"
+        android:text="TextView" />
+
+</RelativeLayout>
