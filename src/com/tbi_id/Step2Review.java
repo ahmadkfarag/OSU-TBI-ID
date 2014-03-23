@@ -218,7 +218,7 @@ public class Step2Review extends Activity {
 						//Was dazed/had a gap in memory
 						tbi++;
 						//if a moderate or severe TBI has not been set yet
-						if(!moderate || !severe)
+						if(!moderate && !severe)
 						{
 							worstTBI=data.get("cause"+i);
 							worstTBIage=data.get("cause"+i+"Age");
@@ -242,7 +242,7 @@ public class Step2Review extends Activity {
 					{
 						mild = true;
 						//if a moderate or severe TBI has not been set yet
-						if(!moderate || !severe)
+						if(!moderate && !severe)
 						{
 							worstTBI=data.get("cause"+i);
 							worstTBIage=data.get("cause"+i+"Age");
@@ -290,11 +290,19 @@ public class Step2Review extends Activity {
 			holder = String.valueOf(modOrSev);
 			badTBI.setText(holder);
 			//Set the Worst TBI
-			if(mild || moderate || severe)
+			if(mild)
 			{
-				worst.setText(worstTBI);
+				worst.setText("Mild");
 			}
-			else
+			if (moderate)
+			{
+				worst.setText("Moderate");
+			}
+			if (severe)
+			{
+				worst.setText("Severe");
+			}
+			else if (!mild && !moderate && !severe)
 			{
 				worst.setText("None");
 			}
