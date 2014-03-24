@@ -2,8 +2,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Step3Activity" >
-    
+    tools:context=".Step1Cause" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="74dp"
+        android:text="@string/step_3"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/giveCause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="138dp"
+        android:text="Please give a short cause(s) of the injury" />
+
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
@@ -66,45 +84,54 @@
             android:src="@drawable/settings" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/step_3_title"
+    <ImageButton
+        android:id="@+id/done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/footer"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="98dp"
-        android:layout_below="@+id/header"
-        android:text="@string/step_3"
-        android:textSize="32sp" />
+        android:layout_marginBottom="58dp"
+        android:background="#ffffff"
+        android:src="@drawable/done50" />
 
-    <TextView
-        android:id="@+id/step3Question1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/step_3_title"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/step3_question_1" />
     
-    <ImageButton
-        android:id="@+id/step_3_question_yes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/step3Question1"
-        android:layout_marginTop="28dp"
-        android:layout_toLeftOf="@+id/step_3_title"
-        android:background="#ffffff"
-        android:src="@drawable/yes_50" />
 
-    <ImageButton
-        android:id="@+id/step_2_question_no"
+    <EditText
+        android:id="@+id/enterCause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/step_3_question_yes"
-        android:layout_toRightOf="@+id/step_3_title"
-        android:background="#ffffff"
-        android:src="@drawable/no_50" />
+        android:layout_below="@+id/giveCause"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Enter Injury Here:"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/ageEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/enterCause"
+        android:layout_alignRight="@+id/done"
+        android:layout_below="@+id/enterCause"
+        android:ems="10"
+        android:hint="Age Ended"
+        android:inputType="number" >
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/ageBegan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ageEnd"
+        android:layout_alignRight="@+id/ageEnd"
+        android:layout_below="@+id/ageEnd"
+        android:ems="10"
+        android:hint="Age Began"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

@@ -402,37 +402,39 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int InterviewTableValues=0x7f050021;
         public static final int Step1Header=0x7f05001d;
         public static final int about_button=0x7f05000a;
-        public static final int action_settings=0x7f05005a;
+        public static final int action_settings=0x7f05005e;
         public static final int addEntry=0x7f05001b;
+        public static final int ageBegan=0x7f05004f;
+        public static final int ageEnd=0x7f05004e;
         public static final int badCount_text=0x7f05003f;
         public static final int bottom=0x7f050003;
         public static final int causeAge=0x7f05002f;
         public static final int cause_header_text=0x7f050028;
         public static final int cause_value_text=0x7f05002a;
-        public static final int date=0x7f050058;
+        public static final int date=0x7f05005c;
         public static final int dazed=0x7f050033;
         public static final int done=0x7f05001c;
-        public static final int emailEnterHipaa=0x7f050051;
+        public static final int emailEnterHipaa=0x7f050055;
         public static final int enterCause=0x7f05001a;
-        public static final int enterEmailNotif=0x7f050052;
-        public static final int enterInfo=0x7f050059;
+        public static final int enterEmailNotif=0x7f050056;
+        public static final int enterInfo=0x7f05005d;
         public static final int first_age=0x7f050041;
         public static final int footer=0x7f050008;
         public static final int giveCause=0x7f050019;
         public static final int header=0x7f050005;
         public static final int help_button=0x7f050006;
-        public static final int help_step_1=0x7f05004b;
-        public static final int help_step_2=0x7f05004c;
-        public static final int help_step_3=0x7f05004e;
-        public static final int hippaCompliance=0x7f050050;
-        public static final int home_button=0x7f050053;
+        public static final int help_step_1=0x7f050050;
+        public static final int help_step_2=0x7f050051;
+        public static final int help_step_3=0x7f050052;
+        public static final int hippaCompliance=0x7f050054;
+        public static final int home_button=0x7f050057;
         public static final int home_button_main_screen=0x7f050009;
         public static final int howLong=0x7f050046;
         public static final int howOld=0x7f05002e;
         public static final int indicator=0x7f050012;
-        public static final int interviewAge=0x7f050055;
-        public static final int interviewId=0x7f050057;
-        public static final int interviewName=0x7f050056;
+        public static final int interviewAge=0x7f050059;
+        public static final int interviewId=0x7f05005b;
+        public static final int interviewName=0x7f05005a;
         public static final int interview_age_val=0x7f050025;
         public static final int interview_date_val=0x7f050024;
         public static final int interview_id_val=0x7f050022;
@@ -457,14 +459,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int review5=0x7f05003a;
         public static final int review6=0x7f05003c;
         public static final int review7=0x7f05003b;
-        public static final int save_settings=0x7f050054;
+        public static final int save_settings=0x7f050058;
         public static final int scrollView1=0x7f05000b;
         public static final int scroll_view=0x7f05000c;
-        public static final int settingsTitle=0x7f05004f;
+        public static final int settingsTitle=0x7f050053;
         public static final int settings_button=0x7f050007;
         public static final int start_interview_button=0x7f050014;
         public static final int step2=0x7f05002b;
         public static final int step3=0x7f050045;
+        public static final int step3Question1=0x7f05004c;
         public static final int step_1_question=0x7f050017;
         public static final int step_1_question_no=0x7f050018;
         public static final int step_1_question_yes=0x7f050016;
@@ -476,7 +479,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int step_2_question_yes=0x7f050031;
         public static final int step_2_review_header=0x7f050044;
         public static final int step_2_title=0x7f05002c;
-        public static final int step_3_title=0x7f05004d;
+        public static final int step_3_question_yes=0x7f05004d;
+        public static final int step_3_title=0x7f05004b;
         public static final int tbiCount_text=0x7f05003e;
         public static final int to24=0x7f050049;
         public static final int top=0x7f050004;
@@ -504,11 +508,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_step2_review=0x7f030008;
         public static final int activity_step2_yes=0x7f030009;
         public static final int activity_step3=0x7f03000a;
-        public static final int fragment_step1=0x7f03000b;
-        public static final int fragment_step2=0x7f03000c;
-        public static final int fragment_step3=0x7f03000d;
-        public static final int settings=0x7f03000e;
-        public static final int start_interview=0x7f03000f;
+        public static final int activity_step3_yes=0x7f03000b;
+        public static final int fragment_step1=0x7f03000c;
+        public static final int fragment_step2=0x7f03000d;
+        public static final int fragment_step3=0x7f03000e;
+        public static final int settings=0x7f03000f;
+        public static final int start_interview=0x7f030010;
     }
     public static final class menu {
         public static final int about=0x7f0d0000;
@@ -523,6 +528,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int step2_review=0x7f0d0009;
         public static final int step2_yes=0x7f0d000a;
         public static final int step3=0x7f0d000b;
+        public static final int step3_yes=0x7f0d000c;
     }
     public static final class string {
         public static final int LOC=0x7f0c0024;
@@ -548,6 +554,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int osutbi_permissions=0x7f0c001d;
         public static final int osutbi_property_disclaim=0x7f0c001c;
         public static final int settingsTitle=0x7f0c0016;
+        public static final int step3_question_1=0x7f0c002e;
         public static final int step_1=0x7f0c0005;
         public static final int step_1_help=0x7f0c000a;
         public static final int step_1_question1=0x7f0c000d;
@@ -569,6 +576,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int title_activity_step2_review=0x7f0c002c;
         public static final int title_activity_step2_yes=0x7f0c0025;
         public static final int title_activity_step3=0x7f0c002d;
+        public static final int title_activity_step3_yes=0x7f0c002f;
         public static final int to24=0x7f0c0029;
         public static final int yes=0x7f0c0008;
     }
