@@ -185,7 +185,7 @@ public class Step1Activity extends Activity {
 				//if it was not answered increase the question num and add the answer to the hashmap for later use then start activity to get the next question
 				if (alreadyAnswered == false) {
 					data.put("question" + questionNum, "yes");
-					questionNum++;
+					//questionNum++;
 					Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Cause.class);
 					//Bundle b = new Bundle();
 					b.putSerializable("patientData", data);
@@ -198,7 +198,7 @@ public class Step1Activity extends Activity {
 				else {
 					data.remove("question" + questionNum);
 					data.put("question" + questionNum, "yes");
-					questionNum++;
+					//questionNum++;
 					Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Cause.class);
 					//Bundle b = new Bundle();
 					b.putSerializable("patientData", data);

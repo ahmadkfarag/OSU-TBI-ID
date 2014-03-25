@@ -2,7 +2,9 @@ package com.tbi_id;
 
 import java.util.HashMap;
 
+import android.R.drawable;
 import android.os.Bundle;
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -17,8 +20,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-public class Step1Cause extends Activity {
+public class Step1Cause2 extends Activity {
 	protected static int questionNum;
 	protected static int count;
 	final Context context = this;
@@ -27,22 +33,7 @@ public class Step1Cause extends Activity {
 
 	
 
-	private TextWatcher mTextWatcher = new TextWatcher() {
-	    @Override
-	    public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-	    }
-
-	    @Override
-	    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-	    }
-
-	    @Override
-	    public void afterTextChanged(Editable editable) {
-	        // check Fields For Empty Values
-	        checkFieldsForEmptyValues();
-	    }
-
-	};
+	
 	
 	
 	@Override
@@ -53,7 +44,7 @@ public class Step1Cause extends Activity {
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		//set view from xml
-		setContentView(R.layout.activity_step1_cause);
+		setContentView(R.layout.activity_step1_cause2);
 		
 		//About Button
 		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
@@ -177,78 +168,61 @@ public class Step1Cause extends Activity {
 		final Bundle b = intent.getExtras();
 		questionNum = (Integer) b.get("questionNum");
 		count = (Integer) b.get("causeCount");
+		String causeN = "";
+		StringBuilder causeappender = new StringBuilder();
+		TextView causeValues = (TextView) findViewById(R.id.causeList);
 		@SuppressWarnings("unchecked")
 		final HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
-		//get the input field where the patient will enter the case
-		enterCause = (EditText) findViewById(R.id.enterCause);
-		enterCause.addTextChangedListener(mTextWatcher);
-		checkFieldsForEmptyValues();
-		//button for adding an additional entry
-		ImageButton addEntry = (ImageButton) findViewById(R.id.addEntry);
-		//button for finishing adding causes
-		ImageButton done = (ImageButton) findViewById(R.id.done);
 		
-		// if cancel is clicked, save the causes from the input field with the appropriate title for later use to a bundle then return to the step one question activity
+		if (count > 0) {
+			//for cause 1 to causeCount, append "cause" to "i"
+			for (int i=1; i<=count; i++) {
+				//data.get each causeN			
+				causeN = data.get("cause" + i);	
+				
+				causeappender.append(causeN + "\n");
+			}			
+		}
+		ImageButton add = (ImageButton) findViewById(R.id.addAnother);
+		ImageButton done = (ImageButton) findViewById(R.id.addDone);
+		
 		done.setOnClickListener(new View.OnClickListener() {
-			//NOW THE CANCEL BUTTON
+			
 			@Override
 			public void onClick(View v) {
-				//cause = enterCause.getText().toString();
-				//count++;
-				// the key for the data will be "cause" along side what question it is
-				//data.put("cause"+count, cause);
 				Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Activity.class);
-				//Bundle b = new Bundle();
 				b.putSerializable("patientData", data);
 				b.putSerializable("questionNum", questionNum);
 				b.putSerializable("causeCount", count);
-				//add bundle to intent then start activity
 				i.putExtras(b);
 				startActivity(i);
-				
-				
+		
 			}
 			
 		});
-		addEntry.setOnClickListener(new View.OnClickListener() {
-			//NOW THE ADD BUTTON
+		
+		add.setOnClickListener(new View.OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
-				cause = enterCause.getText().toString();
-				count++;
-				questionNum++;
-				// the key for the data will be "cause" along side what question it is
-				data.put("cause"+count, cause);
-				Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Cause2.class);
-				//Bundle b = new Bundle();
+				Intent i = new Intent(getApplicationContext(),com.tbi_id.AddAnother.class);
 				b.putSerializable("patientData", data);
 				b.putSerializable("questionNum", questionNum);
 				b.putSerializable("causeCount", count);
-				enterCause.setText("");
 				i.putExtras(b);
 				startActivity(i);
 				
 			}
 		});
 		
+		causeValues.setText(causeappender);
+		
+
 	}
 	
 	
 
-	void checkFieldsForEmptyValues(){
-	    ImageButton addButton = (ImageButton) findViewById(R.id.addEntry);
-
-	    String cause = enterCause.getText().toString();
-
-	    if(cause.length()>0){
-	        addButton.setEnabled(true);
-	        addButton.setImageResource(R.drawable.add50text);
-
-	    } else {
-	        addButton.setEnabled(false);
-	        addButton.setImageResource(R.drawable.add50text);
-	    }
-	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

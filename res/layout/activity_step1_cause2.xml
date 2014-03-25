@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Step1Cause" >
+    tools:context=".Step1Cause2" >
 
     <TextView
         android:id="@+id/textView1"
@@ -13,28 +13,6 @@
         android:layout_marginTop="74dp"
         android:text="Step 1"
         android:textSize="32sp" />
-
-    <TextView
-        android:id="@+id/giveCause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="138dp"
-        android:text="Please give a short cause of the injury" />
-
-    <EditText
-        android:id="@+id/enterCause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/giveCause"
-        android:layout_alignRight="@+id/giveCause"
-        android:layout_below="@+id/giveCause"
-        android:layout_marginTop="35dp"
-        android:ems="10"
-        android:inputType="text" >
-
-    </EditText>
 
     <LinearLayout
         android:id="@+id/footer"
@@ -99,22 +77,42 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/done"
+        android:id="@+id/addAnother"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/enterCause"
-        android:layout_marginTop="21dp"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_below="@+id/addDone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
         android:background="#ffffff"
-        android:src="@drawable/cancel50" />
+        android:src="@drawable/addanotherentry" />
 
     <ImageButton
-        android:id="@+id/addEntry"
+        android:id="@+id/addDone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/done"
-        android:layout_toLeftOf="@+id/textView1"
+        android:layout_below="@+id/causeList"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         android:background="#ffffff"
-        android:src="@drawable/add50text" />
+        android:src="@drawable/done50" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Entered Causes:"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/causeList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="18dp"
+        android:text="" />
 
 </RelativeLayout>

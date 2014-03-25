@@ -18,7 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-public class Step1Cause extends Activity {
+public class AddAnother extends Activity {
 	protected static int questionNum;
 	protected static int count;
 	final Context context = this;
@@ -53,7 +53,7 @@ public class Step1Cause extends Activity {
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		//set view from xml
-		setContentView(R.layout.activity_step1_cause);
+		setContentView(R.layout.activity_add_another);
 		
 		//About Button
 		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
@@ -197,7 +197,7 @@ public class Step1Cause extends Activity {
 				//count++;
 				// the key for the data will be "cause" along side what question it is
 				//data.put("cause"+count, cause);
-				Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Activity.class);
+				Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Cause2.class);
 				//Bundle b = new Bundle();
 				b.putSerializable("patientData", data);
 				b.putSerializable("questionNum", questionNum);
@@ -216,7 +216,6 @@ public class Step1Cause extends Activity {
 			public void onClick(View v) {
 				cause = enterCause.getText().toString();
 				count++;
-				questionNum++;
 				// the key for the data will be "cause" along side what question it is
 				data.put("cause"+count, cause);
 				Intent i = new Intent(getApplicationContext(),com.tbi_id.Step1Cause2.class);

@@ -100,6 +100,14 @@
             android:name="com.tbi_id.Step3Yes"
             android:label="@string/title_activity_step3_yes" >
         </activity>
+        <activity
+            android:name="com.tbi_id.Step1Cause2"
+            android:label="@string/title_activity_step1_cause2" >
+        </activity>
+        <activity
+            android:name="com.tbi_id.AddAnother"
+            android:label="@string/title_activity_add_another" >
+        </activity>
     </application>
 
 </manifest>

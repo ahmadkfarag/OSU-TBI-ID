@@ -49,5 +49,7 @@
     <string name="title_activity_step3">Step3Activity</string>
     <string name="step3_question_1">Have you ever had a period of time in which you experienced multiple, repeated impacts to your head (e.g. history of abuse, contact sports, military duty)?</string>
     <string name="title_activity_step3_yes">Step3Yes</string>
+    <string name="title_activity_step1_cause2">Step1Cause2</string>
+    <string name="title_activity_add_another">AddAnother</string>
 
 </resources>
