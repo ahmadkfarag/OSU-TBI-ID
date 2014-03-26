@@ -51,5 +51,9 @@
     <string name="title_activity_step3_yes">Step3Yes</string>
     <string name="title_activity_step1_cause2">Step1Cause2</string>
     <string name="title_activity_add_another">AddAnother</string>
+    <string name="title_activity_step3_add_cause">Step3AddCause</string>
+    <string name="title_activity_step3_effect">Step3Effect</string>
+    <string name="step_3_instruction">What was the most severe effect from one of the times you had an impact?</string>
+    <string name="title_activity_step3_review">Step3Review</string>
 
 </resources>

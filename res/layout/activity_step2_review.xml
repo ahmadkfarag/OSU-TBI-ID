@@ -137,6 +137,7 @@
         android:layout_marginRight="10dp"        
         android:layout_alignBottom="@+id/review4"
         android:layout_alignLeft="@+id/badCount_text"
+        android:singleLine="true"
         android:text="TextView" />
 
     <TextView
@@ -211,11 +212,11 @@
 
     <TextView
         android:id="@+id/tbiCount_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
         android:layout_above="@+id/review2"
-        android:layout_toRightOf="@+id/step_2_review_header"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/review3"
         android:text="TextView" />
 
 </RelativeLayout>

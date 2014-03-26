@@ -265,6 +265,7 @@ public class StartInterview extends Activity {
 				b.putSerializable("questionNum", 1);
 				b.putSerializable("causeCount", 0);
 				b.putSerializable("step2Count", 1);
+				b.putSerializable("step3Count", 1);
 				i.putExtras(b);
 				startActivity(i);
 				}

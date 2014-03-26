@@ -13,10 +13,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
-public class Step3Activity extends Activity {
+public class Step3Effect extends Activity {
+	final Context context = this;
+	protected static int step3Count;
 	
-	final Context context = this;	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +28,8 @@ public class Step3Activity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		//set view from xml		
-		setContentView(R.layout.activity_step3);
+		//set view from xml
+		setContentView(R.layout.activity_step3_effect);
 		
 		//Settings Button
 		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
@@ -144,37 +147,96 @@ public class Step3Activity extends Activity {
 			}
 		});		
 		
-		//get Intent and bundle
+		TextView causeView = (TextView) findViewById(R.id.step_3_cause);
+		final RadioButton button1 = (RadioButton) findViewById(R.id.noLOC);
+		final RadioButton button2 = (RadioButton) findViewById(R.id.lessthan30);
+		final RadioButton button3 = (RadioButton) findViewById(R.id.btw30and24);
+		final RadioButton button4 = (RadioButton) findViewById(R.id.greaterthan24hrs);
 		Intent intent = getIntent();
 		final Bundle b = intent.getExtras();
-		
-		//If yes is pressed, go to add cause
-		ImageButton step3_yes = (ImageButton) findViewById(R.id.step_3_question_yes);
-		step3_yes.setOnClickListener(new View.OnClickListener() {
-			@Override
+		final HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
+		step3Count = (Integer) b.get("step3Count");
+		String causeN = "";
+		getCause(context, causeView, step3Count, b);
+		ImageButton doneButton = (ImageButton) findViewById(R.id.done);
+		//if done button is pushed
+		doneButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3AddCause.class);
-				i.putExtras(b);
-				startActivity(i);							
-			}
-		});
-		
-		//If no is pressed, go to Step3 Review
-		ImageButton step3_no = (ImageButton) findViewById(R.id.step_3_question_no);
-		step3_no.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3Review.class);
-				startActivity(i);	
+				Intent i = new Intent(getApplicationContext(),com.tbi_id.Step3Review.class);
+				//Check to see  which radio button is pushed
+				if(button1.isChecked())
+				{
+					//no LOC
+					data.put("step3cause"+step3Count+"Length", "noLOC");
+					step3Count++;
+					b.putSerializable("patientData", data);
+					b.putSerializable("step3Count", step3Count);
+					i.putExtras(b);
+					startActivity(i);
+				}
+				else if(button2.isChecked())
+				{
+					//Less than 30 mins
+					data.put("step3cause"+step3Count+"Length", "<30");
+					step3Count++;
+					b.putSerializable("patientData", data);
+					b.putSerializable("step3Count", step3Count);
+					i.putExtras(b);
+					startActivity(i);
+				}
+				else if(button3.isChecked())
+				{
+					//Between 30 mins and 24 hrs
+					data.put("step3cause"+step3Count+"Length", "30-24");
+					step3Count++;
+					b.putSerializable("patientData", data);
+					b.putSerializable("step3Count", step3Count);
+					i.putExtras(b);
+					startActivity(i);
+				}
+				else if(button4.isChecked())
+				{
+					//Greater than 24 hrs
+					data.put("step3cause"+step3Count+"Length", ">24");
+					step3Count++;
+					b.putSerializable("patientData", data);
+					b.putSerializable("step3Count", step3Count);
+					i.putExtras(b);
+					startActivity(i);					
+				}
+				else
+				{
+					//At least one button is pushed
+					AlertDialog.Builder builder = new AlertDialog.Builder(context);
+					builder.setTitle("Error");
+					builder.setMessage("Please choose a time span");
+					builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+						}
+					});
+					AlertDialog alert = builder.create();
+					alert.show();
+				}
+				
 			}
 		});
 		
 	}
+	
+	//sets the header of the page to the cause that is being questioned
+	private void getCause(Context context, TextView cause, int count, Bundle b) {
+		HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
+		String causeN = data.get("cause" + count);
+		cause.setText(causeN);
+	}	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.step3, menu);
+		getMenuInflater().inflate(R.menu.step3_effect, menu);
 		return true;
 	}
 

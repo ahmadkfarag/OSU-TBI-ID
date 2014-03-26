@@ -35,6 +35,7 @@ public class Step1Review extends Activity {
 		//if count == 0, go to step 3
 		if (count == 0) {
 			Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3Activity.class);
+			i.putExtras(b);			
 			startActivity(i);
 		}
 		

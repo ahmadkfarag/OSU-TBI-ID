@@ -108,6 +108,18 @@
             android:name="com.tbi_id.AddAnother"
             android:label="@string/title_activity_add_another" >
         </activity>
+        <activity
+            android:name="com.tbi_id.Step3AddCause"
+            android:label="@string/title_activity_step3_add_cause" >
+        </activity>
+        <activity
+            android:name="com.tbi_id.Step3Effect"
+            android:label="@string/title_activity_step3_effect" >
+        </activity>
+        <activity
+            android:name="com.tbi_id.Step3Review"
+            android:label="@string/title_activity_step3_review" >
+        </activity>
     </application>
 
 </manifest>

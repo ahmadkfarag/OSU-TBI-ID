@@ -12,12 +12,19 @@ import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 
-public class Step3Activity extends Activity {
-	
+public class Step3AddCause extends Activity {	
 	final Context context = this;	
-
+	protected static int causeCount;
+	protected static int step3Count;
+	String step3agebegan;
+	String step3ageended;
+	String step3cause;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,8 +32,8 @@ public class Step3Activity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		//set view from xml		
-		setContentView(R.layout.activity_step3);
+		//set view from xml			
+		setContentView(R.layout.activity_step3_add_cause);
 		
 		//Settings Button
 		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
@@ -144,37 +151,45 @@ public class Step3Activity extends Activity {
 			}
 		});		
 		
+		//Step 3 edit text fields
+		final EditText addCause = (EditText) findViewById(R.id.step_3_cause);
+		final EditText ageBegan = (EditText) findViewById(R.id.step_3_age_began_edit);
+		final EditText ageEnded = (EditText) findViewById(R.id.step_3_age_ended_edit);
+		
 		//get Intent and bundle
 		Intent intent = getIntent();
 		final Bundle b = intent.getExtras();
+		final HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
+		//step3Count init to 1 in StartActivity
+		step3Count = (Integer) b.get("step3Count");	
 		
-		//If yes is pressed, go to add cause
-		ImageButton step3_yes = (ImageButton) findViewById(R.id.step_3_question_yes);
-		step3_yes.setOnClickListener(new View.OnClickListener() {
-			@Override
+		//step 3 next button
+		ImageButton step3next = (ImageButton) findViewById(R.id.step_3_cause_next);
+		step3next.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3AddCause.class);
+				Intent i = new Intent(getApplicationContext(),com.tbi_id.Step3Effect.class);
+				//put cause into data
+				step3cause = addCause.getText().toString();				
+				data.put("step3cause"+step3Count, step3cause);
+				//put ages into data
+				step3agebegan = ageBegan.getText().toString();
+				data.put("step3agebegan_cause"+step3Count, step3agebegan);
+				step3ageended = ageEnded.getText().toString();
+				data.put("step3ageended_cause"+step3Count, step3ageended);
+				b.putSerializable("patientData", data);
+				b.putSerializable("step3Count", step3Count);
 				i.putExtras(b);
-				startActivity(i);							
+				startActivity(i);				
+
 			}
 		});
-		
-		//If no is pressed, go to Step3 Review
-		ImageButton step3_no = (ImageButton) findViewById(R.id.step_3_question_no);
-		step3_no.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3Review.class);
-				startActivity(i);	
-			}
-		});
-		
+			
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.step3, menu);
+		getMenuInflater().inflate(R.menu.step3_add_cause, menu);
 		return true;
 	}
 

@@ -73,8 +73,7 @@
         android:layout_marginLeft="10dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="98dp"
-        android:layout_below="@+id/header"
+        android:layout_marginTop="90dp"
         android:text="@string/step_3"
         android:textSize="32sp" />
 
@@ -85,7 +84,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/step_3_title"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="45dp"
         android:text="@string/step3_question_1" />
     
     <ImageButton
@@ -99,7 +99,7 @@
         android:src="@drawable/yes_50" />
 
     <ImageButton
-        android:id="@+id/step_2_question_no"
+        android:id="@+id/step_3_question_no"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/step_3_question_yes"
