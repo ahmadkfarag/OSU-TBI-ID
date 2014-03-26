@@ -146,15 +146,29 @@
 	                android:layout_height="wrap_content"
 	                android:text="LOC greater than 24 hrs" />	            
 	        </RadioGroup>
-	        
+
 	   		<ImageButton
-		        android:id="@+id/done"
-		        android:layout_width="50sp"
-		        android:layout_height="50sp"
-		        android:layout_centerHorizontal="true"
-		        android:layout_below="@+id/step_3_cause_buttons"
-		        android:layout_marginTop="37dp"
-		        android:src="@drawable/done50" />        
+	   		    android:id="@+id/done"
+	   		    android:layout_width="wrap_content"
+	   		    android:layout_height="wrap_content"
+	   		    android:layout_alignParentBottom="true"
+	   		    android:layout_below="@+id/addanotherentry"
+	   		    android:layout_marginBottom="10dp"
+	   		    android:background="#ffffff"	   		    
+	   		    android:layout_centerHorizontal="true"
+	   		    android:src="@drawable/done_button_long" />
+
+	   		<ImageButton
+	   		    android:id="@+id/addanotherentry"
+	   		    android:layout_width="wrap_content"
+	   		    android:layout_height="wrap_content"
+	   		    android:layout_below="@+id/step_3_cause_buttons"
+	   		    android:layout_marginTop="10dp"
+	   		    android:background="#ffffff"
+				android:layout_centerHorizontal="true"
+	   		    android:layout_marginBottom="10dp"
+	   		    android:src="@drawable/addanotherentry" />
+		              
 	    </RelativeLayout>
 
 	</ScrollView>

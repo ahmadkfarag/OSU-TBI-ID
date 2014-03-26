@@ -80,7 +80,7 @@
         android:id="@+id/addAnother"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addDone"
+        android:layout_above="@+id/addDone"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
         android:background="#ffffff"
@@ -90,11 +90,12 @@
         android:id="@+id/addDone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/causeList"
+        android:layout_above="@+id/footer"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:background="#ffffff"
-        android:src="@drawable/done50" />
+        android:src="@drawable/done_button_long" />
 
     <TextView
         android:id="@+id/title"
@@ -105,16 +106,28 @@
         android:layout_marginTop="20dp"
         android:text="Entered Causes:"
         android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/causeList"
+    
+    <ScrollView 
+        android:id="@+id/step1cause2scroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/title"
-        android:layout_marginTop="18dp"
-        android:text="" />
+        android:layout_below="@+id/title"	>
+	        
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+		
+		    <TextView
+		        android:id="@+id/causeList"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_alignParentLeft="true"
+		        android:layout_marginTop="18dp"
+		        android:text="" />
+		    
+		</LinearLayout>	   
+	</ScrollView>		 
 
 </RelativeLayout>

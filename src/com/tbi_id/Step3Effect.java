@@ -147,22 +147,26 @@ public class Step3Effect extends Activity {
 			}
 		});		
 		
+		Intent intent = getIntent();
+		final Bundle b = intent.getExtras();
+		final HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");		
+		step3Count = (Integer) b.get("step3Count");		
+		
 		TextView causeView = (TextView) findViewById(R.id.step_3_cause);
 		final RadioButton button1 = (RadioButton) findViewById(R.id.noLOC);
 		final RadioButton button2 = (RadioButton) findViewById(R.id.lessthan30);
 		final RadioButton button3 = (RadioButton) findViewById(R.id.btw30and24);
 		final RadioButton button4 = (RadioButton) findViewById(R.id.greaterthan24hrs);
-		Intent intent = getIntent();
-		final Bundle b = intent.getExtras();
-		final HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
-		step3Count = (Integer) b.get("step3Count");
+
 		String causeN = "";
 		getCause(context, causeView, step3Count, b);
-		ImageButton doneButton = (ImageButton) findViewById(R.id.done);
-		//if done button is pushed
-		doneButton.setOnClickListener(new View.OnClickListener() {
+		
+		//if Add another cause is pressed
+		ImageButton addentryButton = (ImageButton) findViewById(R.id.addanotherentry);
+		addentryButton.setOnClickListener(new View.OnClickListener() {			
+			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(),com.tbi_id.Step3Review.class);
+				Intent i = new Intent(getApplicationContext(),com.tbi_id.Step3AddCause.class);
 				//Check to see  which radio button is pushed
 				if(button1.isChecked())
 				{
@@ -219,6 +223,67 @@ public class Step3Effect extends Activity {
 					});
 					AlertDialog alert = builder.create();
 					alert.show();
+				}				
+			}
+		});
+		
+		ImageButton doneButton = (ImageButton) findViewById(R.id.done);
+		//if done button is pressed
+		doneButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(),com.tbi_id.Step3Review.class);
+				//Check to see  which radio button is pushed
+				if(button1.isChecked())
+				{
+					//no LOC
+					data.put("step3cause"+step3Count+"Length", "noLOC");
+					b.putSerializable("patientData", data);
+					b.putSerializable("step3Count", step3Count);
+					i.putExtras(b);
+					startActivity(i);
+				}
+				else if(button2.isChecked())
+				{
+					//Less than 30 mins
+					data.put("step3cause"+step3Count+"Length", "<30");
+					b.putSerializable("patientData", data);
+					b.putSerializable("step3Count", step3Count);
+					i.putExtras(b);
+					startActivity(i);
+				}
+				else if(button3.isChecked())
+				{
+					//Between 30 mins and 24 hrs
+					data.put("step3cause"+step3Count+"Length", "30-24");
+					b.putSerializable("patientData", data);
+					b.putSerializable("step3Count", step3Count);
+					i.putExtras(b);
+					startActivity(i);
+				}
+				else if(button4.isChecked())
+				{
+					//Greater than 24 hrs
+					data.put("step3cause"+step3Count+"Length", ">24");
+					b.putSerializable("patientData", data);
+					b.putSerializable("step3Count", step3Count);
+					i.putExtras(b);
+					startActivity(i);					
+				}
+				else
+				{
+					//At least one button is pushed
+					AlertDialog.Builder builder = new AlertDialog.Builder(context);
+					builder.setTitle("Error");
+					builder.setMessage("Please choose a time span");
+					builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+						}
+					});
+					AlertDialog alert = builder.create();
+					alert.show();
 				}
 				
 			}
@@ -229,7 +294,7 @@ public class Step3Effect extends Activity {
 	//sets the header of the page to the cause that is being questioned
 	private void getCause(Context context, TextView cause, int count, Bundle b) {
 		HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
-		String causeN = data.get("cause" + count);
+		String causeN = data.get("step3cause"+count);
 		cause.setText(causeN);
 	}	
 
