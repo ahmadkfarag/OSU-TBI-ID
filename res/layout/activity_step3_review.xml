@@ -4,12 +4,295 @@
     android:layout_height="match_parent"
     tools:context=".Step3Review" >
 
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#971425"
+        android:weightSum="2" >
+
+        <ImageButton
+            android:id="@+id/home_button_main_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/home" />
+
+        <ImageButton
+            android:id="@+id/about_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/about" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#971425"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+
+        <ImageButton
+            android:id="@+id/help_button"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/help" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="@string/osu_tbi_id"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/settings_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/settings" />
+    </LinearLayout>
     <TextView
-        android:id="@+id/causetext"
+        android:id="@+id/step_3_review_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="" />
+        android:layout_marginTop="14dp"
+        android:text="Step 3 Review"
+        android:textSize="32sp" />    
+	<ScrollView
+	    android:id="@+id/step3review_scroll"
+	    android:layout_width="wrap_content"
+	    android:fadeScrollbars="false"
+	    android:layout_height="wrap_content"
+	    android:layout_above="@+id/step3next"
+	    android:layout_below="@+id/step_3_review_header">
+
+	    <RelativeLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="309dp" >
+
+		    <TextView
+		        android:id="@+id/step3_LOCcount"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/step3_nonLOCcount"
+		        android:layout_below="@+id/step3_nonLOCcount"
+		        android:layout_marginTop="16dp"
+		        android:text="Count of LOC events" />
+		
+		    <TextView
+		        android:id="@+id/step3_nonLOCcount"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/step3_countofinjuries"
+		        android:layout_below="@+id/step3_countofinjuries"
+		        android:layout_marginTop="19dp"
+		        android:text="Count of non-LOC events" />
+		
+		    <TextView
+		        android:id="@+id/step3_lt30mins"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/step3_LOCcount"
+		        android:layout_below="@+id/step3_LOCcount"
+		        android:layout_marginTop="16dp"
+		        android:text="Count of LOC &lt; 30 mins" />
+		
+		    <TextView
+		        android:id="@+id/step3_btw3024"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/step3_lt30mins"
+		        android:layout_below="@+id/step3_lt30mins"
+		        android:layout_marginTop="16dp"
+		        android:text="LOCs btw 30min-24hrs" />
+		
+		    <TextView
+		        android:id="@+id/step3_worsteffect"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/step3_gt24hrs"
+		        android:layout_below="@+id/step3_gt24hrs"
+		        android:layout_marginTop="16dp"
+		        android:text="Worst Effect" />
+		    
+		    <TextView
+		        android:id="@+id/step3_ageworsteffect"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/step3_worsteffect"
+		        android:layout_below="@+id/step3_worsteffect"
+		        android:layout_marginTop="16dp"
+		        android:text="Age at worst effect" />  
+		        
+		    <TextView
+		        android:id="@+id/step3_duration"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/step3_ageworsteffect"
+		        android:layout_below="@+id/step3_ageworsteffect"
+		        android:layout_marginTop="16dp"
+		        android:text="Duration" />   
+		        
+		    <TextView
+		        android:id="@+id/step3_timesince"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/step3_duration"
+		        android:layout_below="@+id/step3_duration"
+		        android:layout_marginTop="16dp"
+		        android:layout_marginBottom="10dp"
+		        android:text="Time since most recent" />
+		
+		    <TextView
+		        android:id="@+id/nonloc_count"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginRight="10dp"        
+		        android:layout_alignBottom="@+id/step3_nonLOCcount"
+		        android:layout_alignLeft="@+id/injury_count"
+		        android:text="TextView" />
+		
+		    <TextView
+		        android:id="@+id/loc_count"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginRight="10dp"        
+		        android:layout_alignBaseline="@+id/step3_LOCcount"
+		        android:layout_alignBottom="@+id/step3_LOCcount"
+		        android:layout_alignLeft="@+id/nonloc_count"
+		        android:text="TextView" />
+		
+		    <TextView
+		        android:id="@+id/lt30"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginRight="10dp"        
+		        android:layout_alignBottom="@+id/step3_lt30mins"
+		        android:layout_alignLeft="@+id/loc_count"
+		        android:singleLine="true"
+		        android:text="TextView" />
+		
+		    <TextView
+		        android:id="@+id/a30to24"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginRight="10dp"        
+		        android:layout_alignBaseline="@+id/step3_btw3024"
+		        android:layout_alignBottom="@+id/step3_btw3024"
+		        android:layout_alignLeft="@+id/lt30"
+		        android:text="TextView" />
+		
+		    <TextView
+		        android:id="@+id/gt24hrs"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginRight="10dp"        
+		        android:layout_alignBaseline="@+id/step3_gt24hrs"
+		        android:layout_alignBottom="@+id/step3_gt24hrs"
+		        android:layout_alignLeft="@+id/a30to24"
+		        android:text="TextView" />
+		
+		    <TextView
+		        android:id="@+id/worsteffect"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginRight="10dp"        
+		        android:layout_alignBaseline="@+id/step3_worsteffect"
+		        android:layout_alignBottom="@+id/step3_worsteffect"
+		        android:layout_alignLeft="@+id/gt24hrs"
+		        android:text="TextView" />
+		    
+			<TextView
+		        android:id="@+id/ageatworst"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginRight="10dp"        
+		        android:layout_alignBaseline="@+id/step3_ageworsteffect"
+		        android:layout_alignBottom="@+id/step3_ageworsteffect"
+		        android:layout_alignLeft="@+id/worsteffect"
+		        android:text="TextView" />
+			
+			<TextView
+		        android:id="@+id/duration"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginRight="10dp"        
+		        android:layout_alignBaseline="@+id/step3_duration"
+		        android:layout_alignBottom="@+id/step3_duration"
+		        android:layout_alignLeft="@+id/ageatworst"
+		        android:text="TextView" />
+			
+			<TextView
+		        android:id="@+id/timesincemostrecent"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginRight="10dp"        
+		        android:layout_alignBaseline="@+id/step3_timesince"
+		        android:layout_alignBottom="@+id/step3_timesince"
+		        android:layout_alignLeft="@+id/duration"
+		        android:text="TextView" />
+		
+		    <TextView
+		        android:id="@+id/step3_gt24hrs"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@+id/step3_btw3024"
+		        android:layout_below="@+id/step3_btw3024"
+		        android:layout_marginTop="16dp"
+		        android:text="Count of LOC &gt; 24hrs" />
+		
+		    <TextView
+		        android:id="@+id/step3_countofinjuries"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="10dp"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@+id/step_2_review_header"
+		        android:layout_marginTop="20dp"
+		        android:text="Count of injuries" />
+		
+
+		
+		    <TextView
+		        android:id="@+id/injury_count"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_above="@+id/step3_nonLOCcount"
+		        android:layout_marginLeft="40dp"
+		        android:layout_toRightOf="@+id/step3_LOCcount"
+		        android:text="TextView" />
+		    
+			    
+	    </RelativeLayout>
+
+	</ScrollView>  
+	<ImageButton
+        android:id="@+id/step3next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/footer"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:src="@drawable/next_50" />	  
 
 </RelativeLayout>

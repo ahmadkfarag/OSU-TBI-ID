@@ -70,7 +70,7 @@
         android:id="@+id/step3effect_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/footer"
+        android:layout_above="@+id/addanotherentry"
         android:layout_below="@+id/header" >
 
 	    <RelativeLayout
@@ -146,31 +146,30 @@
 	                android:layout_height="wrap_content"
 	                android:text="LOC greater than 24 hrs" />	            
 	        </RadioGroup>
-
-	   		<ImageButton
-	   		    android:id="@+id/done"
-	   		    android:layout_width="wrap_content"
-	   		    android:layout_height="wrap_content"
-	   		    android:layout_alignParentBottom="true"
-	   		    android:layout_below="@+id/addanotherentry"
-	   		    android:layout_marginBottom="10dp"
-	   		    android:background="#ffffff"	   		    
-	   		    android:layout_centerHorizontal="true"
-	   		    android:src="@drawable/done_button_long" />
-
-	   		<ImageButton
-	   		    android:id="@+id/addanotherentry"
-	   		    android:layout_width="wrap_content"
-	   		    android:layout_height="wrap_content"
-	   		    android:layout_below="@+id/step_3_cause_buttons"
-	   		    android:layout_marginTop="10dp"
-	   		    android:background="#ffffff"
-				android:layout_centerHorizontal="true"
-	   		    android:layout_marginBottom="10dp"
-	   		    android:src="@drawable/addanotherentry" />
-		              
+         
 	    </RelativeLayout>
 
 	</ScrollView>
+	
+	<ImageButton
+	    android:id="@+id/done"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_above="@+id/footer"
+	    android:layout_marginBottom="10dp"
+	    android:background="#ffffff"	   		    
+	    android:layout_centerHorizontal="true"
+	    android:src="@drawable/done_button_long" />
+
+	<ImageButton
+	    android:id="@+id/addanotherentry"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_above="@+id/done"
+	    android:layout_marginTop="10dp"
+	    android:background="#ffffff"
+		android:layout_centerHorizontal="true"
+	    android:layout_marginBottom="10dp"
+	    android:src="@drawable/addanotherentry" />    
 
 </RelativeLayout>
