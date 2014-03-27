@@ -262,7 +262,7 @@ public class Step3Review extends Activity {
 		//Set the Worst effect
 		if(mild)
 		{
-			worsteffect.setText("Mild");
+			worsteffect.setText("Mild with LOC");
 		}
 		if (moderate)
 		{
@@ -274,7 +274,7 @@ public class Step3Review extends Activity {
 		}
 		else if (!mild && !moderate && !severe)
 		{
-			worsteffect.setText("None");
+			worsteffect.setText("Mild without LOC");
 		}
 		//Set the Worst effect's Age
 		ageatworsteffect.setText(worsteffectagestring);
