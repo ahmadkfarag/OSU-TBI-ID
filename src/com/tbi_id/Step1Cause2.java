@@ -2,26 +2,21 @@ package com.tbi_id;
 
 import java.util.HashMap;
 
-import android.R.drawable;
-import android.os.Bundle;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Gravity;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 public class Step1Cause2 extends Activity {
@@ -31,9 +26,9 @@ public class Step1Cause2 extends Activity {
 	private EditText enterCause;
 	String cause;
 
-	
-
-	
+	private boolean click = true;
+	private PopupWindow popupWindow;
+	private View popupView;
 	
 	
 	@Override
@@ -74,35 +69,52 @@ public class Step1Cause2 extends Activity {
 				alert.show();
 			}
 		});
-		
+
 		//Help Button
-		ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
+		final ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
 		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
 			public void onClick(View v) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(context);
-				builder.setTitle("Are you sure?");
-				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
-				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-					
+
+				LayoutInflater layoutInflater = (LayoutInflater)getBaseContext()
+						.getSystemService(LAYOUT_INFLATER_SERVICE);  
+
+				if (click)
+				{
+					popupView = layoutInflater.inflate(R.layout.step1helpactivity, null);  
+					popupWindow = new PopupWindow(
+							popupView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+					popupWindow.showAsDropDown(helpButton, 50, -30);
+					popupWindow.update(helpButton, 60, 40, -1, 1400);
+					popupWindow.setFocusable(true);
+					click = false;
+				}
+				else {
+					click = true;
+					popupWindow.dismiss();
+				}
+
+				ImageButton btnDismiss = (ImageButton)popupView.findViewById(R.id.Quit_help_button);
+				btnDismiss.setOnClickListener(new View.OnClickListener(){
+
 					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-						Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
-						startActivity(i);
-					}
-				});
-				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-					
+					public void onClick(View v) {
+						click = true;
+						popupWindow.dismiss();
+					}});
+
+				View stepOnelayout = findViewById(R.id.main);
+
+				stepOnelayout.setOnClickListener(new View.OnClickListener(){
+
 					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-					}
-				});
-				AlertDialog alert = builder.create();
-				alert.show();
+					public void onClick(View v) {
+						click = true;
+						popupWindow.dismiss();
+					}});
+
 			}
-		});
+		});	
 		
 		//Settings button
 		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);

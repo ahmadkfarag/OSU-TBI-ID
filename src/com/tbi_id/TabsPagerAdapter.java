@@ -1,10 +1,10 @@
 package com.tbi_id;
 
-import com.viewpagerindicator.IconPagerAdapter;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.viewpagerindicator.IconPagerAdapter;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
 
