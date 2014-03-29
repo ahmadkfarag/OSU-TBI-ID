@@ -55,5 +55,6 @@
     <string name="title_activity_step3_effect">Step3Effect</string>
     <string name="step_3_instruction">What was the most severe effect from one of the times you had an impact?</string>
     <string name="title_activity_step3_review">Step3Review</string>
+    <string name="title_activity_final_review">FinalReview</string>
 
 </resources>

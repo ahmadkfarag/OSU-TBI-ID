@@ -151,6 +151,7 @@ public class Step3Review extends Activity {
 		HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
 		String interview_age = data.get("Interview Age");		
 		
+		int youngest = 1000;
 		int noLOCcountint = 0;
 		int loccountint = 0;
 		int lt30countint = 0;
@@ -176,6 +177,7 @@ public class Step3Review extends Activity {
 		
 		//check to make sure causes exist.
 		if (step3count >= 1) {		
+			b.putSerializable("MultipleStep3", true);
 			//for cause 1 to step3count, append "cause" to "i"
 			for (int i=1; i<=step3count; i++) {	
 				String temp = data.get("step3agebegan_cause"+i);	
@@ -184,7 +186,12 @@ public class Step3Review extends Activity {
 				if(test > recent)
 				{
 					recent = test;
-				}				
+				}
+				//Get youngest began age
+				if(test < youngest)
+				{
+					youngest = test;
+				}
 				//Get the count of non-LOC events
 				if(data.containsKey("step3cause"+i+"Length"))
 				{
@@ -240,6 +247,10 @@ public class Step3Review extends Activity {
 				}
 			}
 		}
+		else
+		{
+			b.putSerializable("MultipleStep3", false);
+		}
 		
 		//set text for total injury count
 		String injurycounttext = String.valueOf(step3count);
@@ -263,18 +274,22 @@ public class Step3Review extends Activity {
 		if(mild)
 		{
 			worsteffect.setText("Mild with LOC");
+			b.putSerializable("WorstStep3", "Mild");
 		}
 		if (moderate)
 		{
 			worsteffect.setText("Moderate");
+			b.putSerializable("WorstStep3", "Moderate");
 		}
 		if (severe)
 		{
 			worsteffect.setText("Severe");
+			b.putSerializable("WorstStep3", "Severe");
 		}
 		else if (!mild && !moderate && !severe)
 		{
 			worsteffect.setText("Mild without LOC");
+			b.putSerializable("WorstStep3", "Mild");
 		}
 		//Set the Worst effect's Age
 		ageatworsteffect.setText(worsteffectagestring);
@@ -286,6 +301,27 @@ public class Step3Review extends Activity {
 		int difference = currentAge - recent;
 		String holder = String.valueOf(difference)+" years";
 		timesincemostrecent.setText(holder);
+		holder = String.valueOf(difference);
+		b.putSerializable("RecentStep3", holder);
+		//Record youngest start age for final review
+		holder = String.valueOf(youngest);
+		b.putSerializable("YoungestStep3", holder);
+		
+		//Get Next button
+		ImageButton next = (ImageButton) findViewById(R.id.step3next);
+		next.setOnClickListener(new View.OnClickListener() {
+			//NOW THE CANCEL BUTTON
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(),com.tbi_id.FinalReview.class);
+				//add bundle to intent then start activity
+				i.putExtras(b);
+				startActivity(i);
+				
+				
+			}
+			
+		});
 	}
 
 	@Override

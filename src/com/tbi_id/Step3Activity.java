@@ -186,7 +186,8 @@ public class Step3Activity extends Activity {
 		step3_no.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3Review.class);
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.FinalReview.class);
+				i.putExtras(b);
 				startActivity(i);	
 			}
 		});

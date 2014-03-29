@@ -1,6 +1,8 @@
 package com.tbi_id;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -196,7 +198,9 @@ public class Step2Review extends Activity {
 		int loc = 0;
 		int tbi = 0;
 		int modOrSev=0;
-		boolean mild = false, moderate=false, severe=false;
+		boolean mild = false, moderate=false, severe=false, multiple=false;
+		//List to contain the ages of all TBI injuries so we can check for multiple injuries at the same age
+		List ages = new ArrayList();
 		String worstTBI = "";
 		String worstTBIage = "";
 
@@ -214,7 +218,32 @@ public class Step2Review extends Activity {
 		if (count > 0) {		
 			//for cause 1 to causeCount, append "cause" to "i"
 			for (int i=1; i<=count; i++) {						
-				String temp = data.get("cause"+i+"Age");	
+				String temp = data.get("cause"+i+"Age");
+				//Check if any other injury happened at the same age
+				//Only TBI's should be in List and only TBI's should be compared to the list
+				if(ages.contains(temp))
+				{
+					//Checking to see if the injury is a TBI
+					if(data.containsKey("cause"+i+"Dazed"))
+					{
+						String temp2 = data.get("cause"+i+"Dazed");
+						if(temp2.equals("No"))
+						{
+							//Do Nothing because it is not a TBI
+						}
+						else
+						{
+							//All other "Dazed" scenarios are a TBI
+							multiple = true;
+						}
+					}
+					else
+					{
+						//All LOC scenarios are TBI
+						multiple = true;
+					}
+				}
+				
 				//Get Youngest Injury
 				int test = Integer.parseInt(temp);
 				if(test < youngest)
@@ -237,6 +266,8 @@ public class Step2Review extends Activity {
 					//If they were dazed or have gap in memory
 					if(temp2.equals("Yes"))
 					{
+						//Add injury to the list, it is a TBI injury
+						ages.add(temp);
 						mild = true;
 						//Was dazed/had a gap in memory
 						tbi++;
@@ -255,6 +286,8 @@ public class Step2Review extends Activity {
 				//If you said Yes in Step2Activity
 				else if (data.containsKey("cause"+i+"Length"))
 				{
+					//Add injury to the list, it is a TBI injury
+					ages.add(temp);
 					//Injury is a TBI and LOC counter increased
 					tbi++;
 					loc++;
@@ -304,11 +337,13 @@ public class Step2Review extends Activity {
 			//Set the age of the youngest
 			holder = String.valueOf(youngest);
 			first.setText(holder);
+			b.putSerializable("YoungestStep2", holder);
 			//Calculate difference between most recent and current age
 			int currentAge = Integer.parseInt(interview_age);
 			int difference = currentAge - recent;
 			holder = String.valueOf(difference)+" years";
 			recentValue.setText(holder);
+			b.putSerializable("RecentStep2", String.valueOf(difference));
 			//Set the Count of Mod/Severe TBI
 			holder = String.valueOf(modOrSev);
 			badTBI.setText(holder);
@@ -316,21 +351,27 @@ public class Step2Review extends Activity {
 			if(mild)
 			{
 				worst.setText("Mild");
+				b.putSerializable("WorstStep2", "Mild");
 			}
 			if (moderate)
 			{
 				worst.setText("Moderate");
+				b.putSerializable("WorstStep2", "Moderate");
 			}
 			if (severe)
 			{
 				worst.setText("Severe");
+				b.putSerializable("WorstStep2", "Severe");
 			}
 			else if (!mild && !moderate && !severe)
 			{
 				worst.setText("None");
+				b.putSerializable("WorstStep2", "None");
 			}
 			//Set the Worst TBI Age
 			worstAge.setText(worstTBIage);
+			//Put the multiple boolean in the bundle for the final review
+			b.putSerializable("MultipleStep2", multiple);
 		}
 				
 		
