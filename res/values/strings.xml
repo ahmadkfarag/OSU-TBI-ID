@@ -62,6 +62,6 @@
     <string name="step_3_help_part_2">If yes, what was the typical or usual effect -- were you knocked out (Loss of Consciousness - LOC)?\n\nIf no, were you dazed or did you have a gap in your memory from the injury?</string>
     <string name="step_3_help_part_3">What was the most severe effect from one of the times you had an impact to the head?\n\nHow old were you when these repeated injuries began? Ended?\n\n</string>
     <string name="final_help">A person may be more likely to have ongoing problems if they have any of the following:</string>
-    <string name="final_help_part_2">WORST\nOne moderate or severe TBI\n\nFIRST\nTBI with loss of consciousness before age 15\n\nMULTIPLE\n2 or more TBIs close together, including a period of time when they experienced multiple blows to the head\n\nRECENT\nA mild TBI in the last weeks or a more severe TBI in the last months\n\nOTHER SOURCES\nAny TBI combined with another way that their brain function has been impaired</string>
+    <string name="final_help_part_2">WORST\nOne moderate or severe TBI\n\nFIRST\nTBI with loss of consciousness before age 15\n\nMULTIPLE\n2 or more TBIs close together, including a period of time when they experienced multiple blows to the head\n\nRECENT\nA mild TBI in the last weeks or a more severe TBI in the last months\n\nOTHER SOURCES\nAny TBI combined with another way that their brain function has been impaired.\n\n</string>
 
 </resources>

@@ -135,7 +135,7 @@ public class FinalReview extends Activity {
 				{
 					popupView = layoutInflater.inflate(R.layout.finalreviewhelpactivity, null);  
 					popupWindow = new PopupWindow(
-							popupView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+							popupView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 					popupWindow.showAsDropDown(helpButton, 50, -30);
 //					popupWindow.update(helpButton, 60, 40, -1, 1400);
 					popupWindow.update(helpButton, 60, 40, -1, -1);					
@@ -154,8 +154,7 @@ public class FinalReview extends Activity {
 					public void onClick(View v) {
 						click = true;
 						popupWindow.dismiss();
-					}
-				});
+					}});
 
 				View stepOnelayout = findViewById(R.id.main);
 
