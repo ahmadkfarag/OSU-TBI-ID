@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:orientation="vertical"
-    android:background="@drawable/helpbackground">
-     
+    android:layout_height="match_parent" >
+    
      <LinearLayout
          android:id="@+id/header"
          android:layout_width="match_parent"
@@ -49,46 +47,35 @@
 		    android:orientation="vertical" >
 
 		    <TextView
-		        android:id="@+id/step_3_title"
+		        android:id="@+id/final_review_help_title"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_gravity="center"
 		        android:layout_marginTop="18dp"
-		        android:text="@string/step_3"
+		        android:text="@string/final_review_title"
 		        android:textSize="32sp" />
 		    
             <TextView
-                android:id="@+id/help_step_3"
+                android:id="@+id/help_step_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="10dp"
                 android:ems="10"
-                android:text="@string/step_3_help" />
+                android:text="@string/final_help" />
             
 			<TextView
-                android:id="@+id/help_step_3_part_2"
+                android:id="@+id/help_step_part_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="10dp"
                 android:ems="10"
-                android:text="@string/step_3_help_part_2" />
-			
-			<TextView
-                android:id="@+id/help_step_3_part_3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:text="@string/step_3_help_part_3" />
-            
-        </LinearLayout>
-    </ScrollView>
+                android:text="@string/final_help_part_2" /> 	
 
+        </LinearLayout>
+    </ScrollView>     
     
 </RelativeLayout>

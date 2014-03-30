@@ -134,7 +134,9 @@
         </activity>
         <activity
             android:name="com.tbi_id.FinalReview"
-            android:label="@string/title_activity_final_review" >
+            android:label="@string/title_activity_final_review" 
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >            
         </activity>
     </application>
 

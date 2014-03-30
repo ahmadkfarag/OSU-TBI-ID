@@ -140,6 +140,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView2"
         android:layout_alignLeft="@+id/flag_worst"
+        android:textStyle="bold"
         android:text="-" />
 
     <TextView
@@ -149,6 +150,7 @@
         android:layout_alignBaseline="@+id/textView3"
         android:layout_alignBottom="@+id/textView3"
         android:layout_alignLeft="@+id/flag_first"
+        android:textStyle="bold"        
         android:text="-" />
 
     <TextView
@@ -157,6 +159,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView4"
         android:layout_alignLeft="@+id/flag_multiple"
+        android:textStyle="bold"
         android:text="-" />
 
     <TextView
@@ -166,6 +169,7 @@
         android:layout_alignBaseline="@+id/textView1"
         android:layout_alignBottom="@+id/textView1"
         android:layout_alignLeft="@+id/flag"
+        android:textStyle="bold"        
         android:text="-" />
 
     <TextView

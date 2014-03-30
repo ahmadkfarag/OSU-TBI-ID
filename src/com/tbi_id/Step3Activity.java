@@ -134,8 +134,8 @@ public class Step3Activity extends Activity {
 					popupWindow = new PopupWindow(
 							popupView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 					popupWindow.showAsDropDown(helpButton, 50, -30);
-					popupWindow.update(helpButton, 60, 40, -1, 1400);
-					popupWindow.setFocusable(true);
+//					popupWindow.update(helpButton, 60, 40, -1, 1400);
+					popupWindow.update(helpButton, 60, 40, -1, -1);							popupWindow.setFocusable(true);
 					click = false;
 				}
 				else {

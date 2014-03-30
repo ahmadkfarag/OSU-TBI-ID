@@ -18,7 +18,7 @@
     <string name="step_1_question2">2. In your lifetime, have you ever injured your head or neck in a car accident or from crashing some other moving vehicle like a bicycle, motorcycle, or ATV?</string>
     <string name="step_1_question3">3. In your lifetime, have you ever injured your head or neck in a fall or from being hit by something (for example, falling from a bike or horse, rollerblading, falling on ice, being hit by a rock)? Have you ever injured your head or neck playing sports or on the playground?</string>
     <string name="step_1_question4">4. In your lifetime, have you ever injured your head or neck in a fight, from being hit by someone, or from being shaken violently? Have you ever been shot in the head?</string>
-    <string name="step_1_question5">5. In your lifetime, have you ever been nearby when an explosion or blast has occurred? If you served in the military, think about any combat- or training-related incidents.</string>
+    <string name="step_1_question5">5. In your lifetime, have you ever been nearby when an explosion or blast has occurred? If you served in the military, think about any combat- or training-related incidents.\n\n</string>
     <string name="title_activity_step1_cause">Step1Cause</string>
     <string name="osu_tbi_id">OSU TBI-ID</string>
     <string name="or">OR</string>
@@ -56,5 +56,12 @@
     <string name="step_3_instruction">What was the most severe effect from one of the times you had an impact?</string>
     <string name="title_activity_step3_review">Step3Review</string>
     <string name="title_activity_final_review">FinalReview</string>
+    <string name="final_review_title">Final Review</string>
+    <string name="step_2_help_part_2">If yes, how long?\n\nIf no, were you dazed or did you have a gap in your memory from the injury?</string>
+    <string name="step_2_help_part_3">How old were you?</string>
+    <string name="step_3_help_part_2">If yes, what was the typical or usual effect -- were you knocked out (Loss of Consciousness - LOC)?\n\nIf no, were you dazed or did you have a gap in your memory from the injury?</string>
+    <string name="step_3_help_part_3">What was the most severe effect from one of the times you had an impact to the head?\n\nHow old were you when these repeated injuries began? Ended?\n\n</string>
+    <string name="final_help">A person may be more likely to have ongoing problems if they have any of the following:</string>
+    <string name="final_help_part_2">WORST\nOne moderate or severe TBI\n\nFIRST\nTBI with loss of consciousness before age 15\n\nMULTIPLE\n2 or more TBIs close together, including a period of time when they experienced multiple blows to the head\n\nRECENT\nA mild TBI in the last weeks or a more severe TBI in the last months\n\nOTHER SOURCES\nAny TBI combined with another way that their brain function has been impaired</string>
 
 </resources>

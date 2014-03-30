@@ -105,27 +105,8 @@ public class StartInterview extends Activity {
 		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
 			public void onClick(View v) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(context);
-				builder.setTitle("Are you sure?");
-				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
-				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-						Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
-						startActivity(i);
-					}
-				});
-				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-					}
-				});
-				AlertDialog alert = builder.create();
-				alert.show();
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
+				startActivity(i);
 			}
 		});
 		
@@ -135,30 +116,10 @@ public class StartInterview extends Activity {
 		settingsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(context);
-				builder.setTitle("Are you sure?");
-				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
-				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-						Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
-						startActivity(i);
-					}
-				});
-				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-					}
-				});
-				AlertDialog alert = builder.create();
-				alert.show();
-				
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
+				startActivity(i);				
 			}
-		});		
+		});	
 		
 		//Start Interview Button
 		ImageButton startInterviewButton = (ImageButton) findViewById(R.id.start_interview_button);
