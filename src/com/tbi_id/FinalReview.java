@@ -187,7 +187,15 @@ public class FinalReview extends Activity {
 		final TextView recent_flag = (TextView) findViewById(R.id.flag_recent);
 		
 		//Get all data from bundle
-		String WorstStep2 = (String) b.getSerializable("WorstStep2");
+		String WorstStep2;
+		if(b.containsKey("WorstStep2"))
+		{
+			WorstStep2 = (String) b.getSerializable("WorstStep2");
+		}
+		else
+		{
+			WorstStep2 = "None";
+		}
 		String WorstStep3;
 		if(b.containsKey("WorstStep3"))
 		{
@@ -197,9 +205,19 @@ public class FinalReview extends Activity {
 		{
 			WorstStep3 = "None";
 		}
+		
+		
 		int FirstStep2, FirstStep3;
-		String temp = (String) b.getSerializable("YoungestStep2");
-		FirstStep2 = Integer.parseInt(temp);
+		String temp;
+		if(b.containsKey("YoungestStep2"))
+		{
+			temp = (String) b.getSerializable("YoungestStep2");
+			FirstStep2 = Integer.parseInt(temp);
+		}
+		else
+		{
+			FirstStep2 = 1000;
+		}
 		if(b.containsKey("YoungestStep3"))
 		{
 			temp = (String) b.getSerializable("YoungestStep3");
@@ -210,7 +228,15 @@ public class FinalReview extends Activity {
 			FirstStep3 = 1000;
 		}
 		
-		Boolean MultipleStep2 = (Boolean) b.getSerializable("MultipleStep2");
+		Boolean MultipleStep2;
+		if(b.containsKey("MultipleStep2"))
+		{
+			MultipleStep2 = (Boolean) b.getSerializable("MultipleStep2");
+		}
+		else
+		{
+			MultipleStep2 = false;
+		}
 		Boolean MultipleStep3;
 		if(b.containsKey("MultipleStep3"))
 		{
@@ -220,9 +246,17 @@ public class FinalReview extends Activity {
 		{
 			MultipleStep3 = false;
 		}
+		
 		int RecentStep2, RecentStep3;
-		temp = (String) b.getSerializable("RecentStep2");
-		RecentStep2 = Integer.parseInt(temp);
+		if(b.containsKey("RecentStep2"))
+		{
+			temp = (String) b.getSerializable("RecentStep2");
+			RecentStep2 = Integer.parseInt(temp);
+		}
+		else
+		{
+			RecentStep2 = 1000;
+		}
 		if(b.containsKey("RecentStep3"))
 		{
 			temp = (String) b.getSerializable("RecentStep3");
@@ -256,7 +290,11 @@ public class FinalReview extends Activity {
 		
 		//Compare Firsts from step 2 and 3
 		String holder;
-		if(FirstStep2 < FirstStep3)
+		if(FirstStep2==1000 && FirstStep3==1000)
+		{
+			first_value.setText("None");
+		}
+		else if(FirstStep2 < FirstStep3)
 		{
 			holder = String.valueOf(FirstStep2);
 			first_value.setText(holder);
@@ -287,7 +325,11 @@ public class FinalReview extends Activity {
 		}
 		
 		//Compare Recents from step2 and 3
-		if(RecentStep2 < RecentStep3)
+		if(RecentStep2==1000 && RecentStep3==1000)
+		{
+			recent_value.setText("None");
+		}
+		else if(RecentStep2 < RecentStep3)
 		{
 			holder = String.valueOf(RecentStep2);
 			recent_value.setText(holder);
