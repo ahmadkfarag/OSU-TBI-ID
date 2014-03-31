@@ -135,7 +135,7 @@ public class FinalReview extends Activity {
 				{
 					popupView = layoutInflater.inflate(R.layout.finalreviewhelpactivity, null);  
 					popupWindow = new PopupWindow(
-							popupView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+							popupView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 					popupWindow.showAsDropDown(helpButton, 50, -30);
 //					popupWindow.update(helpButton, 60, 40, -1, 1400);
 					popupWindow.update(helpButton, 60, 40, -1, -1);					

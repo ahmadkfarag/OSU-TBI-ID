@@ -414,7 +414,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int action_settings=0x7f0500a6;
         public static final int addAnother=0x7f05002d;
         public static final int addDone=0x7f05002e;
-        public static final int addEntry=0x7f050016;
+        public static final int addEntry=0x7f050017;
         public static final int addanotherentry=0x7f05006e;
         public static final int ageatworst=0x7f05008a;
         public static final int badCount_text=0x7f050054;
@@ -426,10 +426,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int cause_value_text=0x7f05003f;
         public static final int date=0x7f05009c;
         public static final int dazed=0x7f050048;
-        public static final int done=0x7f050015;
+        public static final int done=0x7f050016;
         public static final int duration=0x7f05008b;
         public static final int emailEnterHipaa=0x7f050095;
-        public static final int enterCause=0x7f050014;
+        public static final int enterCause=0x7f050015;
         public static final int enterEmailNotif=0x7f050096;
         public static final int enterInfo=0x7f05009d;
         public static final int final_review_header=0x7f050018;
@@ -441,7 +441,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int flag_recent=0x7f050021;
         public static final int flag_worst=0x7f05001f;
         public static final int footer=0x7f050008;
-        public static final int giveCause=0x7f050013;
+        public static final int giveCause=0x7f050014;
         public static final int greaterthan24hrs=0x7f050075;
         public static final int gt24hrs=0x7f050088;
         public static final int header=0x7f050005;
@@ -473,7 +473,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int locCount_text=0x7f050052;
         public static final int loc_count=0x7f050085;
         public static final int lt30=0x7f050086;
-        public static final int main=0x7f050017;
+        public static final int main=0x7f050012;
         public static final int more24=0x7f05005f;
         public static final int noLOC=0x7f050072;
         public static final int none=0x7f050000;
@@ -549,7 +549,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int step_3_review_header=0x7f050076;
         public static final int step_3_title=0x7f050060;
         public static final int tbiCount_text=0x7f050053;
-        public static final int textView1=0x7f050012;
+        public static final int textView1=0x7f050013;
         public static final int textView2=0x7f050019;
         public static final int textView3=0x7f05001a;
         public static final int textView4=0x7f05001b;
