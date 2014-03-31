@@ -80,13 +80,36 @@
             android:orientation="vertical" >        
 
 		<TextView
-                android:id="@+id/step_1_title"
+                android:id="@+id/about_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:text="@string/about_title"
-                android:textSize="32sp" />            
+                android:textSize="32sp" />  
+                
+		<RelativeLayout
+		    android:layout_marginTop="10dp"
+		    android:layout_gravity="center"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" >
+                
+		<ImageView
+		    android:id="@+id/john_corrigan_picture"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginRight="5dp"
+		    android:src="@drawable/john_corrigan" />
+		
+		<ImageView
+		    android:id="@+id/jen_bogner_picture"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="5dp"
+		    android:layout_toRightOf="@+id/john_corrigan_picture"
+		    android:src="@drawable/jen_bogner" />
+		
+		</RelativeLayout>
             	            
 		    <TextView
 		        android:id="@+id/osutbi_dev_excerpt"

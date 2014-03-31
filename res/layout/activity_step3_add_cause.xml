@@ -71,6 +71,7 @@
         android:id="@+id/step_3_ScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
         android:layout_above="@+id/footer"
         android:layout_below="@+id/header" >
         
@@ -85,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="90dp"
+                android:layout_marginTop="40dp"
                 android:text="@string/step_3"
                 android:textSize="32sp" />
 		
@@ -136,8 +137,6 @@
 		        android:layout_marginLeft="10dp"
 		        android:layout_toLeftOf="@+id/step_3_title"
 		        android:inputType="number" >
-		
-		        <requestFocus />
 		    </EditText>
 		
 		    <TextView
@@ -163,8 +162,6 @@
 		        android:layout_marginRight="10dp"
 		        android:layout_toRightOf="@+id/step_3_title"
 		        android:inputType="number" >
-		
-		        <requestFocus />
 		    </EditText>
 		
 			<ImageButton 
@@ -176,6 +173,18 @@
 		 	    	    android:layout_below="@+id/step_3_age_ended_edit"
 		 	    	    android:background="#ffffff"
 		 	    	    android:src="@drawable/next_50" />
+			
+			<ImageButton 
+		 	    	    android:id="@+id/step_3_cause_cancel"
+		 	    	    android:layout_width="wrap_content"
+		 	    	    android:layout_height="wrap_content"
+		 	    	    android:layout_marginTop="10dp"
+		 	    	    android:layout_marginBottom="10dp"
+		 	    	    android:layout_centerHorizontal="true"
+		 	    	    android:layout_below="@+id/step_3_cause_next"
+		 	    	    android:background="#ffffff"
+		 	    	    android:visibility="invisible"
+		 	    	    android:src="@drawable/cancel50" />			
 			</RelativeLayout>
 	
 	</ScrollView>

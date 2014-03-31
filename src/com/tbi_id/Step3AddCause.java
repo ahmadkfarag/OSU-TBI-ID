@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -22,6 +24,12 @@ public class Step3AddCause extends Activity {
 	final Context context = this;	
 	protected static int causeCount;
 	protected static int step3Count;
+	private EditText addCause;
+	private EditText ageBegan;
+	private EditText ageEnded;
+	String cause;	
+	String beginage;
+	String endage;
 	String step3agebegan;
 	String step3ageended;
 	String step3cause;
@@ -32,6 +40,23 @@ public class Step3AddCause extends Activity {
 	private View mainlayout;
 	private View footer;
 	private View header;
+	
+	private TextWatcher mTextWatcher = new TextWatcher() {
+	    @Override
+	    public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+	    }
+
+	    @Override
+	    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+	    }
+
+	    @Override
+	    public void afterTextChanged(Editable editable) {
+	        // check Fields For Empty Values
+	        checkFieldsForEmptyValues();
+	    }
+
+	};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -190,9 +215,14 @@ public class Step3AddCause extends Activity {
 		});		
 		
 		//Step 3 edit text fields
-		final EditText addCause = (EditText) findViewById(R.id.step_3_cause);
-		final EditText ageBegan = (EditText) findViewById(R.id.step_3_age_began_edit);
-		final EditText ageEnded = (EditText) findViewById(R.id.step_3_age_ended_edit);
+		addCause = (EditText) findViewById(R.id.step_3_cause);
+		ageBegan = (EditText) findViewById(R.id.step_3_age_began_edit);
+		ageEnded = (EditText) findViewById(R.id.step_3_age_ended_edit);
+		
+		addCause.addTextChangedListener(mTextWatcher);
+		checkFieldsForEmptyValues();				
+		ageBegan.addTextChangedListener(mTextWatcher);
+		ageEnded.addTextChangedListener(mTextWatcher);
 		
 		//get Intent and bundle
 		Intent intent = getIntent();
@@ -200,6 +230,25 @@ public class Step3AddCause extends Activity {
 		final HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
 		//step3Count init to 1 in StartActivity
 		step3Count = (Integer) b.get("step3Count");	
+		
+		//Cancel button is default to invisible.
+		//Cancel button will only show if step3Count > 1 (if user adds another cause)
+		ImageButton step3cancel = (ImageButton) findViewById(R.id.step_3_cause_cancel);
+		if(step3Count>1) {
+			//set step3cancel button to visible
+			step3cancel.setVisibility(0);
+			step3cancel.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					Intent i = new Intent(getApplicationContext(),com.tbi_id.Step3Review.class);
+					step3Count--;
+					b.putSerializable("patientData", data);
+					b.putSerializable("step3Count", step3Count);						
+					i.putExtras(b);
+					startActivity(i);
+				
+				}
+			});
+		}
 		
 		//step 3 next button
 		ImageButton step3next = (ImageButton) findViewById(R.id.step_3_cause_next);
@@ -223,6 +272,23 @@ public class Step3AddCause extends Activity {
 		});
 			
 	}
+	
+	void checkFieldsForEmptyValues(){
+	    ImageButton step3next = (ImageButton) findViewById(R.id.step_3_cause_next);
+
+	    String cause = addCause.getText().toString();
+	    String beginage = ageBegan.getText().toString();
+	    String endage = ageEnded.getText().toString();
+
+	    if(cause.length()>0 && beginage.length()>0 && endage.length()>0){
+	        step3next.setEnabled(true);
+	        step3next.setImageResource(R.drawable.next_50);
+
+	    } else {
+	        step3next.setEnabled(false);
+	        step3next.setImageResource(R.drawable.next_50);
+	    }
+	}		
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
