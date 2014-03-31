@@ -24,7 +24,9 @@ public class FinalReview extends Activity {
 	private boolean click = true;
 	private PopupWindow popupWindow;
 	private View popupView;
-	
+	private View mainlayout;
+	private View footer;
+	private View header;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,10 @@ public class FinalReview extends Activity {
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_final_review);
+		
+		footer = findViewById(R.id.footer);
+		header = findViewById(R.id.header);
+		mainlayout = findViewById(R.id.main);
 		
 		//Settings Button
 		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
@@ -133,12 +139,20 @@ public class FinalReview extends Activity {
 
 				if (click)
 				{
-					popupView = layoutInflater.inflate(R.layout.finalreviewhelpactivity, null);  
+					//calculate the space between the footer and header in the screen
+					int heightSpace = mainlayout.getHeight() - (footer.getHeight() + header.getHeight());
+					
+					//get the screen width
+					int widthSpace =  footer.getWidth(); 
+					
+					int xoff = (int) header.getHeight()/4;
+					int yoff =  (int) header.getHeight()/3;
+					
+					popupView = layoutInflater.inflate(R.layout.step3helpactivity, null);  
 					popupWindow = new PopupWindow(
-							popupView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+							popupView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 					popupWindow.showAsDropDown(helpButton, 50, -30);
-//					popupWindow.update(helpButton, 60, 40, -1, 1400);
-					popupWindow.update(helpButton, 60, 40, -1, -1);					
+					popupWindow.update(helpButton, xoff, yoff, widthSpace - 2*xoff, heightSpace - 2*(header.getHeight()/3));
 					popupWindow.setFocusable(true);
 					click = false;
 				}

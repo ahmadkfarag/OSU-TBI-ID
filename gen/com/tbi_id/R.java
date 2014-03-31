@@ -411,7 +411,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int Step1Header=0x7f050032;
         public static final int a30to24=0x7f050087;
         public static final int about_button=0x7f05000a;
-        public static final int action_settings=0x7f0500a6;
+        public static final int action_settings=0x7f0500a4;
         public static final int addAnother=0x7f05002d;
         public static final int addDone=0x7f05002e;
         public static final int addEntry=0x7f050017;
@@ -450,8 +450,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int help_step_2=0x7f05008f;
         public static final int help_step_2_part_3=0x7f0500a3;
         public static final int help_step_3=0x7f050092;
-        public static final int help_step_3_part_2=0x7f0500a4;
-        public static final int help_step_3_part_3=0x7f0500a5;
         public static final int help_step_part_2=0x7f050090;
         public static final int hippaCompliance=0x7f050094;
         public static final int home_button=0x7f050097;
