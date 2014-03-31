@@ -40,10 +40,10 @@ public class Step2Review extends Activity {
 		final Integer count = (Integer) b.get("causeCount");
 		
 		//if count == 0, go to step 3
-		if (count == 0) {
-			//Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3Activity.class);
-			//startActivity(i);
-		}
+//		if (count == 0) {
+//			//Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3Activity.class);
+//			//startActivity(i);
+//		}
 		
 		//set view from xml		
 		setContentView(R.layout.activity_step2_review);
