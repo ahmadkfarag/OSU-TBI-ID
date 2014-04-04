@@ -34,6 +34,26 @@
                 android:layout_marginTop="10dp"
                 android:ems="10"
                 android:text="@string/step_2_help" />
+            
+			<TextView
+                android:id="@+id/help_step_part_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:text="@string/step_2_help_part_2" /> 
+          
+			<TextView
+                android:id="@+id/help_step_2_part_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:text="@string/step_2_help_part_3" />	            
 
         </LinearLayout>
     </ScrollView>
