@@ -243,6 +243,7 @@ public class FinalReview extends Activity {
 		final TextView multiple_flag = (TextView) findViewById(R.id.flag_multiple);
 		final TextView recent_value = (TextView) findViewById(R.id.value_recent);
 		final TextView recent_flag = (TextView) findViewById(R.id.flag_recent);
+		String putInBundle = "";
 		
 		//Get all data from bundle
 		String WorstStep2;
@@ -330,20 +331,28 @@ public class FinalReview extends Activity {
 		if(WorstStep2.equals("None"))
 		{
 			worst_value.setText("None");
+			b.putSerializable("CSVWorst", "None");
+			b.putSerializable("CSVWorstFlag", "-");
 		}
 		if(WorstStep2.equals("Mild") || WorstStep3.equals("Mild"))
 		{
 			worst_value.setText("Mild");
+			b.putSerializable("CSVWorst", "Mild");
+			b.putSerializable("CSVWorstFlag", "-");
 		}
 		if(WorstStep2.equals("Moderate") || WorstStep3.equals("Moderate"))
 		{
 			worst_value.setText("Moderate");
 			worst_flag.setText("+");
+			b.putSerializable("CSVWorst", "Moderate");
+			b.putSerializable("CSVWorstFlag", "+");
 		}
 		if(WorstStep2.equals("Severe") || WorstStep3.equals("Severe"))
 		{
 			worst_value.setText("Severe");
 			worst_flag.setText("+");
+			b.putSerializable("CSVWorst", "Severe");
+			b.putSerializable("CSVWorstFlag", "+");
 		}
 		
 		//Compare Firsts from step 2 and 3
@@ -351,24 +360,31 @@ public class FinalReview extends Activity {
 		if(FirstStep2==1000 && FirstStep3==1000)
 		{
 			first_value.setText("None");
+			b.putSerializable("CSVFirst", "None");
 		}
 		else if(FirstStep2 < FirstStep3)
 		{
 			holder = String.valueOf(FirstStep2);
 			first_value.setText(holder + " years old");
+			b.putSerializable("CSVFirst", holder);
 			if(FirstStep2 < 15)
 			{
 				first_flag.setText("+");
+				b.putSerializable("CSVFirstFlag", "+");
 			}
+			else b.putSerializable("CSVFirstFlag", "-");
 		}
 		else
 		{
 			holder = String.valueOf(FirstStep3);
 			first_value.setText(holder + " years old");
+			b.putSerializable("CSVFirst", holder);
 			if(FirstStep3 < 15)
 			{
 				first_flag.setText("+");
+				b.putSerializable("CSVFirst", "+");
 			}
+			else b.putSerializable("CSVFirstFlag", "-");
 		}
 		
 		//Compare Multiples from step 2 and 3
@@ -376,34 +392,46 @@ public class FinalReview extends Activity {
 		{
 			multiple_value.setText("Yes");
 			multiple_flag.setText("+");
+			b.putSerializable("CSVMultiple", "Yes");
+			b.putSerializable("CSVMultiplFlag", "+");
 		}
 		else
 		{
 			multiple_value.setText("No");
+			b.putSerializable("CSVMultiple", "No");
+			b.putSerializable("CSVMultipleFlag", "-");
 		}
 		
 		//Compare Recents from step2 and 3
 		if(RecentStep2==1000 && RecentStep3==1000)
 		{
 			recent_value.setText("None");
+			b.putSerializable("CSVRecent", "None");
+			b.putSerializable("CSVRecentFlag", "-");
 		}
 		else if(RecentStep2 < RecentStep3)
 		{
 			holder = String.valueOf(RecentStep2);
 			recent_value.setText(holder + " years since");
+			b.putSerializable("CSVRecent", holder);
 			if(RecentStep2 <= 1 && (WorstStep2.equals("Mild")||WorstStep2.equals("Moderate")||WorstStep2.equals("Severe")))
 			{
 				recent_flag.setText("+");
+				b.putSerializable("CSVRecentFlag", "+");
 			}
+			else b.putSerializable("CSVRecentFlag", "-");
 		}
 		else
 		{
 			holder = String.valueOf(RecentStep3);
 			recent_value.setText(holder + " years since");
+			b.putSerializable("CSVRecent", holder);
 			if(RecentStep3 <= 1)
 			{
 				recent_flag.setText("+");
+				b.putSerializable("CSVRecentFlag", "+");
 			}
+			else b.putSerializable("CSVRecentFlag", "-");
 		}
 	}
 	
