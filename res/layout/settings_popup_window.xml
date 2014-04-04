@@ -1,0 +1,105 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/helpbackground"
+    tools:context=".SettingsActivity" >
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/help_header_background"
+        android:orientation="horizontal" >
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/settingsTitle"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+         
+        <ImageButton
+            android:id="@+id/Quit_help_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="4dp"
+            android:background="#971425"
+            android:contentDescription="@string/quit_description"
+            android:src="@drawable/button_x" />
+        
+    </RelativeLayout>
+    
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header"
+        android:layout_marginRight="1dp"
+        android:fadeScrollbars="false" >
+
+        <LinearLayout
+            android:gravity="center"
+            android:id="@+id/relative_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingBottom="5dp" >
+
+            <TextView
+                android:id="@+id/settingsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/settingsTitle"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/hippaCompliance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/hipaaComplianceCheckbox" />
+            
+            <EditText
+                android:id="@+id/emailEnterHipaa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:focusable="true"
+                android:hint="@string/emailHint"
+                android:inputType="textEmailAddress" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/enterEmailNotif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/enterEmailHipaa" />
+
+            <ImageButton
+                android:id="@+id/save_settings"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                android:background="#971425"
+                android:src="@drawable/save_button_50" />
+        </LinearLayout>
+
+	</ScrollView>
+	
+    
+</RelativeLayout>
