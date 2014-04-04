@@ -366,7 +366,7 @@ public class FinalReview extends Activity {
 		{
 			holder = String.valueOf(FirstStep2);
 			first_value.setText(holder + " years old");
-			b.putSerializable("CSVFirst", holder);
+			b.putSerializable("CSVFirst", holder + " years old");
 			if(FirstStep2 < 15)
 			{
 				first_flag.setText("+");
@@ -378,7 +378,7 @@ public class FinalReview extends Activity {
 		{
 			holder = String.valueOf(FirstStep3);
 			first_value.setText(holder + " years old");
-			b.putSerializable("CSVFirst", holder);
+			b.putSerializable("CSVFirst", holder + " years old");
 			if(FirstStep3 < 15)
 			{
 				first_flag.setText("+");
@@ -393,7 +393,7 @@ public class FinalReview extends Activity {
 			multiple_value.setText("Yes");
 			multiple_flag.setText("+");
 			b.putSerializable("CSVMultiple", "Yes");
-			b.putSerializable("CSVMultiplFlag", "+");
+			b.putSerializable("CSVMultipleFlag", "+");
 		}
 		else
 		{
@@ -413,7 +413,7 @@ public class FinalReview extends Activity {
 		{
 			holder = String.valueOf(RecentStep2);
 			recent_value.setText(holder + " years since");
-			b.putSerializable("CSVRecent", holder);
+			b.putSerializable("CSVRecent", holder + " years since");
 			if(RecentStep2 <= 1 && (WorstStep2.equals("Mild")||WorstStep2.equals("Moderate")||WorstStep2.equals("Severe")))
 			{
 				recent_flag.setText("+");
@@ -425,7 +425,7 @@ public class FinalReview extends Activity {
 		{
 			holder = String.valueOf(RecentStep3);
 			recent_value.setText(holder + " years since");
-			b.putSerializable("CSVRecent", holder);
+			b.putSerializable("CSVRecent", holder + " years since");
 			if(RecentStep3 <= 1)
 			{
 				recent_flag.setText("+");
