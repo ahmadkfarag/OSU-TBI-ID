@@ -7,16 +7,23 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class Step1Review extends Activity {
 	final Context context = this;
@@ -28,6 +35,7 @@ public class Step1Review extends Activity {
 	private View mainlayout;
 	private View footer;
 	private View header;
+	private SharedPreferences sharedPrefs;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,34 +64,8 @@ public class Step1Review extends Activity {
 		header = findViewById(R.id.header);
 		mainlayout = findViewById(R.id.main);
 		
-		//Settings Button
-		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
-		settingsButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(context);
-				builder.setTitle("Are you sure?");
-				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
-				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-						Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
-						startActivity(i);
-					}
-				});
-				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-					}
-				});
-				AlertDialog alert = builder.create();
-				alert.show();
-			} 
-	
-		});
+		final LayoutInflater layoutInflater = (LayoutInflater)getBaseContext()
+				.getSystemService(LAYOUT_INFLATER_SERVICE);
 		
 		//About Button
 		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
@@ -149,32 +131,11 @@ public class Step1Review extends Activity {
 			//open up the start interview activity if clicked
 			public void onClick(View v) {
 
-				LayoutInflater layoutInflater = (LayoutInflater)getBaseContext()
-						.getSystemService(LAYOUT_INFLATER_SERVICE);  
-
-				if (click)
-				{
-					//calculate the space between the footer and header in the screen
-					int heightSpace = mainlayout.getHeight() - (footer.getHeight() + header.getHeight());
-					
-					//get the screen width
-					int widthSpace =  footer.getWidth(); 
-					
-					int xoff = (int) header.getHeight()/4;
-					int yoff =  (int) header.getHeight()/3;
-					
-					popupView = layoutInflater.inflate(R.layout.step1helpactivity, null);  
-					popupWindow = new PopupWindow(
-							popupView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-					popupWindow.showAsDropDown(helpButton, 50, -30);
-					popupWindow.update(helpButton, xoff, yoff, widthSpace - 2*xoff, heightSpace - 2*(header.getHeight()/3));
-					popupWindow.setFocusable(true);
-					click = false;
-				}
-				else {
-					click = true;
-					popupWindow.dismiss();
-				}
+				popupView = layoutInflater.inflate(R.layout.step1_help_popup_window, null);
+				
+				//check if the pop up settings window
+				//is already being displayed
+				IsClicked(helpButton);
 
 				ImageButton btnDismiss = (ImageButton)popupView.findViewById(R.id.Quit_help_button);
 				btnDismiss.setOnClickListener(new View.OnClickListener(){
@@ -195,7 +156,89 @@ public class Step1Review extends Activity {
 						popupWindow.dismiss();
 					}});
 			}
-		});			
+		});	
+		
+		
+		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		//Settings button
+		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
+		//open up settings activity if the settings button is clicked
+		settingsButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				popupView = layoutInflater.inflate(R.layout.settings_popup_window, null);
+
+				//check if the pop up settings window
+				//is already being displayed
+				IsClicked(helpButton);
+
+				//get checkbox
+				final CheckBox checkBoxHipaa = (CheckBox) popupView.findViewById(R.id.hippaCompliance); 
+
+				//a text block that tells user to enter their email address
+				final TextView emailNotif = (TextView) popupView.findViewById(R.id.enterEmailNotif);
+
+				//the input field for entering the email address
+				final EditText enterEmailHipaa = (EditText) popupView.findViewById(R.id.emailEnterHipaa);
+
+				UploadSavedSettings (enterEmailHipaa, emailNotif, checkBoxHipaa);
+
+				checkBoxHipaa.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+						SharedPreferences.Editor editor = sharedPrefs.edit();
+						boolean checked = isChecked;
+						editor.putBoolean("checkboxHipaa", checked);
+						editor.apply();
+
+						if (checked)
+						{
+							enterEmailHipaa.setVisibility(View.VISIBLE);
+							emailNotif.setVisibility(View.VISIBLE);
+						}
+						else 
+						{
+							enterEmailHipaa.setVisibility(View.GONE);
+							emailNotif.setVisibility(View.GONE);
+						}	
+					}
+				});
+
+
+				//get save button
+				ImageButton saveButton = (ImageButton) popupView.findViewById(R.id.save_settings);
+				saveButton.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+
+						SharedPreferences.Editor editor = sharedPrefs.edit();
+						boolean checked = checkBoxHipaa.isChecked();
+						String email = enterEmailHipaa.getText().toString();
+						editor.putString("emailHipaa", email);
+						editor.putBoolean("checkboxHipaa", checked);
+						editor.apply();
+
+						WasEmailEnter (enterEmailHipaa);
+					}
+				});
+
+				//get the X quit setting button
+				ImageButton btnDismiss = (ImageButton)popupView.findViewById(R.id.Quit_help_button);
+				btnDismiss.setOnClickListener(new View.OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						click = true;
+						popupWindow.dismiss();
+					}
+				});
+			}
+		});
 
 		HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
 		
@@ -252,6 +295,88 @@ public class Step1Review extends Activity {
 		
 	}
 
+	/*
+	 * 
+	 */
+	private void IsClicked (View helpButton){
+		
+		if (click)
+		{
+			//calculate the space between the footer and header in the screen
+			int heightSpace = mainlayout.getHeight() - (footer.getHeight() + header.getHeight());
+			
+			//get the screen width
+			int widthSpace =  footer.getWidth(); 
+			
+			//x offset from the view helpButton left edge
+			int xoff = (int) header.getHeight()/4;
+			//y offset from the view helpButton left edge
+			int yoff =  (int) header.getHeight()/3;
+			
+			//instantiate popupWindow
+			popupWindow = new PopupWindow(
+					popupView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
+			popupWindow.showAsDropDown(helpButton, 50, -30);
+			popupWindow.update(helpButton, xoff, yoff, widthSpace - 2*xoff, heightSpace - 2*yoff);
+			popupWindow.setFocusable(true);
+			
+			click = false;
+		}
+		else {
+			click = true;
+			popupWindow.dismiss();
+		}
+	}
+
+	
+	
+	/*
+	 * Get and upload the settings saved as default.
+	 */
+	private void UploadSavedSettings (EditText enterEmailHipaa, TextView emailNotif, CheckBox checkBoxHipaa){
+		
+		//set the boolean false equal to the value of the checkbox when it was when previously run, if not found, set it to false
+		Boolean checked = sharedPrefs.getBoolean("checkboxHipaa", false);
+		// if the value was false, then they are not free from hipaa and cannot send the data so email is turned off
+		if (checked == false) {
+			enterEmailHipaa.setVisibility(View.GONE);
+			emailNotif.setVisibility(View.GONE);
+			checkBoxHipaa.setChecked(false);
+		}
+		else {
+			String email = sharedPrefs.getString("emailHipaa", "Enter Email Here");
+			enterEmailHipaa.setText(email);
+			checkBoxHipaa.setChecked(true);
+		}		
+	}
+	
+	/*
+	 * 
+	 */
+	private void WasEmailEnter (final EditText emailText){
+		
+		if((emailText.getText().length()==0) && (emailText.isShown()))
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(context);
+			builder.setTitle("Error");
+			builder.setMessage("Please enter a valid email");
+			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+					emailText.requestFocus();
+				}
+			});
+			AlertDialog alert = builder.create();
+			alert.show();
+		}
+		else{
+			click = true;
+			popupWindow.dismiss();
+		}
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

@@ -6,17 +6,26 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.View.OnClickListener;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class StartInterview extends Activity {
 
@@ -27,7 +36,15 @@ public class StartInterview extends Activity {
 	protected HashMap<String,String> data = new HashMap<String,String>();
 	protected ArrayList<String> value = new ArrayList<String>();
 	final Context context = this;
-
+	
+	private boolean click = true;
+	private PopupWindow popupWindow;
+	private View popupView;
+	private View mainlayout;
+	private View footer;
+	private View header;
+	private SharedPreferences sharedPrefs;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,6 +55,13 @@ public class StartInterview extends Activity {
 		// set view from xml
 		setContentView(R.layout.start_interview);
 
+		footer = findViewById(R.id.footer);
+		header = findViewById(R.id.header);
+		mainlayout = findViewById(R.id.main);
+		
+		final LayoutInflater layoutInflater = (LayoutInflater)getBaseContext()
+				.getSystemService(LAYOUT_INFLATER_SERVICE);
+		
 		//Home Button
 		ImageButton homeButton = (ImageButton) findViewById(R.id.home_button_main_screen);
 		//if the home button is clicked, send the user back to the home screen
@@ -63,9 +87,7 @@ public class StartInterview extends Activity {
 					}
 				});
 				AlertDialog alert = builder.create();
-				alert.show();
-				
-
+				alert.show();		
 			}
 		});
 		
@@ -95,13 +117,11 @@ public class StartInterview extends Activity {
 				});
 				AlertDialog alert = builder.create();
 				alert.show();
-				
-
 			}
 		});
 		
 		//Help Button
-		ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
+		final ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
 		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
 			public void onClick(View v) {
@@ -110,16 +130,85 @@ public class StartInterview extends Activity {
 			}
 		});
 		
+		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
 		//Settings button
 		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
 		//open up settings activity if the settings button is clicked
 		settingsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.SettingsActivity.class);
-				startActivity(i);				
+
+				popupView = layoutInflater.inflate(R.layout.settings_popup_window, null);
+
+				//check if the pop up settings window
+				//is already being displayed
+				IsClicked(helpButton);
+
+				//get checkbox
+				final CheckBox checkBoxHipaa = (CheckBox) popupView.findViewById(R.id.hippaCompliance); 
+
+				//a text block that tells user to enter their email address
+				final TextView emailNotif = (TextView) popupView.findViewById(R.id.enterEmailNotif);
+
+				//the input field for entering the email address
+				final EditText enterEmailHipaa = (EditText) popupView.findViewById(R.id.emailEnterHipaa);
+
+				UploadSavedSettings (enterEmailHipaa, emailNotif, checkBoxHipaa);
+
+				checkBoxHipaa.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+						SharedPreferences.Editor editor = sharedPrefs.edit();
+						boolean checked = isChecked;
+						editor.putBoolean("checkboxHipaa", checked);
+						editor.apply();
+
+						if (checked)
+						{
+							enterEmailHipaa.setVisibility(View.VISIBLE);
+							emailNotif.setVisibility(View.VISIBLE);
+						}
+						else 
+						{
+							enterEmailHipaa.setVisibility(View.GONE);
+							emailNotif.setVisibility(View.GONE);
+						}	
+					}
+				});
+
+				//get save button
+				ImageButton saveButton = (ImageButton) popupView.findViewById(R.id.save_settings);
+				saveButton.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+
+						SharedPreferences.Editor editor = sharedPrefs.edit();
+						boolean checked = checkBoxHipaa.isChecked();
+						String email = enterEmailHipaa.getText().toString();
+						editor.putString("emailHipaa", email);
+						editor.putBoolean("checkboxHipaa", checked);
+						editor.apply();
+
+						WasEmailEnter (enterEmailHipaa);
+					}
+				});
+
+				//get the X quit setting button
+				ImageButton btnDismiss = (ImageButton)popupView.findViewById(R.id.Quit_help_button);
+				btnDismiss.setOnClickListener(new View.OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						click = true;
+						popupWindow.dismiss();
+					}
+				});
 			}
-		});	
+		});
 		
 		//Start Interview Button
 		ImageButton startInterviewButton = (ImageButton) findViewById(R.id.start_interview_button);
@@ -231,11 +320,91 @@ public class StartInterview extends Activity {
 				startActivity(i);
 				}
 			}
-
 		});
-
 	}
 
+	/*
+	 * 
+	 */
+	private void IsClicked (View helpButton){
+		
+		if (click)
+		{
+			//calculate the space between the footer and header in the screen
+			int heightSpace = mainlayout.getHeight() - (footer.getHeight() + header.getHeight());
+			
+			//get the screen width
+			int widthSpace =  footer.getWidth(); 
+			
+			//x offset from the view helpButton left edge
+			int xoff = (int) header.getHeight()/4;
+			//y offset from the view helpButton left edge
+			int yoff =  (int) header.getHeight()/3;
+			
+			//instantiate popupWindow
+			popupWindow = new PopupWindow(
+					popupView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
+			popupWindow.showAsDropDown(helpButton, 50, -30);
+			popupWindow.update(helpButton, xoff, yoff, widthSpace - 2*xoff, heightSpace - 2*yoff);
+			popupWindow.setFocusable(true);
+			
+			click = false;
+		}
+		else {
+			click = true;
+			popupWindow.dismiss();
+		}
+	}
+
+	
+	
+	/*
+	 * Get and upload the settings saved as default.
+	 */
+	private void UploadSavedSettings (EditText enterEmailHipaa, TextView emailNotif, CheckBox checkBoxHipaa){
+		
+		//set the boolean false equal to the value of the checkbox when it was when previously run, if not found, set it to false
+		Boolean checked = sharedPrefs.getBoolean("checkboxHipaa", false);
+		// if the value was false, then they are not free from hipaa and cannot send the data so email is turned off
+		if (checked == false) {
+			enterEmailHipaa.setVisibility(View.GONE);
+			emailNotif.setVisibility(View.GONE);
+			checkBoxHipaa.setChecked(false);
+		}
+		else {
+			String email = sharedPrefs.getString("emailHipaa", "Enter Email Here");
+			enterEmailHipaa.setText(email);
+			checkBoxHipaa.setChecked(true);
+		}		
+	}
+	
+	/*
+	 * 
+	 */
+	private void WasEmailEnter (final EditText emailText){
+		
+		if((emailText.getText().length()==0) && (emailText.isShown()))
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(context);
+			builder.setTitle("Error");
+			builder.setMessage("Please enter a valid email");
+			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+					emailText.requestFocus();
+				}
+			});
+			AlertDialog alert = builder.create();
+			alert.show();
+		}
+		else{
+			click = true;
+			popupWindow.dismiss();
+		}
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

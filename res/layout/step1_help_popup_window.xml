@@ -5,51 +5,49 @@
     android:orientation="vertical"
     android:background="@drawable/helpbackground">
      
-     <LinearLayout
+     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/help_header_background"
-        android:orientation="horizontal"
-        android:weightSum="3" >
-
+        android:orientation="horizontal" >
+        
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="      Help"
+            android:text="@string/help"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="bold" />
-
+         
         <ImageButton
             android:id="@+id/Quit_help_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="4dp"
             android:background="#971425"
-            android:contentDescription="Quit popup help window"
+            android:contentDescription="@string/quit_description"
             android:src="@drawable/button_x" />
         
-    </LinearLayout>
+    </RelativeLayout>
     
 	<ScrollView
 	    android:id="@+id/scrollView1"
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 	    android:layout_marginRight="1dp"
-	    android:fadeScrollbars="false"	    
-	    android:layout_below="@+id/header"
-	    android:layout_above="@+id/footer">
+	    android:scrollbarDefaultDelayBeforeFade="500"    
+	    android:layout_below="@+id/header">
         	    
 		<LinearLayout
 		    android:id="@+id/scroll_view"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:layout_marginTop="10dp"
-		    android:paddingBottom="5dp"
 		    android:orientation="vertical" >
 
 		    <TextView

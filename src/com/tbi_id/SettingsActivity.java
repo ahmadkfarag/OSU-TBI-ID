@@ -49,8 +49,6 @@ public class SettingsActivity extends Activity {
 			enterEmailHipaa.setVisibility(View.GONE);
 			emailNotif.setVisibility(View.GONE);
 			checkBoxHipaa.setChecked(false);
-
-
 		}
 		
 		else {
@@ -82,8 +80,7 @@ public class SettingsActivity extends Activity {
 				{
 					enterEmailHipaa.setVisibility(View.GONE);
 					emailNotif.setVisibility(View.GONE);
-				}
-				
+				}		
 			}
 		});
 		
@@ -103,18 +100,12 @@ public class SettingsActivity extends Activity {
 				editor.putBoolean("checkboxHipaa", checked);
 				editor.apply();
 				
-				//dialog notification
-				
-				
-				
-				
-				
-				
-				
+				//dialog notification			
 				Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
 				startActivity(i);			
 				}
 		});
+		
 		
 		//Home Button
 		ImageButton homeButton = (ImageButton) findViewById(R.id.home_button);
@@ -137,6 +128,7 @@ public class SettingsActivity extends Activity {
 				startActivity(i);
 			}
 		});		
+		
 		
 		//About Button
 		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);

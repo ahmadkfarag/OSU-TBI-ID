@@ -12,8 +12,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="step_1_help">Ask questions 1 through 5. Record the cause of each reported injury and any details provided spontaneously. You do not need to ask further about loss of consciousness or other injury details during this step.</string>
-    <string name="step_2_help">Interviewer instruction: If the answer is "yes" to any of the questions in Step 1 ask additional questions about each reported injury.</string>
-    <string name="step_3_help">Interviewer instruction: Ask the additional questions  to help identify a history that may include multiple mild TBIs.\n</string>
+    <string name="step_2_help">Interviewer instruction: If the answer is "yes" to any of the questions in Step 1 ask additional questions about each reported injury.\n\nWere you knocked out or did you lose consciousness (LOC)?</string>
+    <string name="step_3_help">Interviewer instruction: Ask the additional questions  to help identify a history that may include multiple mild TBIs.\n\nHave you ever had a period of time in which you experienced multiple, repeated impacts to your head (e.g. history of abuse, contact sports, military duty)?</string>
     <string name="step_1_question1">1. In your lifetime, have you ever been hospitalized or treated in an emergency room following an injury to your head or neck? Think about any childhood injuries you remember or were told about.</string>
     <string name="step_1_question2">2. In your lifetime, have you ever injured your head or neck in a car accident or from crashing some other moving vehicle like a bicycle, motorcycle, or ATV?</string>
     <string name="step_1_question3">3. In your lifetime, have you ever injured your head or neck in a fall or from being hit by something (for example, falling from a bike or horse, rollerblading, falling on ice, being hit by a rock)? Have you ever injured your head or neck playing sports or on the playground?</string>
@@ -26,6 +26,7 @@
     <string name="settingsTitle">Settings</string>
     <string name="enterEmailHipaa">Please Enter Your Email Below:</string>
     <string name="emailHint">Email</string>
+    <string name="emailInputType">textEmailAddress</string>
     <string name="title_activity_about">AboutActivity</string>
     <string name="title_activity_help">HelpActivity</string>
     <string name="osutbi_dev_excerpt">The OSU TBI-ID was developed by John D. Corrigan, PhD, and Jennifer A. Bogner, PhD, from the Department of Physical Medicine &amp; Rehabilitation at The Ohio State University Wexner Medical Center.</string>
@@ -63,5 +64,9 @@
     <string name="step_3_help_part_3">What was the most severe effect from one of the times you had an impact to the head?\n\nHow old were you when these repeated injuries began? Ended?\n\n</string>
     <string name="final_help">A person may be more likely to have ongoing problems if they have any of the following:</string>
     <string name="final_help_part_2">WORST\nOne moderate or severe TBI\n\nFIRST\nTBI with loss of consciousness before age 15\n\nMULTIPLE\n2 or more TBIs close together, including a period of time when they experienced multiple blows to the head\n\nRECENT\nA mild TBI in the last weeks or a more severe TBI in the last months\n\nOTHER SOURCES\nAny TBI combined with another way that their brain function has been impaired.\n\n</string>
+    <string name="quit_description">Quit the help pop up window</string>
+    <string name="help">        Help</string>
+    <string name="emailId">emailEnterHipaa</string>
+    
 
 </resources>
