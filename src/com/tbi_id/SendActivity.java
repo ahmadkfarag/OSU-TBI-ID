@@ -187,13 +187,13 @@ public class SendActivity extends Activity {
 					
 					writer.flush();
 					writer.close();
-					String email = sharedPrefs.getString("emailHipaa", "ackmad22@gmail.com");
+					String email = sharedPrefs.getString("emailHipaa", "nkrisfalusy@gmail.com");
 					Uri uri = Uri.fromFile(csv);
 					Intent intents = new Intent(Intent.ACTION_SEND);
 					intents.setType("text/plain");
 					intents.putExtra(Intent.EXTRA_EMAIL, new String[] {email});
-					intents.putExtra(Intent.EXTRA_SUBJECT, "subject here");
-					intents.putExtra(Intent.EXTRA_TEXT, "body text");
+					intents.putExtra(Intent.EXTRA_SUBJECT, "TBI ID");
+					intents.putExtra(Intent.EXTRA_TEXT, "Attached is the File");
 					intents.putExtra(Intent.EXTRA_STREAM, uri);
 					startActivity(Intent.createChooser(intents, "Send email..."));
 	
