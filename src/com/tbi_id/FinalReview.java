@@ -433,6 +433,22 @@ public class FinalReview extends Activity {
 			}
 			else b.putSerializable("CSVRecentFlag", "-");
 		}
+		
+		
+		ImageButton finishButton = (ImageButton)findViewById(R.id.finish);
+		finishButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				Intent i = new Intent(getApplicationContext(), com.tbi_id.SendActivity.class);
+				i.putExtras(b);
+				startActivity(i);
+				
+				
+			}
+		});
+		
 	}
 	
 	

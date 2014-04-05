@@ -36,6 +36,7 @@
     <string name="title_activity_step2">Step2Activity</string>
     <string name="about_title">About</string>
     <string name="title_activity_step1_review">Step1Review</string>
+    <string name="title_activity_send">Send Activity</string>
     <string name="interviewName">Interviewer Name</string>
     <string name="howOld">How old were you?</string>
     <string name="LOC">Were you knocked out or did you lose consciousness (LOC)?</string>
@@ -67,6 +68,5 @@
     <string name="quit_description">Quit the help pop up window</string>
     <string name="help">        Help</string>
     <string name="emailId">emailEnterHipaa</string>
-    
 
 </resources>

@@ -206,4 +206,13 @@
         android:layout_alignLeft="@+id/value"
         android:text="TextView" />
 
+    <ImageButton
+        android:id="@+id/finish"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/value_recent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:src="@drawable/done50" />
+
 </RelativeLayout>
