@@ -441,7 +441,11 @@ public class FinalReview extends Activity {
 			@Override
 			public void onClick(View v) {
 				
+				// see if they are hipaa compliant or not and send that info to the send/save activity
+				Boolean checked = sharedPrefs.getBoolean("checkboxHipaa", false);
+				
 				Intent i = new Intent(getApplicationContext(), com.tbi_id.SendActivity.class);
+				b.putString("checked", checked.toString());
 				i.putExtras(b);
 				startActivity(i);
 				

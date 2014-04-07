@@ -87,7 +87,7 @@
 		        android:layout_alignParentTop="true"
 		        android:layout_centerHorizontal="true"
 		        android:layout_marginTop="44dp"
-		        android:text="Do you want to email the data?" />
+		        android:text="" />
 		
 		    <ImageButton
 		        android:id="@+id/sendYes"
