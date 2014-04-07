@@ -238,6 +238,7 @@ public class Step3Activity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3AddCause.class);
+				b.putSerializable("step3Count", 1);
 				i.putExtras(b);
 				startActivity(i);							
 			}

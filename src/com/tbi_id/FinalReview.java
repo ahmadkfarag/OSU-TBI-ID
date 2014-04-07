@@ -385,7 +385,7 @@ public class FinalReview extends Activity {
 			if(FirstStep3 < 15)
 			{
 				first_flag.setText("+");
-				b.putSerializable("CSVFirst", "+");
+				b.putSerializable("CSVFirstFlag", "+");
 			}
 			else b.putSerializable("CSVFirstFlag", "-");
 		}
