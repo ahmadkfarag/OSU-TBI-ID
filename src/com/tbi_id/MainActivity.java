@@ -4,6 +4,7 @@ import java.io.File;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -21,7 +22,8 @@ public class MainActivity extends Activity {
 		String savePath = "/TBI-ID";
         File newDirectory = new File(Environment.getExternalStorageDirectory().toString() + savePath); 
         newDirectory.mkdirs();
-		sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.fromFile(Environment.getExternalStorageDirectory())));
+        MediaScannerConnection.scanFile(this, new String[] { newDirectory.getAbsolutePath() }, null, null);
+
 		//remove actionbar and notification bars
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,

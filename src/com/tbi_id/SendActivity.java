@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import com.tbi_id.R.id;
 
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -228,6 +229,8 @@ public class SendActivity extends Activity {
 				
 				writer.flush();
 				writer.close();
+		        MediaScannerConnection.scanFile(this, new String[] { csv.getAbsolutePath() }, null, null);
+
 							
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -382,6 +385,8 @@ public class SendActivity extends Activity {
 				
 				writer.flush();
 				writer.close();
+		        MediaScannerConnection.scanFile(this, new String[] { csv.getAbsolutePath() }, null, null);
+
 				
 
 				
