@@ -12,19 +12,227 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class SendActivity extends Activity {
-
+	final Context context = this;	
+	private boolean click = true;
+	private PopupWindow popupWindow;
+	private View popupView;
+	private View mainlayout;
+	private View footer;
+	private View header;
+	private SharedPreferences sharedPrefs;
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//remove action bar and notifcation bar
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		//set view from xml		
 		setContentView(R.layout.activity_send);
+		
+		footer = findViewById(R.id.footer);
+		header = findViewById(R.id.header);
+		mainlayout = findViewById(R.id.main);
+		
+		final LayoutInflater layoutInflater = (LayoutInflater)getBaseContext()
+				.getSystemService(LAYOUT_INFLATER_SERVICE);		
+		
+		//Help Button
+		final ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
+		helpButton.setOnClickListener(new View.OnClickListener() {
+			//open up the start interview activity if clicked
+			public void onClick(View v) {
+				//TODO: This goes to step 3 help popup, make a new popup for send activity.
+				popupView = layoutInflater.inflate(R.layout.step3_help_popup_window, null);
+
+				//check if the pop up settings window
+				//is already being displayed
+				IsClicked(helpButton);
+
+				ImageButton btnDismiss = (ImageButton)popupView.findViewById(R.id.Quit_help_button);
+				btnDismiss.setOnClickListener(new View.OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						click = true;
+						popupWindow.dismiss();
+					}});
+
+				View stepOnelayout = findViewById(R.id.main);
+
+				stepOnelayout.setOnClickListener(new View.OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						click = true;
+						popupWindow.dismiss();
+					}});
+
+			}
+		});	
+
+		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+		//Settings button
+		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
+		//open up settings activity if the settings button is clicked
+		settingsButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				popupView = layoutInflater.inflate(R.layout.settings_popup_window, null);
+
+				//check if the pop up settings window
+				//is already being displayed
+				IsClicked(helpButton);
+
+				//get checkbox
+				final CheckBox checkBoxHipaa = (CheckBox) popupView.findViewById(R.id.hippaCompliance); 
+
+				//a text block that tells user to enter their email address
+				final TextView emailNotif = (TextView) popupView.findViewById(R.id.enterEmailNotif);
+
+				//the input field for entering the email address
+				final EditText enterEmailHipaa = (EditText) popupView.findViewById(R.id.emailEnterHipaa);
+
+				UploadSavedSettings (enterEmailHipaa, emailNotif, checkBoxHipaa);
+
+				checkBoxHipaa.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+						SharedPreferences.Editor editor = sharedPrefs.edit();
+						boolean checked = isChecked;
+						editor.putBoolean("checkboxHipaa", checked);
+						editor.apply();
+
+						if (checked)
+						{
+							enterEmailHipaa.setVisibility(View.VISIBLE);
+							emailNotif.setVisibility(View.VISIBLE);
+						}
+						else 
+						{
+							enterEmailHipaa.setVisibility(View.GONE);
+							emailNotif.setVisibility(View.GONE);
+						}	
+					}
+				});
+
+
+				//get save button
+				ImageButton saveButton = (ImageButton) popupView.findViewById(R.id.save_settings);
+				saveButton.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+
+						SharedPreferences.Editor editor = sharedPrefs.edit();
+						boolean checked = checkBoxHipaa.isChecked();
+						String email = enterEmailHipaa.getText().toString();
+						editor.putString("emailHipaa", email);
+						editor.putBoolean("checkboxHipaa", checked);
+						editor.apply();
+
+						WasEmailEnter (enterEmailHipaa);
+					}
+				});
+
+				//get the X quit setting button
+				ImageButton btnDismiss = (ImageButton)popupView.findViewById(R.id.Quit_help_button);
+				btnDismiss.setOnClickListener(new View.OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						click = true;
+						popupWindow.dismiss();
+					}
+				});
+			}
+		});
+		
+		//About Button
+		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
+		aboutButton.setOnClickListener(new View.OnClickListener() {
+			//open up the start interview activity if clicked
+			public void onClick(View v) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
+			}
+		});
+		
+		//Home Button
+		ImageButton homeButton = (ImageButton) findViewById(R.id.home_button_main_screen);
+		//if the home button is clicked, send the user back to the home screen
+		homeButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Are you sure?");
+				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
+			}
+		});		
+		
 		Intent i = getIntent();
 		final Bundle b = i.getExtras();
 		final SharedPreferences sharedPrefs = PreferenceManager
@@ -108,9 +316,9 @@ public class SendActivity extends Activity {
 					// Step 2 Review
 
 					writer.append("Count of TBIs,,Count of TBIs w/ LOC,,Count of moderate/severe TBIs,,Worst TBI,,Age at First,,Age at Worst,,Time Since Most Recent\n");
-					writer.append(tbicount + "," + tbiloc + "," + modsevtbi + ","
-							+ WorstStep2 + YoungestStep2 + "years old," + step2worstage
-							+ "years old," + RecentStep2 + "years" + "\n");
+					writer.append(tbicount + ",," + tbiloc + ",," + modsevtbi + ",,"
+							+ WorstStep2 + ",," + YoungestStep2 + " years old" + ",," + step2worstage
+							+ " years old" + ",," + RecentStep2 + " years" + "\n");
 
 					// Step 3 data
 
@@ -151,7 +359,7 @@ public class SendActivity extends Activity {
 
 					// Step 3 Review
 
-					writer.append("Count of repeated injuries,,Count of non-LOC events,,Count of LOC events,,Count of LOC <30 mins,,Count of LOC 30min-24hrs,,Count of LOC >24hrs,,Worst Effect,,Age at Worst,Duration,Time Since Most Recent\n");
+					writer.append("Count of Repeated Injuries,,Count of non-LOC events,,Count of LOC events,,Count of LOC <30 mins,,Count of LOC 30min-24hrs,,Count of LOC >24hrs,,Worst Effect,,Age at Worst,,Duration,,Time Since Most Recent\n");
 					String total = (String) b.getSerializable("countoftotal");
 					String totalnonloc = (String) b.getSerializable("nonloccount");
 					String totalloc = (String) b.getSerializable("loccount");
@@ -193,7 +401,7 @@ public class SendActivity extends Activity {
 					intents.setType("text/plain");
 					intents.putExtra(Intent.EXTRA_EMAIL, new String[] {email});
 					intents.putExtra(Intent.EXTRA_SUBJECT, "TBI ID");
-					intents.putExtra(Intent.EXTRA_TEXT, "Attached is the File");
+					intents.putExtra(Intent.EXTRA_TEXT, "Attached is the patient's TBI-ID File");
 					intents.putExtra(Intent.EXTRA_STREAM, uri);
 					startActivity(Intent.createChooser(intents, "Send email..."));
 	
@@ -203,7 +411,6 @@ public class SendActivity extends Activity {
 
 					
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -212,6 +419,86 @@ public class SendActivity extends Activity {
 	
 
 	}		
+	
+	/*
+	 * 
+	 */
+	private void IsClicked (View helpButton){
+		
+		if (click)
+		{
+			//calculate the space between the footer and header in the screen
+			int heightSpace = mainlayout.getHeight() - (footer.getHeight() + header.getHeight());
+			
+			//get the screen width
+			int widthSpace =  footer.getWidth(); 
+			
+			//x offset from the view helpButton left edge
+			int xoff = (int) header.getHeight()/4;
+			//y offset from the view helpButton left edge
+			int yoff =  (int) header.getHeight()/3;
+			
+			//instantiate popupWindow
+			popupWindow = new PopupWindow(
+					popupView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
+			popupWindow.showAsDropDown(helpButton, 50, -30);
+			popupWindow.update(helpButton, xoff, yoff, widthSpace - 2*xoff, heightSpace - 2*yoff);
+			popupWindow.setFocusable(true);
+			
+			click = false;
+		}
+		else {
+			click = true;
+			popupWindow.dismiss();
+		}
+	}
+	
+	/*
+	 * Get and upload the settings saved as default.
+	 */
+	private void UploadSavedSettings (EditText enterEmailHipaa, TextView emailNotif, CheckBox checkBoxHipaa){
+		
+		//set the boolean false equal to the value of the checkbox when it was when previously run, if not found, set it to false
+		Boolean checked = sharedPrefs.getBoolean("checkboxHipaa", false);
+		// if the value was false, then they are not free from hipaa and cannot send the data so email is turned off
+		if (checked == false) {
+			enterEmailHipaa.setVisibility(View.GONE);
+			emailNotif.setVisibility(View.GONE);
+			checkBoxHipaa.setChecked(false);
+		}
+		else {
+			String email = sharedPrefs.getString("emailHipaa", "Enter Email Here");
+			enterEmailHipaa.setText(email);
+			checkBoxHipaa.setChecked(true);
+		}		
+	}
+	
+	/*
+	 * 
+	 */
+	private void WasEmailEnter (final EditText emailText){
+		
+		if((emailText.getText().length()==0) && (emailText.isShown()))
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(context);
+			builder.setTitle("Error");
+			builder.setMessage("Please enter a valid email");
+			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+					emailText.requestFocus();
+				}
+			});
+			AlertDialog alert = builder.create();
+			alert.show();
+		}
+		else{
+			click = true;
+			popupWindow.dismiss();
+		}
+	}	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
