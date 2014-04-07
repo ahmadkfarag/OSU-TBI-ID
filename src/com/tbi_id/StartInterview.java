@@ -120,17 +120,40 @@ public class StartInterview extends Activity {
 				alert.show();
 			}
 		});
-		
+
+
 		//Help Button
 		final ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
 		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
-			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
-				startActivity(i);
+				popupView = layoutInflater.inflate(R.layout.start_interview_help_popup_window, null);
+
+				//check if the pop up settings window
+				//is already being displayed
+				IsClicked(helpButton);
+
+				ImageButton btnDismiss = (ImageButton)popupView.findViewById(R.id.Quit_help_button);
+				btnDismiss.setOnClickListener(new View.OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						click = true;
+						popupWindow.dismiss();
+					}});
+
+				View stepOnelayout = findViewById(R.id.main);
+
+				stepOnelayout.setOnClickListener(new View.OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						click = true;
+						popupWindow.dismiss();
+					}});
 			}
-		});
+		});	
+
 		
 		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		

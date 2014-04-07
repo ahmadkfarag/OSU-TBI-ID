@@ -1,11 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main"        
     tools:context=".SendActivity" >
-    
-        <LinearLayout
+
+    <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -66,7 +66,7 @@
             android:background="#971425"
             android:src="@drawable/settings" />
     </LinearLayout>
- 
+
     <ImageButton
         android:id="@+id/sendYes"
         android:layout_width="wrap_content"
@@ -91,9 +91,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_below="@+id/header"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="98dp"
-        android:layout_below="@+id/header"
         android:text="@string/send_title_text"
         android:textSize="32sp" />
 
@@ -103,11 +103,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/send_title"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_marginTop="45dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="45dp"
         android:ems="10"
-        android:text="" />    
+        android:gravity="center"
+        android:text="" />
 
 </RelativeLayout>

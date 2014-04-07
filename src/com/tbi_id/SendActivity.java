@@ -67,8 +67,7 @@ public class SendActivity extends Activity {
 		
 		Intent i = getIntent();
 		final Bundle b = i.getExtras();
-		final SharedPreferences sharedPrefs = PreferenceManager
-				.getDefaultSharedPreferences(this);
+		
 		final HashMap<String, String> data = (HashMap<String, String>) b
 				.getSerializable("patientData");
 		String checked = b.getString("checked");
@@ -181,20 +180,16 @@ public class SendActivity extends Activity {
 
 							else {
 								writer.append("X,,,,No," + causeAge + "\n");
-
 							}
-
 						}
 					}
 				}
-
 
 				// Step 3 data
 
 				// Repeated Injuries: Age BeganAge Ended Dazed/No LOC <30min
 				// 30min-24hrs >24hrs
 				
-
 				if (step3count > 0) {
 					writer.append("\nRepeated Injuries:,Age Began  ,Age Ended,Dazed/No LOC  ,<30min,30min-24hrs  ,>24hrs\n");
 					for (int i1 = 1; i1 <= step3count; i1++) {
@@ -349,8 +344,7 @@ public class SendActivity extends Activity {
 
 				// Repeated Injuries: Age BeganAge Ended Dazed/No LOC <30min
 				// 30min-24hrs >24hrs
-				
-
+	
 				if (step3count > 0) {
 					writer.append("\nRepeated Injuries:,Age Began  ,Age Ended,Dazed/No LOC  ,<30min,30min-24hrs  ,>24hrs\n");
 					for (int i1 = 1; i1 <= step3count; i1++) {
@@ -377,20 +371,13 @@ public class SendActivity extends Activity {
 								writer.append(cause + "," + beganage + "," + endage
 										+ ",X,,,\n");
 							}
-
 						}
-
 					}
 				}
 
-				
 				writer.flush();
 				writer.close();
 		        MediaScannerConnection.scanFile(this, new String[] { csv.getAbsolutePath() }, null, null);
-
-				
-
-				
 
 				// generate whatever data you want
 
@@ -436,7 +423,9 @@ public class SendActivity extends Activity {
 			}
 		});	
 
-
+		//initialize the sharedPrefs
+		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
 		//Settings button
 		ImageButton settingsButton = (ImageButton) findViewById(R.id.settings_button);
 		//open up settings activity if the settings button is clicked

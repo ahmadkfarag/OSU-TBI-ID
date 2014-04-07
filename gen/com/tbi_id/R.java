@@ -622,9 +622,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int settings=0x7f030018;
         public static final int settings_popup_window=0x7f030019;
         public static final int start_interview=0x7f03001a;
-        public static final int step1_help_popup_window=0x7f03001b;
-        public static final int step2_help_popup_window=0x7f03001c;
-        public static final int step3_help_popup_window=0x7f03001d;
+        public static final int start_interview_help_popup_window=0x7f03001b;
+        public static final int step1_help_popup_window=0x7f03001c;
+        public static final int step2_help_popup_window=0x7f03001d;
+        public static final int step3_help_popup_window=0x7f03001e;
     }
     public static final class menu {
         public static final int about=0x7f0d0000;
