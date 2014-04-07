@@ -63,6 +63,7 @@ public class Step2Yes extends Activity {
 		final ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
 		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
+			@Override
 			public void onClick(View v) {
 
 				popupView = layoutInflater.inflate(R.layout.step2_help_popup_window, null);
@@ -178,6 +179,7 @@ public class Step2Yes extends Activity {
 		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
 		aboutButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
+			@Override
 			public void onClick(View v) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
 				builder.setTitle("Are you sure?");
@@ -207,6 +209,7 @@ public class Step2Yes extends Activity {
 		ImageButton homeButton = (ImageButton) findViewById(R.id.home_button_main_screen);
 		//if the home button is clicked, send the user back to the home screen
 		homeButton.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
 				builder.setTitle("Are you sure?");
@@ -248,6 +251,7 @@ public class Step2Yes extends Activity {
 		ImageButton doneButton = (ImageButton) findViewById(R.id.done);
 		//if done button is pushed
 		doneButton.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(getApplicationContext(),com.tbi_id.Step2Activity.class);
 				//Check to see  which radio button is pushed
@@ -317,9 +321,9 @@ public class Step2Yes extends Activity {
 			int widthSpace =  footer.getWidth(); 
 			
 			//x offset from the view helpButton left edge
-			int xoff = (int) header.getHeight()/4;
+			int xoff = header.getHeight()/4;
 			//y offset from the view helpButton left edge
-			int yoff =  (int) header.getHeight()/3;
+			int yoff =  header.getHeight()/3;
 			
 			//instantiate popupWindow
 			popupWindow = new PopupWindow(

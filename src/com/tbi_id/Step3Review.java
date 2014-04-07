@@ -55,6 +55,7 @@ public class Step3Review extends Activity {
 		final ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
 		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
+			@Override
 			public void onClick(View v) {
 
 				popupView = layoutInflater.inflate(R.layout.step3_help_popup_window, null);
@@ -170,6 +171,7 @@ public class Step3Review extends Activity {
 		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
 		aboutButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
+			@Override
 			public void onClick(View v) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
 				builder.setTitle("Are you sure?");
@@ -199,6 +201,7 @@ public class Step3Review extends Activity {
 		ImageButton homeButton = (ImageButton) findViewById(R.id.home_button_main_screen);
 		//if the home button is clicked, send the user back to the home screen
 		homeButton.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
 				builder.setTitle("Are you sure?");
@@ -336,21 +339,27 @@ public class Step3Review extends Activity {
 		//set text for total injury count
 		String injurycounttext = String.valueOf(step3count);
 		injurycount.setText(injurycounttext);
+		b.putSerializable("countoftotal", injurycounttext);
 		//set text for non loc events
 		String nonLoccounttext = String.valueOf(noLOCcountint);
 		nonloccount.setText(nonLoccounttext);
+		b.putSerializable("nonloccount", nonLoccounttext);
 		//set text for total loc events
 		String loccounttext = String.valueOf(loccountint);
 		loccount.setText(loccounttext);
+		b.putSerializable("loccount", loccounttext);
 		//set text for loc < 30 mins
 		String lt30counttext = String.valueOf(lt30countint);
 		loclt30.setText(lt30counttext);
+		b.putSerializable("lt30count", lt30counttext);
 		//set text for loc between 30 mins and 24 hrs
 		String btw30and24counttext = String.valueOf(btw30and24int);
 		locbtw30and24.setText(btw30and24counttext);
+		b.putSerializable("btw3024count", btw30and24counttext);
 		//set text for loc > 24 hrs
 		String gt24counttext = String.valueOf(gt24countint);
 		locgt24.setText(gt24counttext);
+		b.putSerializable("gt24count", gt24counttext);
 		//Set the Worst effect
 		if(mild)
 		{
@@ -374,9 +383,11 @@ public class Step3Review extends Activity {
 		}
 		//Set the Worst effect's Age
 		ageatworsteffect.setText(worsteffectagestring + " years old");
+		b.putSerializable("ageatworststep3", worsteffectagestring);
 		//set text for duration of worst effect
 		String durationtext = String.valueOf(worsteffectduration);
 		duration.setText(durationtext + " years");
+		b.putSerializable("durationstep3", durationtext);
 		//calculate time since most recent and set text
 		int currentAge = Integer.parseInt(interview_age);
 		int difference = currentAge - recent;
@@ -419,9 +430,9 @@ public class Step3Review extends Activity {
 			int widthSpace =  footer.getWidth(); 
 			
 			//x offset from the view helpButton left edge
-			int xoff = (int) header.getHeight()/4;
+			int xoff = header.getHeight()/4;
 			//y offset from the view helpButton left edge
-			int yoff =  (int) header.getHeight()/3;
+			int yoff =  header.getHeight()/3;
 			
 			//instantiate popupWindow
 			popupWindow = new PopupWindow(

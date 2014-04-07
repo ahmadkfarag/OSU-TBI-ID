@@ -57,7 +57,8 @@ public class HelpActivity extends FragmentActivity {
         ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
         aboutButton.setOnClickListener(new View.OnClickListener() {
         	//open up the start interview activity if clicked
-        	public void onClick(View v) {
+        	@Override
+			public void onClick(View v) {
         		Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
         		startActivity(i);
         	}
@@ -67,7 +68,8 @@ public class HelpActivity extends FragmentActivity {
         ImageButton homeButton = (ImageButton) findViewById(R.id.home_button_main_screen);
         //if the home button is clicked, send the user back to the home screen
         homeButton.setOnClickListener(new View.OnClickListener() {
-        	public void onClick(View v) {
+        	@Override
+			public void onClick(View v) {
         		Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
         		startActivity(i);
         	}

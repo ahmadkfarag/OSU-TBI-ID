@@ -70,6 +70,7 @@ public class Step2Review extends Activity {
 		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
 		aboutButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
+			@Override
 			public void onClick(View v) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
 				builder.setTitle("Are you sure?");
@@ -99,6 +100,7 @@ public class Step2Review extends Activity {
 		ImageButton homeButton = (ImageButton) findViewById(R.id.home_button_main_screen);
 		//if the home button is clicked, send the user back to the home screen
 		homeButton.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
 				builder.setTitle("Are you sure?");
@@ -128,6 +130,7 @@ public class Step2Review extends Activity {
 		final ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
 		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
+			@Override
 			public void onClick(View v) {
 
 				popupView = layoutInflater.inflate(R.layout.step2_help_popup_window, null);
@@ -390,9 +393,11 @@ public class Step2Review extends Activity {
 			//Set the count of TBI's
 			String holder = String.valueOf(tbi);
 			tbiCount.setText(holder);
+			b.putSerializable("tbicount", holder);
 			//Set the count of LOC's
 			holder = String.valueOf(loc);
 			locValue.setText(holder);
+			b.putSerializable("tbiloc", holder);
 			//Set the age of the youngest
 			holder = String.valueOf(youngest);
 			first.setText(holder + " years old");
@@ -406,6 +411,7 @@ public class Step2Review extends Activity {
 			//Set the Count of Mod/Severe TBI
 			holder = String.valueOf(modOrSev);
 			badTBI.setText(holder);
+			b.putSerializable("modsevtbi", holder);
 			//Set the Worst TBI
 			if(mild)
 			{
@@ -434,8 +440,9 @@ public class Step2Review extends Activity {
 			//else output age
 			else {
 				//Set the Worst TBI Age
-				worstAge.setText(worstTBIage + " years old");
+				worstAge.setText(worstTBIage + " years old");		
 			}
+			b.putSerializable("step2worstage", worstTBIage);
 			//Put the multiple boolean in the bundle for the final review
 			b.putSerializable("MultipleStep2", multiple);
 		}
@@ -444,6 +451,7 @@ public class Step2Review extends Activity {
 		//Next Question Button
 		ImageButton nextButton = (ImageButton) findViewById(R.id.step3);
 		nextButton.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(getApplicationContext(), com.tbi_id.Step3Activity.class);
 				i.putExtras(b);
@@ -467,9 +475,9 @@ public class Step2Review extends Activity {
 			int widthSpace =  footer.getWidth(); 
 			
 			//x offset from the view helpButton left edge
-			int xoff = (int) header.getHeight()/4;
+			int xoff = header.getHeight()/4;
 			//y offset from the view helpButton left edge
-			int yoff =  (int) header.getHeight()/3;
+			int yoff =  header.getHeight()/3;
 			
 			//instantiate popupWindow
 			popupWindow = new PopupWindow(

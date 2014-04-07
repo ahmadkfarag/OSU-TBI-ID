@@ -123,6 +123,7 @@ public class SettingsActivity extends Activity {
 		ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
 		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
+			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
 				startActivity(i);
@@ -134,6 +135,7 @@ public class SettingsActivity extends Activity {
 		ImageButton aboutButton = (ImageButton) findViewById(R.id.about_button);
 		aboutButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
+			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(getApplicationContext(), com.tbi_id.AboutActivity.class);
 				startActivity(i);

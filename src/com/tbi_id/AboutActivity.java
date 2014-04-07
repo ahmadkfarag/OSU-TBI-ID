@@ -38,6 +38,7 @@ public class AboutActivity extends Activity {
 		ImageButton helpButton = (ImageButton) findViewById(R.id.help_button);
 		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
+			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(getApplicationContext(), com.tbi_id.HelpActivity.class);
 				startActivity(i);
@@ -48,6 +49,7 @@ public class AboutActivity extends Activity {
 		ImageButton homeButton = (ImageButton) findViewById(R.id.home_button_main_screen);
 		homeButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
+			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
 				startActivity(i);
