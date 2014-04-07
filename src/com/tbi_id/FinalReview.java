@@ -364,6 +364,7 @@ public class FinalReview extends Activity {
 		{
 			first_value.setText("None");
 			b.putSerializable("CSVFirst", "None");
+			b.putSerializable("CSVFirstFlag", "-");
 		}
 		else if(FirstStep2 < FirstStep3)
 		{

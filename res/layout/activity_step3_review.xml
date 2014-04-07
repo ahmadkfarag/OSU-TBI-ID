@@ -268,7 +268,7 @@
 		        android:layout_alignParentLeft="true"
 		        android:layout_below="@+id/step_2_review_header"
 		        android:layout_marginTop="20dp"
-		        android:text="Count of injuries" />
+		        android:text="Count of repeated injuries" />
 		
 
 		

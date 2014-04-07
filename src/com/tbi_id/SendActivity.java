@@ -97,7 +97,6 @@ public class SendActivity extends Activity {
 			String modsevtbi = (String) b.getSerializable("modsevtbi");
 			String WorstStep2 = (String) b.getSerializable("WorstStep2");
 			String step2worstage = (String) b.getSerializable("step2worstage");
-			boolean step2done = false, step3done=false;
 			
 
 			FileWriter writer;
@@ -107,14 +106,53 @@ public class SendActivity extends Activity {
 				// Top of CSV with patient info
 				writer.append("Name:,Age:,ID:,Date:\n");
 				writer.append(interview_name + ',' + interview_age + ','
-						+ interview_id + ',' + interview_date + "\n");
-
+						+ interview_id + ',' + interview_date + "\n\n");
+				//Final Review
+				writer.append("Primary Indicators Summary:,Flag,Value\n");
+				
+				String csvworstflag = (String) b.getSerializable("CSVWorstFlag");
+				String csvworst= (String) b.getSerializable("CSVWorst");
+				String csvfirstflag= (String) b.getSerializable("CSVFirstFlag");
+				String csvfirst= (String) b.getSerializable("CSVFirst");
+				String csvmultipleflag= (String) b.getSerializable("CSVMultipleFlag");
+				String csvmultiple= (String) b.getSerializable("CSVMultiple");
+				String csvrecentflag= (String) b.getSerializable("CSVRecentFlag");
+				String csvrecent= (String) b.getSerializable("CSVRecent");
+				
+				writer.append("Worst,"+ csvworstflag + "," + csvworst + "\n");
+				writer.append("First,"+ csvfirstflag + "," + csvfirst + "\n");
+				writer.append("Multiple,"+ csvmultipleflag  + "," + csvmultiple + "\n");
+				writer.append("Recent,"+ csvrecentflag + "," + csvrecent + "\n\n");
+	
+				
+				// Step 2 Review
+				if(count > 0)
+				{
+					writer.append("Count of TBIs," + tbicount + ",Count of TBIs w/ LOC,"+tbiloc+",Count of moderate/severe TBIs  ,"+modsevtbi+",Worst TBI,"+ WorstStep2 + ",Age at First," + YoungestStep2 + " years old" + ",Age at Worst," + step2worstage+ " years old" + ",Time Since Most Recent  ," + RecentStep2 + " years\n");
+				}
+				
+				
+				// Step 3 Review
+				if(step3count > 0)
+				{
+					String total = (String) b.getSerializable("countoftotal");
+					String totalnonloc = (String) b.getSerializable("nonloccount");
+					String totalloc = (String) b.getSerializable("loccount");
+					String lt30 = (String) b.getSerializable("lt30count");
+					String btw3024 = (String) b.getSerializable("btw3024count");
+					String gt24 = (String) b.getSerializable("gt24count");
+					String worst = (String) b.getSerializable("WorstStep3");
+					String worstage = (String) b.getSerializable("ageatworststep3");
+					String duration = (String) b.getSerializable("durationstep3");
+					String recentstep3 = (String) b.getSerializable("RecentStep3");
+					writer.append("Count of Repeated Injuries,"+ total + ",Count of non-LOC events  ," + totalnonloc + ",Count of LOC events," + totalloc + ",Count of LOC <30 mins  ,"+ lt30 + ",Count of LOC 30min-24hrs  ," + btw3024 + ",Count of LOC >24hrs  ," + gt24 + ",Worst Effect," + worst + ",Age at Worst  ,"+ worstage + " years old,Duration  ," + duration + " years,Time Since Most Recent  ," + recentstep3 + " years since\n");
+				}
+				
 				// Step 1 and 2 Data
 				
 				if (count > 0) {
 					// for every cause
-					step2done=true;
-					writer.append("Causes:,No LOC,<30min,30min-24hrs,>24hrs,Dazed,Age\n");
+					writer.append("\nImpact Event Causes:,No LOC,<30min,30min-24hrs,>24hrs,Dazed,Age\n");
 					for (int i1 = 1; i1 <= count; i1++) {
 						// get each cause
 						String causeN = data.get("cause" + i1);
@@ -149,14 +187,7 @@ public class SendActivity extends Activity {
 					}
 				}
 
-				// Step 2 Review
-				if(step2done)
-				{
-					writer.append("Count of TBIs,,Count of TBIs w/ LOC,,Count of moderate/severe TBIs,,Worst TBI,,Age at First,,Age at Worst,,Time Since Most Recent\n");
-					writer.append(tbicount + ",," + tbiloc + ",," + modsevtbi + ",,"
-							+ WorstStep2 + ",," + YoungestStep2 + " years old" + ",," + step2worstage
-							+ " years old" + ",," + RecentStep2 + " years" + "\n");
-				}
+
 				// Step 3 data
 
 				// Repeated Injuries: Age BeganAge Ended Dazed/No LOC <30min
@@ -164,8 +195,7 @@ public class SendActivity extends Activity {
 				
 
 				if (step3count > 0) {
-					step3done=true;
-					writer.append("Repeated Injuries:,Age Began,Age Ended,Dazed/No LOC,<30min,30min-24hrs,>24hrs\n");
+					writer.append("\nRepeated Injuries:,Age Began  ,Age Ended,Dazed/No LOC  ,<30min,30min-24hrs  ,>24hrs\n");
 					for (int i1 = 1; i1 <= step3count; i1++) {
 						String cause = data.get("step3cause" + i1);
 						String beganage = data.get("step3agebegan_cause" + i1);
@@ -196,44 +226,6 @@ public class SendActivity extends Activity {
 					}
 				}
 
-				// Step 3 Review
-				if(step3done)
-				{
-					writer.append("Count of Repeated Injuries,,Count of non-LOC events,,Count of LOC events,,Count of LOC <30 mins,,Count of LOC 30min-24hrs,,Count of LOC >24hrs,,Worst Effect,,Age at Worst,,Duration,,Time Since Most Recent\n");
-					String total = (String) b.getSerializable("countoftotal");
-					String totalnonloc = (String) b.getSerializable("nonloccount");
-					String totalloc = (String) b.getSerializable("loccount");
-					String lt30 = (String) b.getSerializable("lt30count");
-					String btw3024 = (String) b.getSerializable("btw3024count");
-					String gt24 = (String) b.getSerializable("gt24count");
-					String worst = (String) b.getSerializable("WorstStep3");
-					String worstage = (String) b.getSerializable("ageatworststep3");
-					String duration = (String) b.getSerializable("durationstep3");
-					String recentstep3 = (String) b.getSerializable("RecentStep3");
-					writer.append(total + ",," + totalnonloc + ",," + totalloc + ",,"
-							+ lt30 + ",," + btw3024 + ",," + gt24 + ",," + worst + ",,"
-							+ worstage + ",," + duration + ",," + recentstep3 + " years since" + "\n");
-				}
-					//final Review
-				if(step2done || step3done)
-				{
-					writer.append("Primary Indicators Summary:\n");
-					writer.append(",Flag,Value\n");
-					
-					String csvworstflag = (String) b.getSerializable("CSVWorstFlag");
-					String csvworst= (String) b.getSerializable("CSVWorst");
-					String csvfirstflag= (String) b.getSerializable("CSVFirstFlag");
-					String csvfirst= (String) b.getSerializable("CSVFirst");
-					String csvmultipleflag= (String) b.getSerializable("CSVMultipleFlag");
-					String csvmultiple= (String) b.getSerializable("CSVMultiple");
-					String csvrecentflag= (String) b.getSerializable("CSVRecentFlag");
-					String csvrecent= (String) b.getSerializable("CSVRecent");
-					
-					writer.append("Worst,"+ csvworstflag + "," + csvworst + "\n");
-					writer.append("First,"+ csvfirstflag + "," + csvfirst + "\n");
-					writer.append("Multiple,"+ csvmultipleflag  + "," + csvmultiple + "\n");
-					writer.append("Recent,"+ csvrecentflag + "," + csvrecent + "\n");
-				}
 				writer.flush();
 				writer.close();
 		        MediaScannerConnection.scanFile(this, new String[] { csv.getAbsolutePath() }, null, null);
@@ -261,7 +253,6 @@ public class SendActivity extends Activity {
 			String modsevtbi = (String) b.getSerializable("modsevtbi");
 			String WorstStep2 = (String) b.getSerializable("WorstStep2");
 			String step2worstage = (String) b.getSerializable("step2worstage");
-			boolean step2done = false, step3done=false;
 			
 
 			FileWriter writer;
@@ -271,14 +262,53 @@ public class SendActivity extends Activity {
 				// Top of CSV with patient info
 				writer.append("Name:,Age:,ID:,Date:\n");
 				writer.append(interview_name + ',' + interview_age + ','
-						+ interview_id + ',' + interview_date + "\n");
-
+						+ interview_id + ',' + interview_date + "\n\n");
+				//Final Review
+				writer.append("Primary Indicators Summary:,Flag,Value\n");
+				
+				String csvworstflag = (String) b.getSerializable("CSVWorstFlag");
+				String csvworst= (String) b.getSerializable("CSVWorst");
+				String csvfirstflag= (String) b.getSerializable("CSVFirstFlag");
+				String csvfirst= (String) b.getSerializable("CSVFirst");
+				String csvmultipleflag= (String) b.getSerializable("CSVMultipleFlag");
+				String csvmultiple= (String) b.getSerializable("CSVMultiple");
+				String csvrecentflag= (String) b.getSerializable("CSVRecentFlag");
+				String csvrecent= (String) b.getSerializable("CSVRecent");
+				
+				writer.append("Worst,"+ csvworstflag + "," + csvworst + "\n");
+				writer.append("First,"+ csvfirstflag + "," + csvfirst + "\n");
+				writer.append("Multiple,"+ csvmultipleflag  + "," + csvmultiple + "\n");
+				writer.append("Recent,"+ csvrecentflag + "," + csvrecent + "\n\n");
+	
+				
+				// Step 2 Review
+				if(count > 0)
+				{
+					writer.append("Count of TBIs," + tbicount + ",Count of TBIs w/ LOC,"+tbiloc+",Count of moderate/severe TBIs  ,"+modsevtbi+",Worst TBI,"+ WorstStep2 + ",Age at First," + YoungestStep2 + " years old" + ",Age at Worst," + step2worstage+ " years old" + ",Time Since Most Recent  ," + RecentStep2 + " years\n");
+				}
+				
+				
+				// Step 3 Review
+				if(step3count > 0)
+				{
+					String total = (String) b.getSerializable("countoftotal");
+					String totalnonloc = (String) b.getSerializable("nonloccount");
+					String totalloc = (String) b.getSerializable("loccount");
+					String lt30 = (String) b.getSerializable("lt30count");
+					String btw3024 = (String) b.getSerializable("btw3024count");
+					String gt24 = (String) b.getSerializable("gt24count");
+					String worst = (String) b.getSerializable("WorstStep3");
+					String worstage = (String) b.getSerializable("ageatworststep3");
+					String duration = (String) b.getSerializable("durationstep3");
+					String recentstep3 = (String) b.getSerializable("RecentStep3");
+					writer.append("Count of Repeated Injuries,"+ total + ",Count of non-LOC events  ," + totalnonloc + ",Count of LOC events," + totalloc + ",Count of LOC <30 mins  ,"+ lt30 + ",Count of LOC 30min-24hrs  ," + btw3024 + ",Count of LOC >24hrs  ," + gt24 + ",Worst Effect," + worst + ",Age at Worst  ,"+ worstage + " years old,Duration  ," + duration + " years,Time Since Most Recent  ," + recentstep3 + " years since\n");
+				}
+				
 				// Step 1 and 2 Data
 				
 				if (count > 0) {
 					// for every cause
-					step2done=true;
-					writer.append("Causes:,No LOC,<30min,30min-24hrs,>24hrs,Dazed,Age\n");
+					writer.append("\nImpact Event Causes:,No LOC,<30min,30min-24hrs,>24hrs,Dazed,Age\n");
 					for (int i1 = 1; i1 <= count; i1++) {
 						// get each cause
 						String causeN = data.get("cause" + i1);
@@ -313,14 +343,7 @@ public class SendActivity extends Activity {
 					}
 				}
 
-				// Step 2 Review
-				if(step2done)
-				{
-					writer.append("Count of TBIs,,Count of TBIs w/ LOC,,Count of moderate/severe TBIs,,Worst TBI,,Age at First,,Age at Worst,,Time Since Most Recent\n");
-					writer.append(tbicount + ",," + tbiloc + ",," + modsevtbi + ",,"
-							+ WorstStep2 + ",," + YoungestStep2 + " years old" + ",," + step2worstage
-							+ " years old" + ",," + RecentStep2 + " years" + "\n");
-				}
+
 				// Step 3 data
 
 				// Repeated Injuries: Age BeganAge Ended Dazed/No LOC <30min
@@ -328,8 +351,7 @@ public class SendActivity extends Activity {
 				
 
 				if (step3count > 0) {
-					step3done=true;
-					writer.append("Repeated Injuries:,Age Began,Age Ended,Dazed/No LOC,<30min,30min-24hrs,>24hrs\n");
+					writer.append("\nRepeated Injuries:,Age Began  ,Age Ended,Dazed/No LOC  ,<30min,30min-24hrs  ,>24hrs\n");
 					for (int i1 = 1; i1 <= step3count; i1++) {
 						String cause = data.get("step3cause" + i1);
 						String beganage = data.get("step3agebegan_cause" + i1);
@@ -360,44 +382,6 @@ public class SendActivity extends Activity {
 					}
 				}
 
-				// Step 3 Review
-				if(step3done)
-				{
-					writer.append("Count of Repeated Injuries,,Count of non-LOC events,,Count of LOC events,,Count of LOC <30 mins,,Count of LOC 30min-24hrs,,Count of LOC >24hrs,,Worst Effect,,Age at Worst,,Duration,,Time Since Most Recent\n");
-					String total = (String) b.getSerializable("countoftotal");
-					String totalnonloc = (String) b.getSerializable("nonloccount");
-					String totalloc = (String) b.getSerializable("loccount");
-					String lt30 = (String) b.getSerializable("lt30count");
-					String btw3024 = (String) b.getSerializable("btw3024count");
-					String gt24 = (String) b.getSerializable("gt24count");
-					String worst = (String) b.getSerializable("WorstStep3");
-					String worstage = (String) b.getSerializable("ageatworststep3");
-					String duration = (String) b.getSerializable("durationstep3");
-					String recentstep3 = (String) b.getSerializable("RecentStep3");
-					writer.append(total + ",," + totalnonloc + ",," + totalloc + ",,"
-							+ lt30 + ",," + btw3024 + ",," + gt24 + ",," + worst + ",,"
-							+ worstage + ",," + duration + ",," + recentstep3 + " years since" + "\n");
-				}
-					//final Review
-				if(step2done || step3done)
-				{
-					writer.append("Primary Indicators Summary:\n");
-					writer.append(",Flag,Value\n");
-					
-					String csvworstflag = (String) b.getSerializable("CSVWorstFlag");
-					String csvworst= (String) b.getSerializable("CSVWorst");
-					String csvfirstflag= (String) b.getSerializable("CSVFirstFlag");
-					String csvfirst= (String) b.getSerializable("CSVFirst");
-					String csvmultipleflag= (String) b.getSerializable("CSVMultipleFlag");
-					String csvmultiple= (String) b.getSerializable("CSVMultiple");
-					String csvrecentflag= (String) b.getSerializable("CSVRecentFlag");
-					String csvrecent= (String) b.getSerializable("CSVRecent");
-					
-					writer.append("Worst,"+ csvworstflag + "," + csvworst + "\n");
-					writer.append("First,"+ csvfirstflag + "," + csvfirst + "\n");
-					writer.append("Multiple,"+ csvmultipleflag  + "," + csvmultiple + "\n");
-					writer.append("Recent,"+ csvrecentflag + "," + csvrecent + "\n");
-				}
 				
 				writer.flush();
 				writer.close();
