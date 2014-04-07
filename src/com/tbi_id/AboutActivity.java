@@ -3,11 +3,13 @@ package com.tbi_id;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class AboutActivity extends Activity {
 
@@ -55,7 +57,6 @@ public class AboutActivity extends Activity {
 				startActivity(i);
 			}
 		});
-		
 		
 	}
 

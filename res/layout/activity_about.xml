@@ -120,6 +120,38 @@
 		        android:layout_marginTop="25dp"
 		        android:gravity="center"
 		        android:text="@string/osutbi_dev_excerpt" />
+		    
+		    <TextView
+		        android:id="@+id/osutbi_training_txt"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center"
+		        android:autoLink="web"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:gravity="center"
+		        android:text="@string/osutbi_training_txt" />	
+		        
+		    <TextView
+		        android:id="@+id/osutbi_more_info"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginTop="25dp"
+		        android:gravity="center"
+		        android:text="@string/osutbi_more_info" />
+		    
+		    <TextView
+		        android:id="@+id/osutbi_hard_copy_link"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center"
+		        android:autoLink="web"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:gravity="center"
+		        android:text="@string/osutbi_training_txt" />			    		    	    
 	    
 			<TextView
 		    	android:id="@+id/osutbi_property_disclaim"

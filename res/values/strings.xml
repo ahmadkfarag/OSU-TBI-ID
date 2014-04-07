@@ -29,7 +29,7 @@
     <string name="emailInputType">textEmailAddress</string>
     <string name="title_activity_about">AboutActivity</string>
     <string name="title_activity_help">HelpActivity</string>
-    <string name="osutbi_dev_excerpt">The OSU TBI-ID was developed by John D. Corrigan, PhD, and Jennifer A. Bogner, PhD, from the Department of Physical Medicine &amp; Rehabilitation at The Ohio State University Wexner Medical Center.</string>
+    <string name="osutbi_dev_excerpt">The OSU TBI-ID was developed by John D. Corrigan, PhD, and Jennifer A. Bogner, PhD, from the Department of Physical Medicine &amp; Rehabilitation at The Ohio State University Wexner Medical Center.\n\nFree online training on administration of the OSU TBI-ID is available at:</string>
     <string name="osutbi_property_disclaim">The OSU TBI-ID and related materials are the property of the Ohio Valley Center for Brain Injury Prevention and Rehabilitation in the Department of Physical Medicine and Rehabilitation at The Ohio State University Wexner Medical Center and are copyright protected (© 2007 Ohio Valley Center for Brain Injury Prevention and Rehabilitation).</string>
     <string name="osutbi_permissions">The OSU TBI-ID may be used free of charge. No changes may be made to the OSU TBI-ID without the written permissions of the authors, Drs. Corrigan and Bogner.</string>
     <string name="osutbi_grant_funding">Development of the OSU TBI-ID was made possible by grant funding from the US Department of Health and Human Services (HHS), Centers for Disease Control and Prevention (CDC), and the US Department of Education, Office of Special Education and Rehabilitative Services, National Institute on Disability and Rehabilitation Research.\n</string>
@@ -70,5 +70,7 @@
     <string name="emailId">emailEnterHipaa</string>
     <string name="send_title_text">Save</string>
     <string name="save_help_text">If you are HIPAA compliant, you will only be able to save the survey results on the local device. The resulting CSV file is located on your device under the TBI-ID/ directory.\n\nIf you are not HIPAA compliant, you will be able to email the file. The file will still be saved on the local device in the TBI-ID/ directory.\n\nYou can access the exported file via any file manager application or by connecting the device to a computer.\n\nYour HIPAA compliance and email address can be set in the Settings page.\n\n</string>
+    <string name="osutbi_training_txt">www.ohiovalley.org/tbi-id-method</string>
+    <string name="osutbi_more_info">More information on the OSU TBI-ID\'s development, validation and use, as well as a pdf version of the recording form, is available at:</string>
 
 </resources>
