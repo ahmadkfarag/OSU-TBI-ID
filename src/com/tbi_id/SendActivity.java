@@ -134,11 +134,11 @@ public class SendActivity extends Activity {
 						else {
 							String dazed = data.get("cause" + i1 + "Dazed");
 							if (dazed.equals("Yes")) {
-								writer.append("X,,,Yes," + causeAge + "\n");
+								writer.append("X,,,,Yes," + causeAge + "\n");
 							}
 
 							else {
-								writer.append("X,,,No," + causeAge + "\n");
+								writer.append("X,,,,No," + causeAge + "\n");
 
 							}
 
