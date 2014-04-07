@@ -7,11 +7,12 @@
     <uses-sdk
         android:minSdkVersion="9"
         android:targetSdkVersion="18" />
-    
-    
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <action android:name="android.intent.action.MEDIA_MOUNTED" />
+
     <data android:scheme="file" />
 
     <application
@@ -146,9 +147,13 @@
         </activity>
         <activity
             android:name="com.tbi_id.SendActivity"
-            android:label="@string/title_activity_send" 
+            android:label="@string/title_activity_send"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.tbi_id.FinishActivity"
+            android:label="@string/title_activity_finish" >
         </activity>
     </application>
 

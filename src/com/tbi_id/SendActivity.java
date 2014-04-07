@@ -581,7 +581,8 @@ public class SendActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				
+				Intent finish = new Intent(getApplicationContext(),com.tbi_id.FinishActivity.class);
+				startActivity(finish);
 				String email = sharedPrefs.getString("emailHipaa", "nkrisfalusy@gmail.com");
 				Uri uri = Uri.fromFile(csv);
 				Intent intents = new Intent(Intent.ACTION_SEND);
@@ -591,6 +592,8 @@ public class SendActivity extends Activity {
 				intents.putExtra(Intent.EXTRA_TEXT, "Attached is the patient's TBI-ID File");
 				intents.putExtra(Intent.EXTRA_STREAM, uri);
 				startActivity(Intent.createChooser(intents, "Send email..."));
+			
+				
 
 
 			}
