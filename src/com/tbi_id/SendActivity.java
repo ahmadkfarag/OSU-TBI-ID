@@ -32,6 +32,7 @@ import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Toast;
 
 public class SendActivity extends Activity {
 	final Context context = this;	
@@ -85,7 +86,7 @@ public class SendActivity extends Activity {
 			sendYes.setVisibility(View.GONE);
 			sendNo.setVisibility(View.GONE);
 			
-			sendShow.setText("The report file has been saved to the device in the Directory " + "TBI-ID " + "with the filename: " + interview_name + interview_date + "TBI_ID"+ ".csv \n Click Home to Do Another Interview or Exit");
+			sendShow.setText("The report file has been saved to the device in the directory " + "TBI-ID " + "with the filename: " + interview_name + interview_date + "TBI_ID"+ ".csv \n\n Press Home to Do Another Interview or Exit");
 			String interview_id = data.get("Interview Id");
 			String interview_age = data.get("Interview Age");
 			final Integer count = (Integer) b.get("causeCount");
@@ -241,7 +242,7 @@ public class SendActivity extends Activity {
 		else {
 			sendYes.setVisibility(View.VISIBLE);
 			sendNo.setVisibility(View.VISIBLE);
-			sendShow.setText("The report file has been saved to the device in the Directory " + "TBI-ID " + "with the filename: " + interview_name + interview_date + "TBI_ID"+ ".csv\n Do You want to E-mail the Data?");
+			sendShow.setText("The report file has been saved to the device in the directory " + "TBI-ID " + "with the filename: " + interview_name + interview_date + "TBI_ID"+ ".csv\n\n Do You want to E-mail the Data?");
 			String interview_id = data.get("Interview Id");
 			String interview_age = data.get("Interview Age");
 			final Integer count = (Integer) b.get("causeCount");
@@ -407,8 +408,7 @@ public class SendActivity extends Activity {
 		helpButton.setOnClickListener(new View.OnClickListener() {
 			//open up the start interview activity if clicked
 			public void onClick(View v) {
-				//TODO: This goes to step 3 help popup, make a new popup for send activity.
-				popupView = layoutInflater.inflate(R.layout.step3_help_popup_window, null);
+				popupView = layoutInflater.inflate(R.layout.send_help_popup_window, null);
 
 				//check if the pop up settings window
 				//is already being displayed
@@ -576,7 +576,7 @@ public class SendActivity extends Activity {
 		
 	
 		
-
+		//Set action for Yes button
 		sendYes.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -592,11 +592,38 @@ public class SendActivity extends Activity {
 				intents.putExtra(Intent.EXTRA_STREAM, uri);
 				startActivity(Intent.createChooser(intents, "Send email..."));
 
-				
+
 			}
 		});
 
-	
+		//Set action for No button
+		sendNo.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Return Home?");
+				builder.setMessage("Your report has not been sent. Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						Intent i = new Intent(getApplicationContext(), com.tbi_id.MainActivity.class);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
+			}
+		});
 
 	}		
 	

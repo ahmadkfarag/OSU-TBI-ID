@@ -68,5 +68,7 @@
     <string name="quit_description">Quit the help pop up window</string>
     <string name="help">        Help</string>
     <string name="emailId">emailEnterHipaa</string>
+    <string name="send_title_text">Save</string>
+    <string name="save_help_text">If you are HIPAA compliant, you will only be able to save the survey results on the local device. The resulting CSV file is located on your device under the TBI-ID/ directory.\n\nIf you are not HIPAA compliant, you will be able to email the file. The file will still be saved on the local device in the TBI-ID/ directory.\n\nYou can access the exported file via any file manager application or by connecting the device to a computer.\n\nYour HIPAA compliance and email address can be set in the Settings page.\n\n</string>
 
 </resources>

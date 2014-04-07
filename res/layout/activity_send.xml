@@ -66,47 +66,48 @@
             android:background="#971425"
             android:src="@drawable/settings" />
     </LinearLayout>
-    
-	<ScrollView
-	    android:id="@+id/send_scroll"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_centerHorizontal="true"
-	    android:layout_above="@+id/footer"
-	    android:layout_below="@+id/header">
+ 
+    <ImageButton
+        android:id="@+id/sendYes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sendTitle"
+        android:layout_marginTop="50dp"
+        android:layout_toLeftOf="@+id/send_title"
+        android:background="#ffffff"
+        android:src="@drawable/yes_50" />
 
-	    <RelativeLayout
-	        android:layout_gravity="center"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content" >      
+    <ImageButton
+        android:id="@+id/sendNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/sendYes"
+        android:layout_toRightOf="@+id/send_title"
+        android:background="#ffffff"
+        android:src="@drawable/no_50" />
 
-		    <TextView
-		        android:id="@+id/sendTitle"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignParentTop="true"
-		        android:layout_centerHorizontal="true"
-		        android:layout_marginTop="44dp"
-		        android:text="" />
-		
-		    <ImageButton
-		        android:id="@+id/sendYes"
-		        android:layout_width="50dp"
-		        android:layout_height="50dp"
-		        android:layout_alignLeft="@+id/sendTitle"
-		        android:layout_alignTop="@+id/sendNo"
-		        android:src="@drawable/yes_50" />
-		
-		    <ImageButton
-		        android:id="@+id/sendNo"
-		        android:layout_width="50dp"
-		        android:layout_height="50dp"
-		        android:layout_alignRight="@+id/sendTitle"
-		        android:layout_below="@+id/sendTitle"
-		        android:layout_marginTop="104dp"
-		        android:src="@drawable/no_50" />
-		    
-	    </RelativeLayout>
-    </ScrollView>
+    <TextView
+        android:id="@+id/send_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="98dp"
+        android:layout_below="@+id/header"
+        android:text="@string/send_title_text"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/sendTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/send_title"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:text="" />    
 
 </RelativeLayout>

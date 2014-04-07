@@ -277,7 +277,7 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:layout_above="@+id/step3_nonLOCcount"
-		        android:layout_marginLeft="40dp"
+		        android:layout_marginLeft="70dp"
 		        android:layout_toRightOf="@+id/step3_LOCcount"
 		        android:text="TextView" />
 		    
