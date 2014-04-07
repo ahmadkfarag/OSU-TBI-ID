@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 		String savePath = "/TBI-ID";
         File newDirectory = new File(Environment.getExternalStorageDirectory().toString() + savePath); 
         newDirectory.mkdirs();
-		sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" + Environment.getExternalStorageDirectory())));
+		sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.fromFile(Environment.getExternalStorageDirectory())));
 		//remove actionbar and notification bars
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
