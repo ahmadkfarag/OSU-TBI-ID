@@ -85,7 +85,7 @@ public class SendActivity extends Activity {
 			sendYes.setVisibility(View.GONE);
 			sendNo.setVisibility(View.GONE);
 			
-			sendShow.setText("The report file has been saved to the device in the directory " + "TBI-ID " + "with the filename: " + interview_name + interview_date + "TBI_ID"+ ".csv \n\n Press Home to Do Another Interview or Exit");
+			sendShow.setText("The report file has been saved to the device in the directory " + "TBI-ID " + "with the filename: " + interview_name + interview_date + "TBI_ID"+ ".csv \n\nPress Home to start another interview or to exit.");
 			String interview_id = data.get("Interview Id");
 			String interview_age = data.get("Interview Age");
 			final Integer count = (Integer) b.get("causeCount");
@@ -237,7 +237,7 @@ public class SendActivity extends Activity {
 		else {
 			sendYes.setVisibility(View.VISIBLE);
 			sendNo.setVisibility(View.VISIBLE);
-			sendShow.setText("The report file has been saved to the device in the directory " + "TBI-ID " + "with the filename: " + interview_name + interview_date + "TBI_ID"+ ".csv\n\n Do You want to E-mail the Data?");
+			sendShow.setText("The report file has been saved to the device in the directory " + "TBI-ID " + "with the filename: " + interview_name + interview_date + "TBI_ID"+ ".csv\n\n Do you want to e-mail the data?");
 			String interview_id = data.get("Interview Id");
 			String interview_age = data.get("Interview Age");
 			final Integer count = (Integer) b.get("causeCount");
@@ -512,7 +512,7 @@ public class SendActivity extends Activity {
 			public void onClick(View v) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
 				builder.setTitle("Are you sure?");
-				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setMessage("Are you sure you want to leave the interview?");
 				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 					
 					@Override
@@ -541,7 +541,7 @@ public class SendActivity extends Activity {
 			public void onClick(View v) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
 				builder.setTitle("Are you sure?");
-				builder.setMessage("Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setMessage("Are you sure you want to leave the interview?");
 				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 					
 					@Override
@@ -595,7 +595,7 @@ public class SendActivity extends Activity {
 			public void onClick(View v) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
 				builder.setTitle("Return Home?");
-				builder.setMessage("Your report has not been sent. Are you sure you want to leave the interview (all progress will be lost)?");
+				builder.setMessage("Your report has not been sent. Are you sure you want to leave the interview?");
 				builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 					
 					@Override

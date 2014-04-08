@@ -73,5 +73,6 @@
     <string name="osutbi_training_txt">www.ohiovalley.org/tbi-id-method</string>
     <string name="osutbi_more_info">More information on the OSU TBI-ID\'s development, validation and use, as well as a pdf version of the recording form, is available at:</string>
     <string name="title_activity_finish">FinishActivity</string>
+    <string name="finish_statement">Your email has been sent.\nThank you for completing the survey.\n\nPress the Home button below to return to the main screen.\n\nPress the About button to read more about the project sponsors.</string>
 
 </resources>
