@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		String savePath = "/TBI-ID";
         File newDirectory = new File(Environment.getExternalStorageDirectory().toString() + savePath); 
-        newDirectory.mkdirs();
+        newDirectory.mkdir();
         MediaScannerConnection.scanFile(this, new String[] { newDirectory.getAbsolutePath() }, null, null);
 
 		//remove actionbar and notification bars
