@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
 			}
 			
 			else{
-				path = Environment.getExternalStorageDirectory().toString()+ "/TBI-ID";
+				path = Environment.getExternalStoragePublicDirectory("TBI-ID").toString();
 				File newDirectory = new File(path);
 				newDirectory.mkdir();
 				MediaScannerConnection.scanFile(this,
