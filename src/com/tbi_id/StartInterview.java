@@ -336,7 +336,8 @@ public class StartInterview extends Activity {
 
 				//start new intent and bundle, add the hashmap with the input data to the bundle along with the intialization of the questionNum
 				Intent i = new Intent(getApplicationContext(), com.tbi_id.Step1Activity.class);
-				Bundle b = new Bundle();
+				Intent fromMain = getIntent();
+				Bundle b = fromMain.getExtras();
 				b.putSerializable("patientData",data);
 				b.putSerializable("questionNum", 1);
 				b.putSerializable("causeCount", 0);

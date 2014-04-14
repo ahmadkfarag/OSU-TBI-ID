@@ -67,18 +67,21 @@ public class SendActivity extends Activity {
 		
 		Intent i = getIntent();
 		final Bundle b = i.getExtras();
-		
+		final String path = b.getString("path");
 		final HashMap<String, String> data = (HashMap<String, String>) b
 				.getSerializable("patientData");
 		String checked = b.getString("checked");
 		ImageButton sendYes = (ImageButton) findViewById(id.sendYes);
 		ImageButton sendNo = (ImageButton) findViewById(id.sendNo);
 		TextView sendShow = (TextView) findViewById(id.sendTitle);
-		String interview_name = data.get("Interview Name");
-		String interview_date = data.get("Interview Date");
-		final File csv = new File(Environment.getExternalStorageDirectory()
-				.toString()+ "/TBI-ID", interview_name + interview_date + "TBI_ID"
+		final String interview_name = data.get("Interview Name");
+		final String interview_date = data.get("Interview Date");
+		String state = Environment.getExternalStorageState();
+		
+		if (Environment.MEDIA_MOUNTED.equals(state)) { 
+		final File csv = new File(path, interview_name + interview_date + "TBI_ID"
 				+ ".csv");
+		
 		
 		if(checked.equals("false"))
 		{
@@ -388,6 +391,7 @@ public class SendActivity extends Activity {
 			
 			
 		}
+		}
 		
 		
 		//Help Button
@@ -570,9 +574,11 @@ public class SendActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
+				File csv = new File(path, interview_name + interview_date + "TBI_ID"
+						+ ".csv");
 				Intent finish = new Intent(getApplicationContext(),com.tbi_id.FinishActivity.class);
 				startActivity(finish);
-				String email = sharedPrefs.getString("emailHipaa", "nkrisfalusy@gmail.com");
+				String email = sharedPrefs.getString("emailHipaa", " ");
 				Uri uri = Uri.fromFile(csv);
 				Intent intents = new Intent(Intent.ACTION_SEND);
 				intents.setType("text/plain");
@@ -581,9 +587,6 @@ public class SendActivity extends Activity {
 				intents.putExtra(Intent.EXTRA_TEXT, "Attached is the patient's TBI-ID File");
 				intents.putExtra(Intent.EXTRA_STREAM, uri);
 				startActivity(Intent.createChooser(intents, "Send email..."));
-			
-				
-
 
 			}
 		});
