@@ -25,6 +25,8 @@ public class MainActivity extends Activity {
 
 		if (Environment.MEDIA_MOUNTED.equals(state)) {
 
+			
+			/*
 			String path;
 			if (new File("/storage/sdcard").exists()) {
 				path = "/storage/sdcard/TBI-ID";
@@ -66,6 +68,15 @@ public class MainActivity extends Activity {
 						null);
 				b.putString("path", path);
 			}
+			*/
+			
+			String path = Environment.getExternalStoragePublicDirectory("TBI-ID").toString();
+			File newDirectory = new File(path);
+			newDirectory.mkdir();
+			MediaScannerConnection.scanFile(this,
+					new String[] { newDirectory.getAbsolutePath() }, null,
+					null);
+			b.putString("path", path);
 
 		}
 
