@@ -69,9 +69,9 @@ public class MainActivity extends Activity {
 				b.putString("path", path);
 			}
 			*/
-			String ext = System.getenv("EXTERNAL_STORAGE");
-			String path = ext + "/TBI-ID";
-			//String path = Environment.getExternalStoragePublicDirectory("TBI-ID").toString();
+			//String ext = System.getenv("EXTERNAL_STORAGE");
+			//String path = ext + "/TBI-ID";
+			String path = Environment.getExternalStorageDirectory().toString() + "/TBI-ID";
 			File newDirectory = new File(path);
 			newDirectory.mkdir();
 			MediaScannerConnection.scanFile(this,
