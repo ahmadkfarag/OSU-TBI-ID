@@ -3,6 +3,7 @@ package com.tbi_id;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 
 import com.tbi_id.R.id;
@@ -76,6 +77,9 @@ public class SendActivity extends Activity {
 		TextView sendShow = (TextView) findViewById(id.sendTitle);
 		final String interview_name = data.get("Interview Name");
 		final String interview_date = data.get("Interview Date");
+		//get timestamp for filename
+//		java.util.Date date = new java.util.Date();
+//		final String interview_time = new Timestamp(date.getTime());
 		String state = Environment.getExternalStorageState();
 		
 		if (Environment.MEDIA_MOUNTED.equals(state)) { 
@@ -583,8 +587,8 @@ public class SendActivity extends Activity {
 				Intent intents = new Intent(Intent.ACTION_SEND);
 				intents.setType("text/plain");
 				intents.putExtra(Intent.EXTRA_EMAIL, new String[] {email});
-				intents.putExtra(Intent.EXTRA_SUBJECT, "TBI ID");
-				intents.putExtra(Intent.EXTRA_TEXT, "Attached is the patient's TBI-ID File");
+				intents.putExtra(Intent.EXTRA_SUBJECT, "OSU TBI-ID");
+				intents.putExtra(Intent.EXTRA_TEXT, "Attached is the interviewee's file.");
 				intents.putExtra(Intent.EXTRA_STREAM, uri);
 				startActivity(Intent.createChooser(intents, "Send email..."));
 

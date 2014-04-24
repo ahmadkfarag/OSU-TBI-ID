@@ -126,7 +126,6 @@
 	                android:id="@+id/noLOC"
 	                android:layout_width="270dp"
 	                android:layout_height="wrap_content"
-	                android:checked="true"
 	                android:text="Dazed/Memory Gap, no LOC" />	            
 	
 	            <RadioButton

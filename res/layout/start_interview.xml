@@ -47,7 +47,7 @@
         android:layout_alignLeft="@+id/interviewAge"
         android:layout_below="@+id/interviewAge"
         android:ems="10"
-        android:hint="Interview ID:"
+        android:hint="Interviewer ID:"
         android:inputType="textPersonName" />
 
     <EditText
@@ -105,7 +105,7 @@
         android:layout_below="@+id/enterInfo"
         android:layout_marginTop="17dp"
         android:ems="10"
-        android:hint="Name:"
+        android:hint="Interviewee Name:"
         android:inputType="textPersonName" >
 
         <requestFocus />
