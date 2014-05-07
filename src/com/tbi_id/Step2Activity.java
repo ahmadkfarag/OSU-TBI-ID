@@ -239,6 +239,7 @@ public class Step2Activity extends Activity {
 		Intent intent = getIntent();
 		final Bundle b = intent.getExtras();
 		final HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
+		final String patientAge = data.get("Interview Age");
 		final Integer causeCount = (Integer) b.get("causeCount");
 		step2Count = (Integer) b.get("step2Count");
 		String causeN = "";
@@ -276,11 +277,34 @@ public class Step2Activity extends Activity {
 				}
 				else
 				{
+					
+					int startage = Integer.parseInt(patientAge);
+					int enteredage = Integer.parseInt(age);
+					if(enteredage > startage)
+					{
+						AlertDialog.Builder builder = new AlertDialog.Builder(context);
+						builder.setTitle("Error");
+						builder.setMessage("Please enter an age that is less than the age used at the start of the interview: " + startage);
+						builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								dialog.cancel();
+								temp.requestFocus();
+								temp.setText("");
+							}
+						});
+						AlertDialog alert = builder.create();
+						alert.show();
+					}
+					
+					else {
 					data.put("cause"+step2Count+"Age", age);
 					Intent i = new Intent(getApplicationContext(),com.tbi_id.Step2Yes.class);
 					b.putSerializable("patientData", data);
 					i.putExtras(b);
 					startActivity(i);
+					}
 				}
 			}
 
@@ -312,11 +336,35 @@ public class Step2Activity extends Activity {
 				}
 				else
 				{
+
+					int startage = Integer.parseInt(patientAge);
+					int enteredage = Integer.parseInt(age);
+					if(enteredage > startage)
+					{
+						AlertDialog.Builder builder = new AlertDialog.Builder(context);
+						builder.setTitle("Error");
+						builder.setMessage("Please enter an age that is less than the age used at the start of the interview: " + startage);
+						builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								dialog.cancel();
+								temp.requestFocus();
+								temp.setText("");
+							}
+						});
+						AlertDialog alert = builder.create();
+						alert.show();
+					}
+					
+					else{
+					
 					data.put("cause"+step2Count+"Age", age);
 					Intent i = new Intent(getApplicationContext(),com.tbi_id.Step2No.class);
 					b.putSerializable("patientData", data);
 					i.putExtras(b);
 					startActivity(i);
+					}
 				}
 			}
 

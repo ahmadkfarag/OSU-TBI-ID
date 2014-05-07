@@ -240,7 +240,12 @@ public class Step3Effect extends Activity {
 		final RadioButton button2 = (RadioButton) findViewById(R.id.lessthan30);
 		final RadioButton button3 = (RadioButton) findViewById(R.id.btw30and24);
 		final RadioButton button4 = (RadioButton) findViewById(R.id.greaterthan24hrs);
-
+		
+		button1.setChecked(false);
+		button2.setChecked(false);
+		button3.setChecked(false);
+		button4.setChecked(false);
+		
 		String causeN = "";
 		getCause(context, causeView, step3Count, b);
 		

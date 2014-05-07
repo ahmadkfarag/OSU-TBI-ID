@@ -276,7 +276,7 @@ public class Step3AddCause extends Activity {
 		final HashMap<String, String> data = (HashMap<String, String>) b.getSerializable("patientData");
 		//step3Count init to 1 in StartActivity
 		step3Count = (Integer) b.get("step3Count");	
-		
+		final String patientAge = data.get("Interview Age");
 		//Cancel button is default to invisible.
 		//Cancel button will only show if step3Count > 1 (if user adds another cause)
 		ImageButton step3cancel = (ImageButton) findViewById(R.id.step_3_cause_cancel);
@@ -308,13 +308,61 @@ public class Step3AddCause extends Activity {
 				data.put("step3cause"+step3Count, step3cause);
 				//put ages into data
 				step3agebegan = ageBegan.getText().toString();
-				data.put("step3agebegan_cause"+step3Count, step3agebegan);
 				step3ageended = ageEnded.getText().toString();
-				data.put("step3ageended_cause"+step3Count, step3ageended);
-				b.putSerializable("patientData", data);
-				b.putSerializable("step3Count", step3Count);
-				i.putExtras(b);
-				startActivity(i);				
+				int began = Integer.parseInt(step3agebegan);
+				int end = Integer.parseInt(step3ageended);
+				int enteredatstart = Integer.parseInt(patientAge);
+
+				
+				if(began > end)
+				{
+					AlertDialog.Builder builder = new AlertDialog.Builder(context);
+					builder.setTitle("Error");
+					builder.setMessage("Begining age is Greater than Ending Age");
+					builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+							ageBegan.setText("");
+							ageEnded.setText("");
+							ageBegan.requestFocus();
+						}
+					});
+					AlertDialog alert = builder.create();
+					alert.show();
+				}
+				
+				else if (began > enteredatstart || end > enteredatstart )
+				{
+					AlertDialog.Builder builder = new AlertDialog.Builder(context);
+					builder.setTitle("Error");
+					builder.setMessage("Please enter an age that is less than the age entered at the begining of the interview");
+					builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+							ageBegan.setText("");
+							ageEnded.setText("");
+							ageBegan.requestFocus();
+						}
+					});
+					AlertDialog alert = builder.create();
+					alert.show();
+					
+				}
+				
+				else
+				{
+				
+					data.put("step3agebegan_cause"+step3Count, step3agebegan);
+					data.put("step3ageended_cause"+step3Count, step3ageended);
+					b.putSerializable("patientData", data);
+					b.putSerializable("step3Count", step3Count);
+					i.putExtras(b);
+					startActivity(i);	
+				}
 
 			}
 		});

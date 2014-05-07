@@ -36,7 +36,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Toast;
 
 public class SendActivity extends Activity {
-	final Context context = this;	
+	final Context context = this;
 	private boolean click = true;
 	private PopupWindow popupWindow;
 	private View popupView;
@@ -44,7 +44,7 @@ public class SendActivity extends Activity {
 	private View footer;
 	private View header;
 	private SharedPreferences sharedPrefs;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,324 +77,51 @@ public class SendActivity extends Activity {
 		TextView sendShow = (TextView) findViewById(id.sendTitle);
 		final String interview_name = data.get("Interview Name");
 		final String interview_date = data.get("Interview Date");
+		final boolean didSave = b.getBoolean("didSave");
+		final String timestamp = b.getString("timestamp");
+		final File csv;
 		//get timestamp for filename
 //		java.util.Date date = new java.util.Date();
 //		final String interview_time = new Timestamp(date.getTime());
 		String state = Environment.getExternalStorageState();
 		
-		if (Environment.MEDIA_MOUNTED.equals(state)) { 
-		final File csv = new File(path, interview_name + interview_date + "TBI_ID"
-				+ ".csv");
+		if (Environment.MEDIA_MOUNTED.equals(state)) {
+			
+			if (didSave == true)
+			{
+				
+				final String newPath = b.getString("newPath");
+				  csv = new File(newPath);
+			}
+			
+			else
+			{
+				  csv = new File(path, timestamp + "TBI_ID" + ".csv");
+			}
 		
 		
-		if(checked.equals("false"))
+		if(checked.equals("false")) // not compliant
 		{
 			sendYes.setVisibility(View.GONE);
 			sendNo.setVisibility(View.GONE);
-			
-			sendShow.setText("The report file has been saved to the device in the directory " + "TBI-ID " + "with the filename: " + interview_name + interview_date + "TBI_ID"+ ".csv \n\nPress Home to start another interview or to exit.");
-			String interview_id = data.get("Interview Id");
-			String interview_age = data.get("Interview Age");
-			final Integer count = (Integer) b.get("causeCount");
-			final Integer step3count = (Integer) b.get("step3Count");
-			String tbicount = (String) b.getSerializable("tbicount");
-			String tbiloc = (String) b.getSerializable("tbiloc");
-			String YoungestStep2 = (String) b.getSerializable("YoungestStep2");
-			String RecentStep2 = (String) b.getSerializable("RecentStep2");
-			String modsevtbi = (String) b.getSerializable("modsevtbi");
-			String WorstStep2 = (String) b.getSerializable("WorstStep2");
-			String step2worstage = (String) b.getSerializable("step2worstage");
-			
-
-			FileWriter writer;
-			try {
-				writer = new FileWriter(csv);
-
-				// Top of CSV with patient info
-				writer.append("Name:,Age:,ID:,Date:\n");
-				writer.append(interview_name + ',' + interview_age + ','
-						+ interview_id + ',' + interview_date + "\n\n");
-				//Final Review
-				writer.append("Primary Indicators Summary:,Flag,Value\n");
-				
-				String csvworstflag = (String) b.getSerializable("CSVWorstFlag");
-				String csvworst= (String) b.getSerializable("CSVWorst");
-				String csvfirstflag= (String) b.getSerializable("CSVFirstFlag");
-				String csvfirst= (String) b.getSerializable("CSVFirst");
-				String csvmultipleflag= (String) b.getSerializable("CSVMultipleFlag");
-				String csvmultiple= (String) b.getSerializable("CSVMultiple");
-				String csvrecentflag= (String) b.getSerializable("CSVRecentFlag");
-				String csvrecent= (String) b.getSerializable("CSVRecent");
-				
-				writer.append("Worst,"+ csvworstflag + "," + csvworst + "\n");
-				writer.append("First,"+ csvfirstflag + "," + csvfirst + "\n");
-				writer.append("Multiple,"+ csvmultipleflag  + "," + csvmultiple + "\n");
-				writer.append("Recent,"+ csvrecentflag + "," + csvrecent + "\n\n");
-	
-				
-				// Step 2 Review
-				if(count > 0)
-				{
-					writer.append("Count of TBIs," + tbicount + ",Count of TBIs w/ LOC,"+tbiloc+",Count of moderate/severe TBIs  ,"+modsevtbi+",Worst TBI,"+ WorstStep2 + ",Age at First," + YoungestStep2 + " years old" + ",Age at Worst," + step2worstage+ " years old" + ",Time Since Most Recent  ," + RecentStep2 + " years\n");
-				}
-				
-				
-				// Step 3 Review
-				if(step3count > 0)
-				{
-					String total = (String) b.getSerializable("countoftotal");
-					String totalnonloc = (String) b.getSerializable("nonloccount");
-					String totalloc = (String) b.getSerializable("loccount");
-					String lt30 = (String) b.getSerializable("lt30count");
-					String btw3024 = (String) b.getSerializable("btw3024count");
-					String gt24 = (String) b.getSerializable("gt24count");
-					String worst = (String) b.getSerializable("WorstStep3");
-					String worstage = (String) b.getSerializable("ageatworststep3");
-					String duration = (String) b.getSerializable("durationstep3");
-					String recentstep3 = (String) b.getSerializable("RecentStep3");
-					writer.append("Count of Repeated Injuries,"+ total + ",Count of non-LOC events  ," + totalnonloc + ",Count of LOC events," + totalloc + ",Count of LOC <30 mins  ,"+ lt30 + ",Count of LOC 30min-24hrs  ," + btw3024 + ",Count of LOC >24hrs  ," + gt24 + ",Worst Effect," + worst + ",Age at Worst  ,"+ worstage + " years old,Duration  ," + duration + " years,Time Since Most Recent  ," + recentstep3 + " years since\n");
-				}
-				
-				// Step 1 and 2 Data
-				
-				if (count > 0) {
-					// for every cause
-					writer.append("\nImpact Event Causes:,No LOC,<30min,30min-24hrs,>24hrs,Dazed,Age\n");
-					for (int i1 = 1; i1 <= count; i1++) {
-						// get each cause
-						String causeN = data.get("cause" + i1);
-						String causeAge = data.get("cause" + i1 + "Age");
-						writer.append(causeN + ',');
-						if (data.containsKey("cause" + i1 + "Length")) {
-							String length = data.get("cause" + i1 + "Length");
-							if (length.equals("<30")) {
-
-								writer.append(",X,,,," + causeAge + '\n');
-							} else if (length.equals("30-24")) {
-
-								writer.append(",,X,,," + causeAge + '\n');
-							} else if (length.equals(">24")) {
-								writer.append(",,,X,," + causeAge + '\n');
-
-							}
-						}
-
-						else {
-							String dazed = data.get("cause" + i1 + "Dazed");
-							if (dazed.equals("Yes")) {
-								writer.append("X,,,,Yes," + causeAge + "\n");
-							}
-
-							else {
-								writer.append("X,,,,No," + causeAge + "\n");
-							}
-						}
-					}
-				}
-
-				// Step 3 data
-
-				// Repeated Injuries: Age BeganAge Ended Dazed/No LOC <30min
-				// 30min-24hrs >24hrs
-				
-				if (step3count > 0) {
-					writer.append("\nRepeated Injuries:,Age Began  ,Age Ended,Dazed/No LOC  ,<30min,30min-24hrs  ,>24hrs\n");
-					for (int i1 = 1; i1 <= step3count; i1++) {
-						String cause = data.get("step3cause" + i1);
-						String beganage = data.get("step3agebegan_cause" + i1);
-						String endage = data.get("step3ageended_cause" + i1);
-						if (data.containsKey("step3cause" + i1 + "Length")) {
-							String length = data.get("step3cause" + i1 + "Length");
-							if (length.equals("<30")) {
-
-								writer.append(cause + "," + beganage + "," + endage
-										+ ",,X,,\n");
-							} else if (length.equals("30-24")) {
-
-								writer.append(cause + "," + beganage + "," + endage
-										+ ",,,X,\n");
-							} else if (length.equals(">24")) {
-								writer.append(cause + "," + beganage + "," + endage
-										+ ",,,,X\n");
-
-							}
-
-							else if (length.equals("noLOC")) {
-								writer.append(cause + "," + beganage + "," + endage
-										+ ",X,,,\n");
-							}
-
-						}
-
-					}
-				}
-
-				writer.flush();
-				writer.close();
-		        MediaScannerConnection.scanFile(this, new String[] { csv.getAbsolutePath() }, null, null);
-
-							
-			} catch (IOException e) {
-				e.printStackTrace();
+			if (didSave == true)
+			{
+				sendShow.setText("The report file has been saved to the device but cannot be sent at this time. \n\nPress Home to start another interview or to exit.");
 			}
 			
+			else if (didSave == false)
+			{
+				sendShow.setText("The report file has not been saved and cannot be sent at this time. \n\nPress Home to start another interview or to exit.");
+				csv.delete();
+
+			}
 			
 		}
 		
-		else {
+		else { // compliant
 			sendYes.setVisibility(View.VISIBLE);
 			sendNo.setVisibility(View.VISIBLE);
-			sendShow.setText("The report file has been saved to the device in the directory " + "TBI-ID " + "with the filename: " + interview_name + interview_date + "TBI_ID"+ ".csv\n\n Do you want to e-mail the data?");
-			String interview_id = data.get("Interview Id");
-			String interview_age = data.get("Interview Age");
-			final Integer count = (Integer) b.get("causeCount");
-			final Integer step3count = (Integer) b.get("step3Count");
-			String tbicount = (String) b.getSerializable("tbicount");
-			String tbiloc = (String) b.getSerializable("tbiloc");
-			String YoungestStep2 = (String) b.getSerializable("YoungestStep2");
-			String RecentStep2 = (String) b.getSerializable("RecentStep2");
-			String modsevtbi = (String) b.getSerializable("modsevtbi");
-			String WorstStep2 = (String) b.getSerializable("WorstStep2");
-			String step2worstage = (String) b.getSerializable("step2worstage");
-			
-
-			FileWriter writer;
-			try {
-				writer = new FileWriter(csv);
-
-				// Top of CSV with patient info
-				writer.append("Name:,Age:,ID:,Date:\n");
-				writer.append(interview_name + ',' + interview_age + ','
-						+ interview_id + ',' + interview_date + "\n\n");
-				//Final Review
-				writer.append("Primary Indicators Summary:,Flag,Value\n");
-				
-				String csvworstflag = (String) b.getSerializable("CSVWorstFlag");
-				String csvworst= (String) b.getSerializable("CSVWorst");
-				String csvfirstflag= (String) b.getSerializable("CSVFirstFlag");
-				String csvfirst= (String) b.getSerializable("CSVFirst");
-				String csvmultipleflag= (String) b.getSerializable("CSVMultipleFlag");
-				String csvmultiple= (String) b.getSerializable("CSVMultiple");
-				String csvrecentflag= (String) b.getSerializable("CSVRecentFlag");
-				String csvrecent= (String) b.getSerializable("CSVRecent");
-				
-				writer.append("Worst,"+ csvworstflag + "," + csvworst + "\n");
-				writer.append("First,"+ csvfirstflag + "," + csvfirst + "\n");
-				writer.append("Multiple,"+ csvmultipleflag  + "," + csvmultiple + "\n");
-				writer.append("Recent,"+ csvrecentflag + "," + csvrecent + "\n\n");
-	
-				
-				// Step 2 Review
-				if(count > 0)
-				{
-					writer.append("Count of TBIs," + tbicount + ",Count of TBIs w/ LOC,"+tbiloc+",Count of moderate/severe TBIs  ,"+modsevtbi+",Worst TBI,"+ WorstStep2 + ",Age at First," + YoungestStep2 + " years old" + ",Age at Worst," + step2worstage+ " years old" + ",Time Since Most Recent  ," + RecentStep2 + " years\n");
-				}
-				
-				
-				// Step 3 Review
-				if(step3count > 0)
-				{
-					String total = (String) b.getSerializable("countoftotal");
-					String totalnonloc = (String) b.getSerializable("nonloccount");
-					String totalloc = (String) b.getSerializable("loccount");
-					String lt30 = (String) b.getSerializable("lt30count");
-					String btw3024 = (String) b.getSerializable("btw3024count");
-					String gt24 = (String) b.getSerializable("gt24count");
-					String worst = (String) b.getSerializable("WorstStep3");
-					String worstage = (String) b.getSerializable("ageatworststep3");
-					String duration = (String) b.getSerializable("durationstep3");
-					String recentstep3 = (String) b.getSerializable("RecentStep3");
-					writer.append("Count of Repeated Injuries,"+ total + ",Count of non-LOC events  ," + totalnonloc + ",Count of LOC events," + totalloc + ",Count of LOC <30 mins  ,"+ lt30 + ",Count of LOC 30min-24hrs  ," + btw3024 + ",Count of LOC >24hrs  ," + gt24 + ",Worst Effect," + worst + ",Age at Worst  ,"+ worstage + " years old,Duration  ," + duration + " years,Time Since Most Recent  ," + recentstep3 + " years since\n");
-				}
-				
-				// Step 1 and 2 Data
-				
-				if (count > 0) {
-					// for every cause
-					writer.append("\nImpact Event Causes:,No LOC,<30min,30min-24hrs,>24hrs,Dazed,Age\n");
-					for (int i1 = 1; i1 <= count; i1++) {
-						// get each cause
-						String causeN = data.get("cause" + i1);
-						String causeAge = data.get("cause" + i1 + "Age");
-						writer.append(causeN + ',');
-						if (data.containsKey("cause" + i1 + "Length")) {
-							String length = data.get("cause" + i1 + "Length");
-							if (length.equals("<30")) {
-
-								writer.append(",X,,,," + causeAge + '\n');
-							} else if (length.equals("30-24")) {
-
-								writer.append(",,X,,," + causeAge + '\n');
-							} else if (length.equals(">24")) {
-								writer.append(",,,X,," + causeAge + '\n');
-
-							}
-						}
-
-						else {
-							String dazed = data.get("cause" + i1 + "Dazed");
-							if (dazed.equals("Yes")) {
-								writer.append("X,,,,Yes," + causeAge + "\n");
-							}
-
-							else {
-								writer.append("X,,,,No," + causeAge + "\n");
-
-							}
-
-						}
-					}
-				}
-
-
-				// Step 3 data
-
-				// Repeated Injuries: Age BeganAge Ended Dazed/No LOC <30min
-				// 30min-24hrs >24hrs
-	
-				if (step3count > 0) {
-					writer.append("\nRepeated Injuries:,Age Began  ,Age Ended,Dazed/No LOC  ,<30min,30min-24hrs  ,>24hrs\n");
-					for (int i1 = 1; i1 <= step3count; i1++) {
-						String cause = data.get("step3cause" + i1);
-						String beganage = data.get("step3agebegan_cause" + i1);
-						String endage = data.get("step3ageended_cause" + i1);
-						if (data.containsKey("step3cause" + i1 + "Length")) {
-							String length = data.get("step3cause" + i1 + "Length");
-							if (length.equals("<30")) {
-
-								writer.append(cause + "," + beganage + "," + endage
-										+ ",,X,,\n");
-							} else if (length.equals("30-24")) {
-
-								writer.append(cause + "," + beganage + "," + endage
-										+ ",,,X,\n");
-							} else if (length.equals(">24")) {
-								writer.append(cause + "," + beganage + "," + endage
-										+ ",,,,X\n");
-
-							}
-
-							else if (length.equals("noLOC")) {
-								writer.append(cause + "," + beganage + "," + endage
-										+ ",X,,,\n");
-							}
-						}
-					}
-				}
-
-				writer.flush();
-				writer.close();
-		        MediaScannerConnection.scanFile(this, new String[] { csv.getAbsolutePath() }, null, null);
-
-				// generate whatever data you want
-
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			
-		}
+			sendShow.setText("Do you want to e-mail the data?");
 		}
 		
 		
@@ -578,7 +305,7 @@ public class SendActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				File csv = new File(path, interview_name + interview_date + "TBI_ID"
+				File csv = new File(path, interview_name + interview_date + timestamp + "TBI_ID"
 						+ ".csv");
 				Intent finish = new Intent(getApplicationContext(),com.tbi_id.FinishActivity.class);
 				startActivity(finish);
@@ -624,87 +351,88 @@ public class SendActivity extends Activity {
 			}
 		});
 
-	}		
-	
-	/*
+	}	
+	}/*
 	 * 
 	 */
-	private void IsClicked (View helpButton){
-		
-		if (click)
-		{
-			//calculate the space between the footer and header in the screen
-			int heightSpace = mainlayout.getHeight() - (footer.getHeight() + header.getHeight());
-			
-			//get the screen width
-			int widthSpace =  footer.getWidth(); 
-			
-			//x offset from the view helpButton left edge
-			int xoff = (int) header.getHeight()/4;
-			//y offset from the view helpButton left edge
-			int yoff =  (int) header.getHeight()/3;
-			
-			//instantiate popupWindow
-			popupWindow = new PopupWindow(
-					popupView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
+	private void IsClicked(View helpButton) {
+
+		if (click) {
+			// calculate the space between the footer and header in the screen
+			int heightSpace = mainlayout.getHeight()
+					- (footer.getHeight() + header.getHeight());
+
+			// get the screen width
+			int widthSpace = footer.getWidth();
+
+			// x offset from the view helpButton left edge
+			int xoff = (int) header.getHeight() / 4;
+			// y offset from the view helpButton left edge
+			int yoff = (int) header.getHeight() / 3;
+
+			// instantiate popupWindow
+			popupWindow = new PopupWindow(popupView, LayoutParams.WRAP_CONTENT,
+					LayoutParams.WRAP_CONTENT, true);
 			popupWindow.showAsDropDown(helpButton, 50, -30);
-			popupWindow.update(helpButton, xoff, yoff, widthSpace - 2*xoff, heightSpace - 2*yoff);
+			popupWindow.update(helpButton, xoff, yoff, widthSpace - 2 * xoff,
+					heightSpace - 2 * yoff);
 			popupWindow.setFocusable(true);
-			
+
 			click = false;
-		}
-		else {
+		} else {
 			click = true;
 			popupWindow.dismiss();
 		}
 	}
-	
+
 	/*
 	 * Get and upload the settings saved as default.
 	 */
-	private void UploadSavedSettings (EditText enterEmailHipaa, TextView emailNotif, CheckBox checkBoxHipaa){
-		
-		//set the boolean false equal to the value of the checkbox when it was when previously run, if not found, set it to false
+	private void UploadSavedSettings(EditText enterEmailHipaa,
+			TextView emailNotif, CheckBox checkBoxHipaa) {
+
+		// set the boolean false equal to the value of the checkbox when it was
+		// when previously run, if not found, set it to false
 		Boolean checked = sharedPrefs.getBoolean("checkboxHipaa", false);
-		// if the value was false, then they are not free from hipaa and cannot send the data so email is turned off
+		// if the value was false, then they are not free from hipaa and cannot
+		// send the data so email is turned off
 		if (checked == false) {
 			enterEmailHipaa.setVisibility(View.GONE);
 			emailNotif.setVisibility(View.GONE);
 			checkBoxHipaa.setChecked(false);
-		}
-		else {
-			String email = sharedPrefs.getString("emailHipaa", "Enter Email Here");
+		} else {
+			String email = sharedPrefs.getString("emailHipaa",
+					"Enter Email Here");
 			enterEmailHipaa.setText(email);
 			checkBoxHipaa.setChecked(true);
-		}		
+		}
 	}
-	
+
 	/*
 	 * 
 	 */
-	private void WasEmailEnter (final EditText emailText){
-		
-		if((emailText.getText().length()==0) && (emailText.isShown()))
-		{
+	private void WasEmailEnter(final EditText emailText) {
+
+		if ((emailText.getText().length() == 0) && (emailText.isShown())) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(context);
 			builder.setTitle("Error");
 			builder.setMessage("Please enter a valid email");
-			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-				
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.cancel();
-					emailText.requestFocus();
-				}
-			});
+			builder.setPositiveButton("OK",
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+							emailText.requestFocus();
+						}
+					});
 			AlertDialog alert = builder.create();
 			alert.show();
-		}
-		else{
+		} else {
 			click = true;
 			popupWindow.dismiss();
 		}
-	}	
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

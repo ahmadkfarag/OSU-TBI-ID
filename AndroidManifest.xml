@@ -155,6 +155,10 @@
             android:name="com.tbi_id.FinishActivity"
             android:label="@string/title_activity_finish" >
         </activity>
+        <activity
+            android:name="com.tbi_id.SaveActivity"
+            android:label="@string/title_activity_save" >
+        </activity>
     </application>
 
 </manifest>

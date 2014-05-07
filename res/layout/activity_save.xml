@@ -1,0 +1,122 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SaveActivity" >
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#971425"
+        android:weightSum="2" >
+
+        <ImageButton
+            android:id="@+id/home_button_main_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/home" />
+
+        <ImageButton
+            android:id="@+id/about_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/about" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#971425"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+
+        <ImageButton
+            android:id="@+id/help_button"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/help" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="@string/osu_tbi_id"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/settings_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#971425"
+            android:src="@drawable/settings" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/saveYes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/saveTitle"
+        android:layout_marginTop="50dp"
+        android:layout_toLeftOf="@+id/save_title"
+        android:background="#ffffff"
+        android:src="@drawable/yes_50" />
+
+    <ImageButton
+        android:id="@+id/saveNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/saveYes"
+        android:layout_toRightOf="@+id/save_title"
+        android:background="#ffffff"
+        android:src="@drawable/no_50" />
+
+    <TextView
+        android:id="@+id/save_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="98dp"
+        android:text="@string/save_title_text"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/saveTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/save_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="45dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="" />
+
+    <ImageButton
+        android:id="@+id/continue_save_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/footer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="65dp"
+        android:src="@drawable/next_50" />
+
+</RelativeLayout>
